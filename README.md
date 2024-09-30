@@ -20,5 +20,5 @@
 
 # how to run fast api app
 ```
- fastapi run {filename}.py
+ fastapi run main.py
 ```
