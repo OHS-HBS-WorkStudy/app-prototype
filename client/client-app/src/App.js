@@ -33,7 +33,7 @@ function App() {
   }
 
   function post(val) {
-    fetch("http://10.100.0.189:8000/registerNewUser", {
+    fetch("http://127.0.0.1:8000/registerNewUser", {
       method: "POST",
       body: JSON.stringify(val),
       headers: {
