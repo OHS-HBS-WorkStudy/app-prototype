@@ -1,10 +1,11 @@
 import { useState, createContext, useContext } from 'react';
 
-import {AccountContext, AccountChangeContext} from './App.js';
+import {AccountContext, AccountChangeContext, ScreenStateContext} from './App.js';
 
 export default function SignUp() {
     const accountType = useContext(AccountContext);
     const changeType = useContext(AccountChangeContext);
+    const changeScreen = useContext(ScreenStateContext);
     function changeStudent() {
         changeType("student");
       }
@@ -38,7 +39,12 @@ export default function SignUp() {
           }
         })
           .then((response) => response.json())
-          .then((json) => console.log(json));
+          .then((json) => toLogin(json));
+      }
+
+      function toLogin(json) {
+        console.log(json);
+        changeScreen(1);
       }
     
       return(

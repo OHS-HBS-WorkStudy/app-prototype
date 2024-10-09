@@ -3,7 +3,8 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
 from routes import (
-    sign_up
+    sign_up,
+    log_in
 )
 
 import sqlite3
@@ -20,3 +21,4 @@ app.add_middleware(
 )
 
 app.include_router(sign_up.router)
+app.include_router(log_in.router)

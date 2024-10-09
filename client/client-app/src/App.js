@@ -3,19 +3,26 @@ import './App.css';
 
 import { useState, createContext } from 'react';
 
-import SignUp from './SignUp.js';
+import Manager from './Manager.js';
 
 export const AccountContext = createContext(0);
 export const AccountChangeContext = createContext(0);
 
+export const ScreenContext = createContext(0);
+export const ScreenStateContext = createContext(0);
+
 function App() {
   const [accountType, changeType] = useState("none");
-
+  const [screenState, changeScreen] = useState(1);
 
   return(
     <AccountContext.Provider value={accountType}>
       <AccountChangeContext.Provider value={changeType}>
-        <SignUp />
+        <ScreenContext.Provider value={screenState}>
+          <ScreenStateContext.Provider value={changeScreen}>
+            <Manager />
+          </ScreenStateContext.Provider>
+        </ScreenContext.Provider>
       </AccountChangeContext.Provider>
     </AccountContext.Provider>
   );
