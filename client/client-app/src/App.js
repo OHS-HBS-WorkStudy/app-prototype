@@ -13,7 +13,7 @@ export const ScreenStateContext = createContext(0);
 
 function App() {
   const [accountType, changeType] = useState("none");
-  const [screenState, changeScreen] = useState(1);
+  const [screenState, changeScreen] = useState(0);
 
   return(
     <AccountContext.Provider value={accountType}>
