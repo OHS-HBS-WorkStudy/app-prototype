@@ -1,5 +1,6 @@
 import { useState, createContext, useContext } from 'react';
 
+import './App.css';
 import {AccountContext, AccountChangeContext, ScreenStateContext} from './App.js';
 
 export default function SignUp() {
@@ -48,27 +49,26 @@ export default function SignUp() {
       }
     
       return(
-        <div>
+        <div className="signupcontent">
           <h3>Create Account</h3>
           <b>First Name:</b>
-          <input id="fname"/>
+          <input id="fname" type="text"/>
           <br/>
           <b>Last Name:</b>
-          <input id="lname"/>
+          <input id="lname"  type="text"/>
           <br/>
           <b>Password:</b>
-          <input id="password"/>
+          <input id="password"  type="text"/>
           <br/>
           <b>Email:</b>
-          <input id="email"/>
+          <input id="email"  type="text"/>
           <br/>
-          <div>
+          <div className="accBut">
             <p><b>Current Account Type:</b> {accountType}</p>
             <button onClick={changeStudent}>Student</button>
             <button onClick={changeParent}>Parent</button>
             <button onClick={changeTeacher}>Teacher</button>
           </div>
-          <br/>
           <button onClick={sendData}>Submit</button>
     
         </div>
