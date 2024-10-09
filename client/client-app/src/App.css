@@ -37,40 +37,31 @@
   }
 }
 
+.SignUp {
+  display: flex;
+}
 
+#upper {
+  margin-left: 50px;
+}
 
-.signupcontent > h3 {
+.SignUp > h3 {
   display: block;
   text-align: center;
 }
 
-.signupcontent input[type=text] {
-  display: flex;
+.inputStyle input[type=text] {
+  flex: 2 2 auto;
   width: 50%;
   padding: 1vmax;
   margin: 10px;
   box-sizing: border-box;
 }
 
-.signupcontent p {
-  text-align: center;
-}
-
-.accBut > button {
-  display: inline-block;
-  width: 99%;
+.buttonStyle {
+  flex: 2 10 auto; 
   color: black;
   background-color: gray;
-  padding: 10px 20px;
-  margin: 10px;
-  border-radius: 1vmax;
-}
-
-.accBut + button {
-  display: inline-block;
-  width: 99%;
-  color: black;
-  background-color: lightgray;
   padding: 10px 20px;
   margin: 10px;
   border-radius: 1vmax;
