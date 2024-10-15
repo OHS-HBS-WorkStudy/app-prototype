@@ -6,7 +6,8 @@ from routes import (
     sign_up,
     log_in,
     createThread,
-    threadList
+    threadList,
+    retrieveThreadData
 )
 
 import sqlite3
@@ -26,3 +27,4 @@ app.include_router(sign_up.router)
 app.include_router(log_in.router)
 app.include_router(createThread.router)
 app.include_router(threadList.router)
+app.include_router(retrieveThreadData.router)
