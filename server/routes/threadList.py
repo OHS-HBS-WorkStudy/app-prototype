@@ -21,7 +21,11 @@ def sql_threadList():
     return_list = []
 
     for a in range(len(start_list)):
-        return_list.append(values[start_list[a]])
+        new_data = {
+            "name": values[start_list[a]][0],
+            "id": values[start_list[a]][2]
+        }
+        return_list.append(new_data)
 
     conn.commit()
     conn.close()
