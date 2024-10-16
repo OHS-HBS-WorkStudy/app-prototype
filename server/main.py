@@ -8,7 +8,8 @@ from routes import (
     createThread,
     threadList,
     retrieveThreadData,
-    createReplies
+    createReplies,
+    replyList
 )
 
 import sqlite3
@@ -30,3 +31,4 @@ app.include_router(createThread.router)
 app.include_router(threadList.router)
 app.include_router(retrieveThreadData.router)
 app.include_router(createReplies.router)
+app.include_router(replyList.router)
