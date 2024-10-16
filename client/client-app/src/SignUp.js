@@ -50,31 +50,27 @@ export default function SignUp() {
     
       return(
         <div className="SignUp">
-          <div id="upper">
+          <div id="left">
             <h3>Create Account</h3>
             <b>First Name:</b>
             <div className="inputStyle">
             <input id="fname" type="text"/>
-            <br/>
             <b>Last Name:</b>
             <input id="lname"  type="text"/>
-            <br/>
             <b>Password:</b>
-            <input id="password"  type="text"/>
-            <br/>
+            <input id="password"  type="text"/>  
             <b>Email:</b>
             <input id="email"  type="text"/>
-            <br/>
             </div>
           </div>
-          <div>
-            <div>
-              <p><b>Current Account Type:</b> {accountType}</p>
-              <button className="buttonStyle" onClick={changeStudent}>Student</button>
-              <button className="buttonStyle" onClick={changeParent}>Parent</button>
-              <button className="buttonStyle" onClick={changeTeacher}>Teacher</button>
-            </div>
-            <button className="buttonStyle" onClick={sendData}>Submit</button>
+          <div id="right">
+            <p><b>Current Account Type:</b> {accountType}</p>
+            <button className="buttonStyle" onClick={changeStudent}>Student</button>
+            <button className="buttonStyle" onClick={changeParent}>Parent</button>
+            <button className="buttonStyle" onClick={changeTeacher}>Teacher</button>
+          </div>
+          <div className="break">
+          <button className="buttonStyle" onClick={sendData}>Submit</button>
           </div>
         </div>
       );

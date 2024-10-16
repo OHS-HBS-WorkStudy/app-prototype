@@ -39,30 +39,53 @@
 
 .SignUp {
   display: flex;
+  justify-content: center;
 }
 
-#upper {
-  margin-left: 50px;
+#left {
+  display: flex;
+  border: 1px solid black;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: space-evenly;
 }
 
-.SignUp > h3 {
-  display: block;
-  text-align: center;
+#right {
+  display: flex;
+  border: 1px solid black;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: space-evenly;
 }
+
 
 .inputStyle input[type=text] {
-  flex: 2 2 auto;
-  width: 50%;
-  padding: 1vmax;
-  margin: 10px;
+  display: flex;
   box-sizing: border-box;
+  padding: 10px;
 }
 
-.buttonStyle {
-  flex: 2 10 auto; 
+#right > .buttonStyle {
+  display: flex;
+  text-align: center;
   color: black;
   background-color: gray;
   padding: 10px 20px;
   margin: 10px;
   border-radius: 1vmax;
+  border: 1px solid black;
 }
+
+.break {
+  flex-wrap: wrap;
+}
+
+.break > .buttonStyle {
+  display: flex;
+  flex-direction: row;
+  background-color: gray;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 1vmax;
+}
+
