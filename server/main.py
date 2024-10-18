@@ -12,7 +12,8 @@ from routes import (
     replyList,
     createVote,
     scoreVotes,
-    addTags
+    addTags,
+    searchTag
 )
 
 import sqlite3
@@ -38,3 +39,4 @@ app.include_router(replyList.router)
 app.include_router(createVote.router)
 app.include_router(scoreVotes.router)
 app.include_router(addTags.router)
+app.include_router(searchTags.router)
