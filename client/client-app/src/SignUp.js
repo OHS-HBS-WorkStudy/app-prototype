@@ -49,28 +49,29 @@ export default function SignUp() {
       }
     
       return(
-        <div className="signupcontent">
-          <h3>Create Account</h3>
-          <b>First Name:</b>
-          <input id="fname" type="text"/>
-          <br/>
-          <b>Last Name:</b>
-          <input id="lname"  type="text"/>
-          <br/>
-          <b>Password:</b>
-          <input id="password"  type="text"/>
-          <br/>
-          <b>Email:</b>
-          <input id="email"  type="text"/>
-          <br/>
-          <div className="accBut">
-            <p><b>Current Account Type:</b> {accountType}</p>
-            <button onClick={changeStudent}>Student</button>
-            <button onClick={changeParent}>Parent</button>
-            <button onClick={changeTeacher}>Teacher</button>
+        <body>
+        <div className="SignUp">
+          <div id="left">
+            <h3>Create Account</h3>
+            <b>First Name:</b>
+            <div className="inputStyle">
+            <input id="fname" type="text"/>
+            <b>Last Name:</b>
+            <input id="lname"  type="text"/>
+            <b>Password:</b>
+            <input id="password"  type="text"/>  
+            <b>Email:</b>
+            <input id="email"  type="text"/>
+            </div>
           </div>
-          <button onClick={sendData}>Submit</button>
-    
+          <div id="right">
+            <p><b>Current Account Type:</b> {accountType}</p>
+            <button className="buttonStyle" onClick={changeStudent}>Student</button>
+            <button className="buttonStyle" onClick={changeParent}>Parent</button>
+            <button className="buttonStyle" onClick={changeTeacher}>Teacher</button>
+            <button className="buttonStyle1" onClick={sendData}>Submit</button>
+          </div>
         </div>
+        </body>
       );
 }

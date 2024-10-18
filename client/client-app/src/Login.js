@@ -1,5 +1,7 @@
 import { useState, createContext, useContext } from 'react';
 
+import './App.css';
+
 import {AccountContext, AccountChangeContext} from './App.js';
 
 export default function SignUp() {
@@ -25,16 +27,19 @@ export default function SignUp() {
       }
     
       return(
-        <div>
+        <body>
+        <div className="Login">
+          <div id='center'>
+          <div className="inputStyle">
           <h3>Log In</h3>
           <b>Email:</b>
-          <input id="email"/>
-          <br/>
+          <input id="email" type="text"/>
           <b>Password:</b>
-          <input id="password"/>
-          <br/>
-          <button onClick={sendData}>Log In</button>
-    
+          <input id="password" type="text"/>
+          </div>
+          <button className="buttonStyle" onClick={sendData}>Log In</button>
+          </div>
         </div>
+        </body>
       );
 }

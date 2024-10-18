@@ -37,41 +37,82 @@
   }
 }
 
-
-
-.signupcontent > h3 {
-  display: block;
-  text-align: center;
-}
-
-.signupcontent input[type=text] {
+body {
   display: flex;
-  width: 50%;
-  padding: 1vmax;
-  margin: 10px;
+  justify-content: center;
+  align-content: center;
+  overflow: hidden;
+}
+
+.SignUp {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  border: 1px solid black;
+  margin: auto;
+}
+
+#left {
+  display: flex;
+  border: 1px solid black;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: space-evenly;
+}
+
+#right {
+  display: flex;
+  border: 1px solid black;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: space-evenly;
+}
+
+
+.inputStyle input[type=text] {
+  display: flex;
   box-sizing: border-box;
+  padding: 10px;
 }
 
-.signupcontent p {
+.buttonStyle {
+  display: flex;
   text-align: center;
-}
-
-.accBut > button {
-  display: inline-block;
-  width: 99%;
   color: black;
   background-color: gray;
   padding: 10px 20px;
+  border-radius: 1vmax;
+}
+#right > .buttonStyle {
+  margin: 10px;
+  border: 1px solid black;
+}
+
+#right > .buttonStyle1 {
+  display: flex;
+  flex-direction: row;
+  color: black;
+  background-color: red;
+  padding: 10px 20px;
   margin: 10px;
   border-radius: 1vmax;
 }
 
-.accBut + button {
-  display: inline-block;
-  width: 99%;
-  color: black;
-  background-color: lightgray;
-  padding: 10px 20px;
-  margin: 10px;
-  border-radius: 1vmax;
+.Login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+
+}
+
+.Login > #center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  padding: 15px ;
+  flex-direction: column;
+  gap: 15px;
 }
