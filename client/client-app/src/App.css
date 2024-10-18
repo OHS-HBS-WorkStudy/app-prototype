@@ -37,9 +37,19 @@
   }
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  overflow: hidden;
+}
+
 .SignUp {
   display: flex;
   justify-content: center;
+  align-content: center;
+  border: 1px solid black;
+  margin: auto;
 }
 
 #left {
@@ -65,27 +75,44 @@
   padding: 10px;
 }
 
-#right > .buttonStyle {
+.buttonStyle {
   display: flex;
   text-align: center;
   color: black;
   background-color: gray;
   padding: 10px 20px;
-  margin: 10px;
   border-radius: 1vmax;
+}
+#right > .buttonStyle {
+  margin: 10px;
   border: 1px solid black;
 }
 
-.break {
-  flex-wrap: wrap;
-}
-
-.break > .buttonStyle {
+#right > .buttonStyle1 {
   display: flex;
   flex-direction: row;
-  background-color: gray;
+  color: black;
+  background-color: red;
   padding: 10px 20px;
   margin: 10px;
   border-radius: 1vmax;
 }
 
+.Login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+
+}
+
+.Login > #center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  padding: 15px ;
+  flex-direction: column;
+  gap: 15px;
+}

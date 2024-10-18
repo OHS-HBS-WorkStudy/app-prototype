@@ -27,18 +27,19 @@ export default function SignUp() {
       }
     
       return(
+        <body>
         <div className="Login">
+          <div id='center'>
           <div className="inputStyle">
           <h3>Log In</h3>
           <b>Email:</b>
           <input id="email" type="text"/>
-          <br/>
           <b>Password:</b>
           <input id="password" type="text"/>
-          <br/>
           </div>
           <button className="buttonStyle" onClick={sendData}>Log In</button>
-    
+          </div>
         </div>
+        </body>
       );
 }

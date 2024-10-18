@@ -49,6 +49,7 @@ export default function SignUp() {
       }
     
       return(
+        <body>
         <div className="SignUp">
           <div id="left">
             <h3>Create Account</h3>
@@ -68,10 +69,9 @@ export default function SignUp() {
             <button className="buttonStyle" onClick={changeStudent}>Student</button>
             <button className="buttonStyle" onClick={changeParent}>Parent</button>
             <button className="buttonStyle" onClick={changeTeacher}>Teacher</button>
-          </div>
-          <div className="break">
-          <button className="buttonStyle" onClick={sendData}>Submit</button>
+            <button className="buttonStyle1" onClick={sendData}>Submit</button>
           </div>
         </div>
+        </body>
       );
 }
