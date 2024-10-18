@@ -45,7 +45,7 @@ export default function SignUp() {
 
       function toLogin(json) {
         console.log(json);
-        changeScreen(1);
+        changeScreen(2);
       }
     
       return(

@@ -2,9 +2,10 @@ import { useState, createContext, useContext } from 'react';
 
 import './App.css';
 
-import {AccountContext, AccountChangeContext} from './App.js';
+import {AccountContext, AccountChangeContext, ScreenStateContext} from './App.js';
 
 export default function SignUp() {
+      const changeScreen = useContext(ScreenStateContext);
       function sendData() {
         let data = {
           password: document.getElementById("password").value,
@@ -23,7 +24,12 @@ export default function SignUp() {
           }
         })
           .then((response) => response.json())
-          .then((json) => console.log(json));
+          .then((json) => toHome(json));
+      }
+
+      function toHome(json) {
+        console.log(json);
+        changeScreen(0);
       }
     
       return(

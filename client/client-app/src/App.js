@@ -15,11 +15,16 @@ function App() {
   const [accountType, changeType] = useState("none");
   const [screenState, changeScreen] = useState(0);
 
+  function switchScreen(val) {
+    changeScreen(val);
+    sessionStorage.setItem("current_screen", val);
+  }
+
   return(
     <AccountContext.Provider value={accountType}>
       <AccountChangeContext.Provider value={changeType}>
         <ScreenContext.Provider value={screenState}>
-          <ScreenStateContext.Provider value={changeScreen}>
+          <ScreenStateContext.Provider value={switchScreen}>
             <Manager />
           </ScreenStateContext.Provider>
         </ScreenContext.Provider>
