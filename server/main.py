@@ -4,7 +4,16 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from routes import (
     sign_up,
-    log_in
+    log_in,
+    createThread,
+    threadList,
+    retrieveThreadData,
+    createReplies,
+    replyList,
+    createVote,
+    scoreVotes,
+    addTags,
+    searchTag
 )
 
 import sqlite3
@@ -22,3 +31,12 @@ app.add_middleware(
 
 app.include_router(sign_up.router)
 app.include_router(log_in.router)
+app.include_router(createThread.router)
+app.include_router(threadList.router)
+app.include_router(retrieveThreadData.router)
+app.include_router(createReplies.router)
+app.include_router(replyList.router)
+app.include_router(createVote.router)
+app.include_router(scoreVotes.router)
+app.include_router(addTags.router)
+app.include_router(searchTag.router)
