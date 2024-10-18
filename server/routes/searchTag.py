@@ -27,6 +27,8 @@ def sql_searchTag(data):
         cursor.execute(f"SELECT * FROM threads WHERE thread_id='{x}'")
         values4 = cursor.fetchone()
 
+        print(values4)
+
         values5 = {
             "thread_name": values4[0],
             "thread_id": values4[2]
@@ -41,5 +43,5 @@ def sql_searchTag(data):
 
 @router.post("/searchTag")
 def searchTag(tag: Tag):
-    data = sql_searchTag(tag)
+    data = sql_searchTag(tag.tag)
     return data
