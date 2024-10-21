@@ -37,7 +37,7 @@
   }
 }
 
-body {
+html {
   display: flex;
   justify-content: center;
   align-content: center;
@@ -115,4 +115,14 @@ body {
   padding: 15px ;
   flex-direction: column;
   gap: 15px;
+}
+
+.Home > .nav {
+  display: flex;
+  flex-direction: row;
+  background-color: red;
+}
+.Home > .thread {
+  flex-direction: column;
+  text-align: center;
 }

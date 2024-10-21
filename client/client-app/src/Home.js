@@ -1,7 +1,7 @@
 import { useState, createContext, useContext } from 'react';
 
 import {ScreenStateContext} from './App.js';
-
+import './App.css';
 import ThreadList from './modules/ThreadList.js';
 
 export default function Home() {
@@ -15,14 +15,19 @@ export default function Home() {
         changeScreen(2);
     }
     return(
-        <div>
-            <div >
-                <h1>Anonymous Academy</h1>
+        <html>
+        <div className="Home">
+            <div>
+                <h1 className="title">Anonymous Academy</h1>
+                <div className="nav">
                 <p onClick={SignUp}>Sign-Up</p>
                 <p onClick={Login}>Log-in</p>
+                </div>
             </div>
-
+            <div className='thread'>
             <ThreadList />
+            </div>
         </div>
+        </html>
     )
 }
