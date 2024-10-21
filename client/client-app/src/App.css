@@ -39,9 +39,10 @@
 
 html {
   display: flex;
+  height: 100%;
+  width:  100%;
   justify-content: center;
-  align-content: center;
-  overflow: hidden;
+  align-items: center;
 }
 
 .SignUp {
@@ -117,12 +118,14 @@ html {
   gap: 15px;
 }
 
-.Home > .nav {
-  display: flex;
-  flex-direction: row;
-  background-color: red;
+.Home p {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 1vh;
+    border: 1px solid black;
 }
 .Home > .thread {
   flex-direction: column;
   text-align: center;
+  
 }

@@ -33,7 +33,8 @@ export default function SignUp() {
       }
     
       return(
-        <html>
+        <body>
+           <h1 className="title">Anonymous Academy</h1>
         <div className="Login">
           <div id='center'>
           <div className="inputStyle">
@@ -46,6 +47,6 @@ export default function SignUp() {
           <button className="buttonStyle" onClick={sendData}>Log In</button>
           </div>
         </div>
-        </html>
+        </body>
       );
 }

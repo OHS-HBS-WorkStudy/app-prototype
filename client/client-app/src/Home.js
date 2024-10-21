@@ -19,10 +19,9 @@ export default function Home() {
         <div className="Home">
             <div>
                 <h1 className="title">Anonymous Academy</h1>
-                <div className="nav">
+                
                 <p onClick={SignUp}>Sign-Up</p>
                 <p onClick={Login}>Log-in</p>
-                </div>
             </div>
             <div className='thread'>
             <ThreadList />

@@ -50,6 +50,7 @@ export default function SignUp() {
     
       return(
         <body>
+           <h1 className="title">Anonymous Academy</h1>
         <div className="SignUp">
           <div id="left">
             <h3>Create Account</h3>
