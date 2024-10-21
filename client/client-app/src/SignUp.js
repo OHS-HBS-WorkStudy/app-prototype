@@ -30,6 +30,8 @@ export default function SignUp() {
     
         post(data);
       }
+
+        
     
       function post(val) {
         fetch("http://127.0.0.1:8000/registerNewUser", {
@@ -49,7 +51,7 @@ export default function SignUp() {
       }
     
       return(
-        <body>
+        <html>
         <div className="SignUp">
           <div id="left">
             <h3>Create Account</h3>
@@ -72,6 +74,6 @@ export default function SignUp() {
             <button className="buttonStyle1" onClick={sendData}>Submit</button>
           </div>
         </div>
-        </body>
+        </html>
       );
 }
