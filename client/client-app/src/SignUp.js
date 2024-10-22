@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from 'react';
+import { useState, createContext, useContext, useEffect } from 'react';
 
 import './App.css';
 import {AccountContext, AccountChangeContext, ScreenStateContext} from './App.js';
@@ -7,6 +7,8 @@ export default function SignUp() {
     const accountType = useContext(AccountContext);
     const changeType = useContext(AccountChangeContext);
     const changeScreen = useContext(ScreenStateContext);
+    const [loading, setLoading] = useState(true);
+
     function changeStudent() {
         changeType("student");
       }
@@ -49,31 +51,54 @@ export default function SignUp() {
         console.log(json);
         changeScreen(1);
       }
-    
-      return(
-        <html>
-        <div className="SignUp">
-          <div id="left">
-            <h3>Create Account</h3>
-            <b>First Name:</b>
-            <div className="inputStyle">
-            <input id="fname" type="text"/>
-            <b>Last Name:</b>
-            <input id="lname"  type="text"/>
-            <b>Password:</b>
-            <input id="password"  type="text"/>  
-            <b>Email:</b>
-            <input id="email"  type="text"/>
-            </div>
-          </div>
-          <div id="right">
-            <p><b>Current Account Type:</b> {accountType}</p>
-            <button className="buttonStyle" onClick={changeStudent}>Student</button>
-            <button className="buttonStyle" onClick={changeParent}>Parent</button>
-            <button className="buttonStyle" onClick={changeTeacher}>Teacher</button>
-            <button className="buttonStyle1" onClick={sendData}>Submit</button>
-          </div>
+
+
+
+
+
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false); 
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, 0);
+
+  if (loading) {
+    return (
+      <div className="loader" />
+    );
+  }
+
+  return(
+    <html>
+    <div className="SignUp">
+      <div id="left">
+        <h3>Create Account</h3>
+        <b>First Name:</b>
+        <div className="inputStyle">
+        <input id="fname" type="text"/>
+        <b>Last Name:</b>
+        <input id="lname"  type="text"/>
+        <b>Password:</b>
+        <input id="password"  type="text"/>  
+        <b>Email:</b>
+        <input id="email"  type="text"/>
         </div>
-        </html>
-      );
-}
+      </div>
+      <div id="right">
+        <p><b>Current Account Type:</b> {accountType}</p>
+        <button className="buttonStyle" onClick={changeStudent}>Student</button>
+        <button className="buttonStyle" onClick={changeParent}>Parent</button>
+        <button className="buttonStyle" onClick={changeTeacher}>Teacher</button>
+        <button className="buttonStyle1" onClick={sendData}>Submit</button>
+      </div>
+    </div>
+    </html>
+  );
+};
+
+
+    
+      
