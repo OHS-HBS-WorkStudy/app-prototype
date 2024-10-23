@@ -34,7 +34,7 @@ export default function SignUp() {
     
       return(
         <body>
-           <h1 className="title">Anonymous Academy</h1>
+           <h1 id="title">Anonymous Academy</h1>
         <div className="Login">
           <div id='center'>
           <div className="inputStyle">
@@ -44,7 +44,7 @@ export default function SignUp() {
           <b>Password:</b>
           <input id="password" type="text"/>
           </div>
-          <button className="buttonStyle" onClick={sendData}>Log In</button>
+          <button className="btn-send" onClick={sendData}>Log In</button>
           </div>
         </div>
         </body>

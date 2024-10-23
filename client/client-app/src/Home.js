@@ -14,14 +14,16 @@ export default function Home() {
     function Login() {
         changeScreen(2);
     }
+
     return(
-        <html>
+        <html className="scroll">
         <div className="Home">
             <div>
-                <h1 className="title">Anonymous Academy</h1>
-                
-                <p onClick={SignUp}>Sign-Up</p>
-                <p onClick={Login}>Log-in</p>
+                <h1 id="title">Anonymous Academy</h1>
+                <div className="send-right">
+                    <p className="btn" onClick={SignUp}>Sign-Up</p>
+                    <p  className="btn" onClick={Login}>Log-in</p>
+                </div>
             </div>
             <div className='thread'>
             <ThreadList />
