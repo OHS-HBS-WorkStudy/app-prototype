@@ -19,6 +19,7 @@ function App() {
     changeScreen(val);
     sessionStorage.setItem("current_screen", val);
   }
+  
 
   return(
     <AccountContext.Provider value={accountType}>
