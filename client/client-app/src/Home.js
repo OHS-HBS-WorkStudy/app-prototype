@@ -21,8 +21,8 @@ export default function Home() {
             <div>
                 <h1 id="title">Anonymous Academy</h1>
                 <div className="send-right">
-                    <p className="btn" onClick={SignUp}>Sign-Up</p>
-                    <p  className="btn" onClick={Login}>Log-in</p>
+                    <p className="btn-send" onClick={SignUp}>Sign-Up</p>
+                    <p  className="btn-send" onClick={Login}>Log-in</p>
                 </div>
             </div>
             <div className='thread'>

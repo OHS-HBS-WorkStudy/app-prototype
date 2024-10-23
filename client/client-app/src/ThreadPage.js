@@ -4,9 +4,9 @@ export default function ThreadPage() {
     console.log(data);
 
     return(
-        <div>
-            <h1>{data[0]}</h1>
-            <p>{data[1]}</p>
+        <div className="Thread-Content">
+            <h1 className="Thread-Title">{data[0]}</h1>
+            <p className="Thread-Desc">{data[1]}</p>
         </div>
     )
 }

@@ -144,6 +144,33 @@ html {
   
 }
 
+/* Thread Screen Styling */
+.Thread-Content {
+  display: flex;
+  flex-direction: column;
+  width: 50vh;
+  height: 50vh;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.Thread-Title {
+  font-size: 5vh;
+  top: -10px;
+}
+
+.Thread-Desc {
+  text-wrap: wrap;
+  word-wrap: break-word;
+  border: 1px solid black;
+  padding: 20px 10px;
+  overflow-y: scroll;
+}
+
+/* Replies Styling */
+
+/* Vote Styling */
+
 /* Button Styling */
 
 .btn {
