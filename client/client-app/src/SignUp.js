@@ -89,9 +89,15 @@ export default function SignUp() {
       </div>
       <div id="right">
         <p><b>Current Account Type:</b> {accountType}</p>
-        <button className="buttonStyle" onClick={changeStudent}>Student</button>
-        <button className="buttonStyle" onClick={changeParent}>Parent</button>
-        <button className="buttonStyle" onClick={changeTeacher}>Teacher</button>
+        <button className="btn" onClick={changeStudent}>
+            <span>Student</span>
+        </button>
+        <button className="btn" onClick={changeParent}>
+            <span>Parent</span>
+        </button>
+        <button className="btn" onClick={changeTeacher}>
+            <span>Teacher</span>
+       </button>
         <button className="buttonStyle1" onClick={sendData}>Submit</button>
       </div>
     </div>
