@@ -28,6 +28,7 @@ export default function SignUp() {
       }
 
       function toHome(json) {
+        sessionStorage.setItem("user", JSON.stringify(json));
         console.log(json);
         changeScreen(0);
       }

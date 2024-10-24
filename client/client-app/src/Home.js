@@ -15,6 +15,10 @@ export default function Home() {
         changeScreen(2);
     }
 
+    function NewThread() {
+        changeScreen(4);
+    }
+
     return(
         <html className="scroll">
         <div className="Home">
@@ -23,6 +27,7 @@ export default function Home() {
                 <div className="send-right">
                     <p className="btn-send" onClick={SignUp}>Sign-Up</p>
                     <p  className="btn-send" onClick={Login}>Log-in</p>
+                    <p className="btn-send" onClick={NewThread}>Ask a Question!</p>
                 </div>
             </div>
             <div className='thread'>
