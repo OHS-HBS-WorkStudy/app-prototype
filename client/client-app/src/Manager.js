@@ -11,6 +11,8 @@ import Home from './Home.js';
 export default function Manager() {
     const screenState = useContext(ScreenContext);
 
+    console.log(screenState)
+
     switch(screenState) {
         case 1:
             return(
