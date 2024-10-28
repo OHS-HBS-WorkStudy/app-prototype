@@ -3,6 +3,7 @@ import { useState, createContext, useContext } from 'react';
 import './App.css';
 
 import {AccountContext, AccountChangeContext, ScreenStateContext} from './App.js';
+import Navigator from './modules/Navigator.js';
 
 export default function SignUp() {
       const changeScreen = useContext(ScreenStateContext);
@@ -35,7 +36,7 @@ export default function SignUp() {
     
       return(
         <body>
-           <h1 id="title">Anonymous Academy</h1>
+          <Navigator />
         <div className="Login">
           <div id='center'>
           <div className="inputStyle">

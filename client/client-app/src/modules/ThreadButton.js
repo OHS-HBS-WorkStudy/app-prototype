@@ -24,8 +24,8 @@ export default function ThreadButton({value}) {
         .then((json) => toThreadPage(json));
     }
     return(
-        <div onClick={getThreadData}>
-            <h2>{value.name}</h2>
+        <div>
+            <h2 onClick={getThreadData} className="grid-item">{value.name}</h2>
         </div>
     )
 }

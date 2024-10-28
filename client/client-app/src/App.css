@@ -37,57 +37,153 @@
   }
 }
 
-/* Sign Up Screen Styling */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 html {
   display: flex;
   height: 100%;
   width:  100%;
-  justify-content: center;
   align-items: center;
-  background-color: rgb(21, 59, 130);
-  color: white
+  background-color: indigo;
+  color: white;
+  
 }
 
+body {
+  width:  100%;
+}
+
+/* Nav Styles */
+nav {
+  position: fixed;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: row;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+  background-color: gray;
+  padding: 10px;
+}
+nav h1 {
+
+  margin-right: auto;
+}
+
+nav svg {
+  fill: white;
+}
+.link-container {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+nav .a {
+  display: flex;
+  margin: 0;
+  gap: 15px;
+
+}
+
+#sidebar-active{
+  display: none;
+}
+
+.open-sidebar, .close-sidebar {
+  display: none;
+}
+
+@media only screen and (max-width: 640px) {
+  .link-container {
+    position: fixed;
+    flex-direction: column;
+    align-items: flex-start;
+    top: 0;
+    right: -100%;
+    width: 200px;
+    background-color: gray;
+    box-shadow: -5px 0 5px rgba(0,0,0,0.25);
+    transition: 0.75s ease-out;
+  }
+
+  nav .a {
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    width: 100%;
+    padding: 20px 30px;
+
+  }
+  .open-sidebar, .close-sidebar {
+    padding: 20px;
+    display: block;
+  
+  }
+  #sidebar-active:checked ~ .link-container {
+    right: 0;
+
+  }
+  #sidebar-active:checked ~ #overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+  }
+
+}
+
+/* Sign Up Screen Styling */
 .SignUp {
   display: flex;
   justify-content: center;
   align-content: center;
-  border: 1px solid black;
   margin: auto;
   max-width: 600px; 
-  
 }
 
 #left,
 #right {
+  background-color: white;
+  color: black;
   display: flex;
   border: 1px solid black;
-  color: white;
   padding: 10px;
   flex-direction: column;
   justify-content: space-evenly;
   max-height: 50vh;
   max-width: 50vh;
-  flex-grow: 1; 
+  flex: 1 1; 
 }
 
-.inputStyle {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  width: 100%; 
+@media only screen and (max-width: 425px){
+  .SignUp { 
+    flex-direction: column;
+  }
+
+  #right {
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .btn, .btn-send {
+    flex-direction: column;
+    height:75%;
+    width: 75%;
+  }
 }
-
-.inputStyle input[type=text] {
-  flex-grow: 1; 
-  min-width: 250px;
-  width: 100%;
-  box-sizing: border-box; 
-  padding: 10px;
-
-}
-
 
 /* Login Screen Styling */
 
@@ -105,43 +201,18 @@ html {
   padding: 15px ;
   flex-direction: column;
   gap: 15px;
+  border-radius: 15px;
+  background-color: white;
+  color: black;
 }
-
-#title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 
 /* Home Screen Styling */
-.Home{
-  border: 1px solid black;
-  width: 50vh;
-  height: 50vh;
-  overflow: none;
-}
-
-.Home .send-right {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: end;
-    align-items: end;
-    width: 100%;
-    gap: 10px;
-    padding: 1vh;
-    border: 1px solid black;
-}
-
-.Home .send-right p {
-  padding: 10px;
-}
-
-.Home .thread {
-  flex-direction: column;
-  text-align: center;
-  overflow-y: scroll;
-  
+.Home {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
 }
 
 /* Thread Screen Styling */
@@ -171,10 +242,69 @@ html {
 
 /* Vote Styling */
 
-/* Button Styling */
 
+/* Thread Grid */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  width: 100%;
+  height: calc(100% - 500px);
+  max-width: 1200px; 
+  padding: 5px;
+  box-sizing: border-box; 
+  border: 2px solid red;
+  text-overflow: ellipsis;
+}
+.grid-item {
+  background-color: rgb(90, 36, 90);
+  color: white;
+  font-size: 10px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 8px;
+
+  white-space: nowrap;    
+  overflow: hidden;        
+  text-overflow: ellipsis;  
+  
+  max-width: 1199px;   
+}
+
+@media (max-width: 640px) {
+  .grid-container {
+    grid-template-columns: 1fr; 
+  }
+}
+
+/* Title Style */
+#title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Input Style */
+.inputStyle {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1; 
+  width: 100%; 
+}
+
+.inputStyle input[type=text] {
+  flex: 1 1; 
+
+  width: 100%;
+  box-sizing: border-box; 
+  padding: 10px;
+}
+
+
+/* Button Styling */
 .btn {
   position: relative;
+  flex-direction: row;
   background-color: indigo;
   border-radius: 8px;
   color: white;
@@ -193,19 +323,18 @@ html {
   font-weight: 600;
   text-transform: uppercase;
   padding: 8px 24px;
-  overflow: hidden; 
+  overflow: none; 
   border: none;
 }
 
-@media screen and (max-width: 896px){
-  .SignUp {
-    flex-direction: column;
-    
-  }
-
-  #right {
-    gap: 10px;
-    justify-content: space-evenly;
-  }
-  
+.nav-btn {
+  position: relative;
+  flex-direction: row;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  overflow: none; 
+  border: none;
 }

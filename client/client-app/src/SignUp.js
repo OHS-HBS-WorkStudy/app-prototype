@@ -3,6 +3,8 @@ import { useState, createContext, useContext } from 'react';
 import './App.css';
 import {AccountContext, AccountChangeContext, ScreenStateContext} from './App.js';
 
+import Navigator from './modules/Navigator.js';
+
 export default function SignUp() {
     const accountType = useContext(AccountContext);
     const changeType = useContext(AccountChangeContext);
@@ -50,7 +52,7 @@ export default function SignUp() {
     
       return(
         <body>
-           <h1 id="title">Anonymous Academy</h1>
+           <Navigator />
         <div className="SignUp">
           <div id="left">
             <h3>Create Account</h3>
