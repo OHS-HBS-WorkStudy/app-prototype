@@ -13,13 +13,26 @@ export const ScreenStateContext = createContext(0);
 
 function App() {
   const [accountType, changeType] = useState("none");
-  const [screenState, changeScreen] = useState(0);
+  const [screenState, changeScreen] = useState(check());
+
+  console.log(screenState);
+
+  function switchScreen(val) {
+    changeScreen(val);
+    sessionStorage.setItem("current_screen", val);
+  }
+
+  function check() {
+    let val = Number(sessionStorage.getItem("current_screen"));
+    console.log(val);
+    return val;
+  }
 
   return(
     <AccountContext.Provider value={accountType}>
       <AccountChangeContext.Provider value={changeType}>
         <ScreenContext.Provider value={screenState}>
-          <ScreenStateContext.Provider value={changeScreen}>
+          <ScreenStateContext.Provider value={switchScreen}>
             <Manager />
           </ScreenStateContext.Provider>
         </ScreenContext.Provider>

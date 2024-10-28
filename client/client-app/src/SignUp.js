@@ -3,6 +3,8 @@ import { useState, createContext, useContext } from 'react';
 import './App.css';
 import {AccountContext, AccountChangeContext, ScreenStateContext} from './App.js';
 
+import Navigator from './modules/Navigator.js';
+
 export default function SignUp() {
     const accountType = useContext(AccountContext);
     const changeType = useContext(AccountChangeContext);
@@ -45,11 +47,12 @@ export default function SignUp() {
 
       function toLogin(json) {
         console.log(json);
-        changeScreen(1);
+        changeScreen(2);
       }
     
       return(
         <body>
+           <Navigator />
         <div className="SignUp">
           <div id="left">
             <h3>Create Account</h3>
@@ -66,10 +69,16 @@ export default function SignUp() {
           </div>
           <div id="right">
             <p><b>Current Account Type:</b> {accountType}</p>
-            <button className="buttonStyle" onClick={changeStudent}>Student</button>
-            <button className="buttonStyle" onClick={changeParent}>Parent</button>
-            <button className="buttonStyle" onClick={changeTeacher}>Teacher</button>
-            <button className="buttonStyle1" onClick={sendData}>Submit</button>
+            <button className="btn" onClick={changeStudent}>
+                <span>Student</span>
+            </button>
+            <button className="btn" onClick={changeParent}>
+              <span>Parent</span>
+            </button>
+            <button className="btn" onClick={changeTeacher}>
+              <span>Teacher</span>
+            </button>
+            <button className="btn-send" onClick={sendData}>Submit</button>
           </div>
         </div>
         </body>

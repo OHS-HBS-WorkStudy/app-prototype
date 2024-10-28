@@ -2,9 +2,11 @@ import { useState, createContext, useContext } from 'react';
 
 import './App.css';
 
-import {AccountContext, AccountChangeContext} from './App.js';
+import {AccountContext, AccountChangeContext, ScreenStateContext} from './App.js';
+import Navigator from './modules/Navigator.js';
 
 export default function SignUp() {
+      const changeScreen = useContext(ScreenStateContext);
       function sendData() {
         let data = {
           password: document.getElementById("password").value,
@@ -23,11 +25,18 @@ export default function SignUp() {
           }
         })
           .then((response) => response.json())
-          .then((json) => console.log(json));
+          .then((json) => toHome(json));
+      }
+
+      function toHome(json) {
+        sessionStorage.setItem("user", JSON.stringify(json));
+        console.log(json);
+        changeScreen(0);
       }
     
       return(
         <body>
+          <Navigator />
         <div className="Login">
           <div id='center'>
           <div className="inputStyle">
@@ -37,7 +46,7 @@ export default function SignUp() {
           <b>Password:</b>
           <input id="password" type="text"/>
           </div>
-          <button className="buttonStyle" onClick={sendData}>Log In</button>
+          <button className="btn-send" onClick={sendData}>Log In</button>
           </div>
         </div>
         </body>
