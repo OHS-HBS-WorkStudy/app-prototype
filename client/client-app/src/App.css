@@ -49,6 +49,7 @@ html {
   height: 100%;
   width:  100%;
   align-items: center;
+  justify-content: center;
   background-color: indigo;
   color: white;
   
@@ -56,6 +57,9 @@ html {
 
 body {
   width:  100%;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid red;
 }
 
 /* Nav Styles */
@@ -210,33 +214,12 @@ nav .a {
 .Home {
   display: flex;
   justify-content: center;
-  padding: 20px;
-  width: 100%;
-  height: 100%;
-}
-
-/* Thread Screen Styling */
-.Thread-Content {
-  display: flex;
-  flex-direction: column;
-  width: 50vh;
-  height: 50vh;
   align-items: center;
-  border: 1px solid black;
+  width: 100vh;
+  height: 100vh;
+  border: 1px solid green;
 }
 
-.Thread-Title {
-  font-size: 5vh;
-  top: -10px;
-}
-
-.Thread-Desc {
-  text-wrap: wrap;
-  word-wrap: break-word;
-  border: 1px solid black;
-  padding: 20px 10px;
-  overflow-y: scroll;
-}
 
 /* Replies Styling */
 
@@ -246,11 +229,10 @@ nav .a {
 /* Thread Grid */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 10px;
-  width: 100%;
-  height: calc(100% - 500px);
-  max-width: 1200px; 
+  width:  100%;
+  height: 100%; 
   padding: 5px;
   box-sizing: border-box; 
   border: 2px solid red;
@@ -268,7 +250,8 @@ nav .a {
   overflow: hidden;        
   text-overflow: ellipsis;  
   
-  max-width: 1199px;   
+  max-width: 1199px;  
+  border: 2px solid red; 
 }
 
 @media (max-width: 640px) {
@@ -282,6 +265,7 @@ nav .a {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 /* Input Style */
@@ -313,6 +297,7 @@ nav .a {
   padding: 8px 24px;
   overflow: hidden; 
   border: none;
+  cursor: pointer;
 }
 
 .btn-send {
@@ -325,6 +310,7 @@ nav .a {
   padding: 8px 24px;
   overflow: none; 
   border: none;
+  cursor: pointer;
 }
 
 .nav-btn {
@@ -337,4 +323,5 @@ nav .a {
   padding: 4px 12px;
   overflow: none; 
   border: none;
+  cursor: pointer;
 }

@@ -7,12 +7,12 @@ import ThreadList from './modules/ThreadList.js';
 
 export default function Home() {
     return(
-        <html className="scroll">
+        <html>
+             <Navigator />
         <div className="Home">
-            <Navigator />
-            <div>
+        <body>
             <ThreadList />
-            </div>
+            </body>
         </div>
         </html>
     )
