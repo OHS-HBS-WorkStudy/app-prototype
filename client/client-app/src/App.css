@@ -59,7 +59,7 @@ body {
   width:  100%;
   justify-content: center;
   align-items: center;
-  border: 2px solid red;
+  border: 2px solid rgb(64, 64, 153);
 }
 
 /* Nav Styles */
@@ -220,12 +220,6 @@ nav .a {
   border: 1px solid green;
 }
 
-
-/* Replies Styling */
-
-/* Vote Styling */
-
-
 /* Thread Grid */
 .grid-container {
   display: grid;
@@ -259,6 +253,46 @@ nav .a {
     grid-template-columns: 1fr; 
   }
 }
+
+/* Thread Screen Styling */
+
+.thread {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  padding: 10px;
+}
+
+#thread-content {
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  width: 50vh;
+  border: 1px solid black;
+  margin: 50px;
+}
+
+/* Create Thread Screen Styling */
+.new-thread {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+.new-thread-content {
+  color: black;
+  background-color: white;
+  border-radius: 15px;
+  
+}
+
+/* Replies Styling */
+
+/* Vote Styling */
+
+
 
 /* Title Style */
 #title {

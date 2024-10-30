@@ -31,7 +31,7 @@ export default function ThreadReply() {
                 <br/>
                 <b>Enter Reply:</b><input id="reply"></input>
                 <br/>
-                <button onClick={ReplyButton}>Submit Reply</button>
+                <button className="btn-send" onClick={ReplyButton}>Submit Reply</button>
             </div>
         </div>
     );

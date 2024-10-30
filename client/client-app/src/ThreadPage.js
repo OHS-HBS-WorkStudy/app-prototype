@@ -8,15 +8,20 @@ export default function ThreadPage() {
     console.log(data);
 
     return(
-        <div className="Thread-Content">
-            <Navigator />
-            <h1 className="Thread-Title">{data[0]}</h1>
-            <p className="Thread-Desc">{data[1]}</p>
-            <br/>
-            <div>
-                <ThreadReply />
-                <ReplyList />
+        <>
+         <Navigator />
+            <div className="thread">
+                <div id="thread-content">
+                    <body>
+                            <h1 className="thread-title">{data[0]}</h1>
+                            <p className="thread-desc">{data[1]}</p>
+                            <div>
+                                <ThreadReply />
+                                <ReplyList />
+                            </div>
+                    </body>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
