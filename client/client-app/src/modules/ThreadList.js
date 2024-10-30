@@ -29,12 +29,10 @@ export default function ThreadList() {
         if(listActive === true) {
             let values = JSON.parse(sessionStorage.getItem("threads"));
             return(
-                <div>
-                    <div className="grid-container">
+                <div className="grid-container">
                     {values.map(value => 
-                        <ThreadButton value={value}  />
+                        <ThreadButton value={value} className="grid-item "  />
                     )} 
-                    </div>
                 </div>
             ) 
         }else {
