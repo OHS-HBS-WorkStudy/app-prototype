@@ -59,7 +59,6 @@ body {
   width:  100%;
   justify-content: center;
   align-items: center;
-  border: 2px solid red;
 }
 
 /* Nav Styles */
@@ -116,7 +115,7 @@ nav .a {
     width: 200px;
     background-color: gray;
     box-shadow: -5px 0 5px rgba(0,0,0,0.25);
-    transition: 0.75s ease-out;
+    transition: 0.75s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   nav .a {
@@ -191,24 +190,62 @@ nav .a {
 
 /* Login Screen Styling */
 
+
+.spilt {
+  height: 100%;
+  margin-top: 4.55%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.right{
+  right: 0;
+  background-color: black;
+}
+
+.left {
+  left: 0;
+  color: black;
+  background-color: white;
+}
+
+.center {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+
+
+/* @media only screen and (max-width: 640px ) {
 .Login {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 100px;
+  height: 50vh;
 }
 
 .Login > #center {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
-  padding: 15px ;
   flex-direction: column;
-  gap: 15px;
-  border-radius: 15px;
   background-color: white;
   color: black;
+  border: 1px solid black;
+  padding: 15px;
+  gap: 10px;
+  border-radius: 15px;
 }
+} */
 
 /* Home Screen Styling */
 .Home {
@@ -220,18 +257,13 @@ nav .a {
   border: 1px solid green;
 }
 
-
-/* Replies Styling */
-
-/* Vote Styling */
-
-
 /* Thread Grid */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: 1fr;
   gap: 10px;
   width:  100%;
+  margin-top: 10%;
   height: 100%; 
   padding: 5px;
   box-sizing: border-box; 
@@ -241,8 +273,9 @@ nav .a {
 .grid-item {
   background-color: rgb(90, 36, 90);
   color: white;
-  font-size: 10px;
-  padding: 10px;
+  font-size: 15px;
+  
+  padding: 20px;
   text-align: center;
   border-radius: 8px;
 
@@ -259,6 +292,49 @@ nav .a {
     grid-template-columns: 1fr; 
   }
 }
+
+/* Thread Screen Styling */
+
+.thread {
+  display: flex;
+  flex: 2 2;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  padding: 10px;
+}
+
+#thread-content {
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  height: 85vh;
+  width: 80vh;
+  border: 1px solid black;
+  margin: 50px;
+}
+
+
+
+/* Create Thread Screen Styling */
+.new-thread {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+.new-thread-content {
+  color: black;
+  background-color: white;
+  border-radius: 15px;
+  
+}
+
+/* Replies Styling */
+
+/* Vote Styling */
+
+
 
 /* Title Style */
 #title {
@@ -278,7 +354,6 @@ nav .a {
 
 .inputStyle input[type=text] {
   flex: 1 1; 
-
   width: 100%;
   box-sizing: border-box; 
   padding: 10px;

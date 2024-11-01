@@ -31,12 +31,12 @@ export default function NewThreadInput() {
     return(
         <div>
             <b>Title:</b>
-            <input id="thread_title"></input>
+            <input id="thread_title" className="inputStyle"></input>
             <br/>
             <b>Question:</b>
-            <input id="thread_contents"></input>
+            <input id="thread_contents" className="inputStyle"></input>
             <br/>
-            <button onClick={submitThread}>Submit Question</button>
+            <button className="btn-send" onClick={submitThread}>Submit Question</button>
         </div>
     );
 }
