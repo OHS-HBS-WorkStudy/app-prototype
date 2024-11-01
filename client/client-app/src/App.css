@@ -59,7 +59,6 @@ body {
   width:  100%;
   justify-content: center;
   align-items: center;
-  border: 2px solid rgb(64, 64, 153);
 }
 
 /* Nav Styles */
@@ -191,24 +190,62 @@ nav .a {
 
 /* Login Screen Styling */
 
+
+.spilt {
+  height: 100%;
+  margin-top: 4.55%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.right{
+  right: 0;
+  background-color: black;
+}
+
+.left {
+  left: 0;
+  color: black;
+  background-color: white;
+}
+
+.center {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+
+
+/* @media only screen and (max-width: 640px ) {
 .Login {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 100px;
+  height: 50vh;
 }
 
 .Login > #center {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
-  padding: 15px ;
   flex-direction: column;
-  gap: 15px;
-  border-radius: 15px;
   background-color: white;
   color: black;
+  border: 1px solid black;
+  padding: 15px;
+  gap: 10px;
+  border-radius: 15px;
 }
+} */
 
 /* Home Screen Styling */
 .Home {
@@ -223,9 +260,10 @@ nav .a {
 /* Thread Grid */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: 1fr;
   gap: 10px;
   width:  100%;
+  margin-top: 10%;
   height: 100%; 
   padding: 5px;
   box-sizing: border-box; 
@@ -235,8 +273,9 @@ nav .a {
 .grid-item {
   background-color: rgb(90, 36, 90);
   color: white;
-  font-size: 10px;
-  padding: 10px;
+  font-size: 15px;
+  
+  padding: 20px;
   text-align: center;
   border-radius: 8px;
 
@@ -258,6 +297,7 @@ nav .a {
 
 .thread {
   display: flex;
+  flex: 2 2;
   align-items: center;
   justify-content: center;
   color: black;
@@ -268,11 +308,13 @@ nav .a {
   background-color: white;
   align-items: center;
   justify-content: center;
-  height: 50vh;
-  width: 50vh;
+  height: 85vh;
+  width: 80vh;
   border: 1px solid black;
   margin: 50px;
 }
+
+
 
 /* Create Thread Screen Styling */
 .new-thread {
@@ -312,7 +354,6 @@ nav .a {
 
 .inputStyle input[type=text] {
   flex: 1 1; 
-
   width: 100%;
   box-sizing: border-box; 
   padding: 10px;
