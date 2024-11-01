@@ -19,6 +19,10 @@ export default function Navigator() {
         changeScreen(4);
     }
 
+    function AccountPage() {
+        changeScreen(5);
+    }
+
     function HomePage() {
         changeScreen(0);
     }
@@ -42,6 +46,7 @@ export default function Navigator() {
                         <p className="nav-btn" onClick={SignUp}>Sign-Up</p>
                         <p className="nav-btn" onClick={Login}>Log-in</p>
                         <p className="nav-btn" onClick={NewThread}>Ask a Question!</p>
+                        <p className="nav-btn" onClick={AccountPage}>Account</p>
                     </div>
                 </div>
             </nav>
