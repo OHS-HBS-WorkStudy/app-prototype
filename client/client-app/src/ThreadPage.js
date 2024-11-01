@@ -1,6 +1,7 @@
 import Navigator from "./modules/Navigator.js";
 import ThreadReply from "./modules/ThreadReply.js";
 import ReplyList from "./modules/ReplyList.js";
+import ThreadVote from "./modules/ThreadVote.js";
 
 export default function ThreadPage() {
     let data = JSON.parse(sessionStorage.getItem("thread"));
@@ -10,6 +11,7 @@ export default function ThreadPage() {
     return(
         <div className="Thread-Content">
             <Navigator />
+            <ThreadVote Startscore={0}/>
             <h1 className="Thread-Title">{data[0]}</h1>
             <p className="Thread-Desc">{data[1]}</p>
             <br/>
