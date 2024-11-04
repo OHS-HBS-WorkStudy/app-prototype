@@ -30,7 +30,9 @@ export default function Navigator() {
     return (
         <div>
             <nav>
-                <h1 id="title" onClick={HomePage}>Anonymous Academy</h1>
+        
+                <h1 id="title" className="title1" onClick={HomePage}>Anonymous Academy</h1>
+
                         <input type="checkbox" id="sidebar-active" />
                             <label for="sidebar-active" className="open-sidebar">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#5f6368"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
