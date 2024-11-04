@@ -7,10 +7,13 @@ import uuid
 
 router = APIRouter()
 
-def sql_replyList():    
+class Thread(BaseModel):
+    thread_id: str
+
+def sql_replyList(data):    
     conn = sqlite3.connect('app.db')
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM replies")
+    cursor.execute(f"SELECT * FROM replies WHERE thread_id='{data}'")
     values = cursor.fetchall()
     
     new_list = []
@@ -28,8 +31,8 @@ def sql_replyList():
     print(new_list)
     return new_list
 
-@router.get("/replyList")
-def replyList():
-    data = sql_replyList()
+@router.post("/replyList")
+def replyList(thread: Thread):
+    data = sql_replyList(thread.thread_id)
 
     return data
