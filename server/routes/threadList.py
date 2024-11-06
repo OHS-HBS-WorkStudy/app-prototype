@@ -14,7 +14,7 @@ def sql_threadList():
     cursor.execute("SELECT * FROM threads")
     values = cursor.fetchall()
     start_list = []
-    for x in range(200):
+    for x in range(10):
         y = random.randint(0, len(values)-1)
         start_list.append(y)
 

@@ -37,25 +37,22 @@
   }
 }
 
-
 /* Standardize Styling */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
-  overflow-x: none;
 }
 
 body, html {
   margin: 0;
   padding: 0;
   height: 100%;
-  width:  100%;
-  justify-content: center;
-  align-items: center;
   font-family: Arial, sans-serif;
   background-color: indigo;
   color: white;
+  overflow-x: hidden;
+
+
+
 }
 
 .container {
@@ -63,6 +60,8 @@ body, html {
   flex-wrap: nowrap; 
   height: 100vh; 
   width: 100%; 
+
+
 }
 
 .split {
@@ -90,26 +89,13 @@ nav {
   z-index: 1000; 
 }
 
+.nav-space {
+    padding-top: 60px; 
+}
+
 nav h1 {
-  display: block;
   margin-right: auto;
 }
-
-nav h1::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 2px; 
-  width: 0;
-  background-color: lightgray;
-  transition: width 0.5s ease;
-}
-nav h1:hover::after {
-  width: 22.5%; 
-}
-
-
 
 nav svg {
   fill: white;
@@ -133,9 +119,12 @@ nav .a {
   gap: 15px;
 }
 
+#hov {
+  position: relative;
+  cursor: pointer;
+}
 
-
-.nav-btn::after {
+#hov::after {
   content: '';
   position: absolute;
   left: 0;
@@ -146,7 +135,7 @@ nav .a {
   transition: width 0.5s ease;
 }
 
-.nav-btn:hover::after {
+#hov:hover::after {
   width: 100%; 
 }
 
@@ -161,20 +150,20 @@ nav .a {
 
 
 @media only screen and (max-width: 640px) {
+
+
   .link-container {
     position: fixed;
     flex-direction: column;
     align-items: flex-start;
     top: 0;
-    right: -50vw;
+    right: -50vw; /* Off-screen by default */
     width: 50vw;
+    height: 100vh;
     background-color: gray;
     box-shadow: -5px 0 5px rgba(0, 0, 0, 0.25);
-    transition: 0.75s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  #sidebar-active:checked ~ .link-container {
-    right: 0; 
+    transition: right 0.5s ease; 
+    z-index: 1001; 
   }
 
   nav .a {
@@ -186,32 +175,31 @@ nav .a {
     padding: 20px 30px;
   }
 
-  .open-sidebar, .close-sidebar {
-    padding: 20px;
-    display: block;
-  }
-
   #sidebar-active:checked ~ .link-container {
     right: 0;
   }
 
+  .open-sidebar, .close-sidebar {
+    cursor: pointer;
+    padding: 20px;
+    display: inline-block;
+  }
+
   #overlay {
+    display: none; 
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    transition: background-color 0.75s cubic-bezier(0.4, 0, 0.2, 1); 
-    z-index: -1;  
-  }
-
-  #sidebar-active:checked ~ #overlay {
+    width: 100vw;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 0;
-    top: 0;
-    left: 0;
+    z-index: 1000; 
+  }
+  #sidebar-active:checked ~ #overlay {
+    display: block;
   }
 }
+
 
 /* General Styles */
 .split {
@@ -285,8 +273,7 @@ nav .a {
 }
 
 .SignUp h1, .SignUp h3,
-.Login h1, .Login h3
-.ThreadCreate h1, .ThreadCreate h3 {
+.Login h1, .Login h3 {
   margin-bottom: 20px;
 }
 
@@ -300,6 +287,7 @@ nav .a {
 }
 
 @media (max-width: 640px) {
+
   .container {
     flex-direction: column; 
     height: 100%; 
@@ -319,7 +307,7 @@ nav .a {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vh;
+  width: 100vw;
   height: 100vh;
   border: 1px solid green;
 }
@@ -327,19 +315,17 @@ nav .a {
 /* Thread Grid */
 .grid-container {
   display: grid;
-  justify-content: center;
-  align-items: center;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 10px;
-  width:  100%;
-  margin-top: 10%;
-  height: 100%; 
-  padding: 5px;
-  box-sizing: border-box; 
+  width: 80%;
+  max-width: 1200px;
+
+  margin: auto; 
+  padding: 10px;
+  box-sizing: border-box;
   border: 2px solid red;
-  text-overflow: ellipsis;
-  overflow-x: scroll;
 }
+
 .grid-item {
   background-color: rgb(90, 36, 90);
   color: white;
@@ -358,13 +344,9 @@ nav .a {
 }
 
 @media (max-width: 640px) {
-  .grid-container {
-    grid-template-columns: 1fr; 
-  }
-}
 
-@media (max-width: 640px) {
   .grid-container {
+    margin-top: 80px;
     grid-template-columns: 1fr; 
   }
 }
@@ -394,21 +376,95 @@ nav .a {
 
 /* Create Thread Screen Styling */
 
-.ThreadCreate .container {
+.NewThread {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  border: 10px solid green;
+}
+
+.NewThread .center {
+  width: 100vh;
+  height: 90vh;
+  display: flex;
+  flex-direction: row;
+  flex: 1 1;
+  justify-content: center;
+  align-items: center;
+  border: 10px solid green;
+}
+
+.NewThread .input-container {
+  width: 100%;
+  padding: 20px;
+  margin: 10px;
+  border: 10px solid green;
+}
+
+.btn {
+  display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
-.ThreadCreate .input-container {
-  border-radius: 25px;
+.btn.loading {
+ animation: fade 3s forwards;
 }
 
-.ThreadCreate .input-container  input[type=text] {
-  border-radius: 25px;
+@keyframes fade {
+  0% {
+    background-color: indigo; 
+    border-color: black;
+  }
+  33% {
+    background-color: #7f0196; 
+    border-color: #131815;
+  }
+  66% {
+    background-color: #239b4b; 
+    border-color: #32a157;
+  }
+  100% {
+    background-color: #04a339; 
+    border-color: #009231;
+  }
+}
+
+
+.loader {
+  width: 20px;
+  height: 20px;
+  border: 3px solid white; 
+  border-top: 3px solid white; 
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 10px; 
+}
+
+@keyframes spin {
+  to { 
+    transform: rotate(0deg);
+  }
+  from { 
+    transform: rotate(360deg); 
+  }
+}
+
+.text-box {
   padding: 10px;
+  min-height: 150px;
+  max-height: 600px;
+  overflow: scroll;
+  background: white; 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+  position: relative;
 }
-
-
 
 /* Replies Styling */
 
@@ -421,10 +477,8 @@ nav .a {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
-
-
-
 
 /* Input Style */
 .inputStyle {

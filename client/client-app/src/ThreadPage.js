@@ -3,10 +3,17 @@ import ThreadReply from "./modules/ThreadReply.js";
 import ReplyList from "./modules/ReplyList.js";
 import ThreadVote from "./modules/ThreadVote.js";
 
+import DOMPurify from "dompurify";
+
 export default function ThreadPage() {
     let data = JSON.parse(sessionStorage.getItem("thread"));
 
     console.log(data);
+
+    
+
+    const sanitizedTitle = DOMPurify.sanitize(data[0]);
+    const sanitizedDesc = DOMPurify.sanitize(data[1]);
 
     return(
         <>
@@ -14,8 +21,8 @@ export default function ThreadPage() {
             <div className="thread">
                 <div id="thread-content">
                     <body>
-                            <h1 className="thread-title">{data[0]}</h1>
-                            <p className="thread-desc">{data[1]}</p>
+                            <h1 className="thread-title" dangerouslySetInnerHTML={{__html: sanitizedTitle  }} />
+                            <p className="thread-desc" dangerouslySetInnerHTML={{__html: sanitizedDesc  }} />
                             <div>
                                 <ThreadReply />
                                 <ReplyList />

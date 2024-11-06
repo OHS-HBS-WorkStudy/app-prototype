@@ -1,6 +1,7 @@
 import { useContext } from "react";
 
 import { ScreenStateContext } from "../App.js";
+import DOMPurify from 'dompurify';
 
 export default function ThreadButton({value}) {
     const switchScreen = useContext(ScreenStateContext);
@@ -23,9 +24,11 @@ export default function ThreadButton({value}) {
         .then((response) => response.json())
         .then((json) => toThreadPage(json));
     }
+
+    const sanitizedName = DOMPurify.sanitize(value.name);
     return(
         <div>
-            <h2 onClick={getThreadData} className="grid-item">{value.name}</h2>
+            <h2 onClick={getThreadData}  className="grid-item" dangerouslySetInnerHTML={{__html: sanitizedName  }} />
         </div>
     )
 }
