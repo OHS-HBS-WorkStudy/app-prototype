@@ -29,15 +29,22 @@ export default function ThreadList() {
         if(listActive === true) {
             let values = JSON.parse(sessionStorage.getItem("threads"));
             return(
-                <div className="grid-container">
-                    {values.map(value => 
-                        <ThreadButton value={value} className="grid-item"  />
-                    )} 
-                </div>
+                <body>
+                    <div className="Home">
+                        <div className="nav-space"></div>
+                            <div className="grid-container">
+                                {values.map(value => 
+                                    <ThreadButton value={value} />
+                                )} 
+                        </div>
+                    </div>
+                </body>
+                
             ) 
         }else {
             return(
                 <div>
+                     <div className="nav-space"></div>
                     <h2>No current Threads</h2>
                 </div>
             )
@@ -45,6 +52,7 @@ export default function ThreadList() {
     }catch(err){
         return(
             <div>
+                 <div className="nav-space"></div>
                 <h2>No current Threads</h2>
             </div>
         )
