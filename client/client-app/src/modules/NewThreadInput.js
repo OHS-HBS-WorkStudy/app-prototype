@@ -29,14 +29,25 @@ export default function NewThreadInput() {
       }
 
     return(
-        <div>
-            <b>Title:</b>
-            <input id="thread_title"></input>
-            <br/>
-            <b>Question:</b>
-            <input id="thread_contents"></input>
-            <br/>
-            <button onClick={submitThread}>Submit Question</button>
-        </div>
+        <body>
+            <div className="ThreadCreate">
+                <div className="spilt right">
+            <div className="container">
+                <div className="center">
+                    <div className="input-container">
+                        <label for="title"><b>Title:</b></label>
+                            <input id="title" placeholder="Enter title"></input>
+                        <br/>
+                        <label for="contents"><b>Description:</b></label>
+                            <input id="contents" placeholder="Enter description" ></input>
+                        <br/>
+                        
+                            <button className="btn-send" onClick={submitThread}>Submit Thread</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
     );
 }

@@ -35,20 +35,32 @@ export default function SignUp() {
       }
     
       return(
-        <body>
-          <Navigator />
-        <div className="Login">
-          <div id='center'>
-          <div className="inputStyle">
-          <h3>Log In</h3>
-          <b>Email:</b>
-          <input id="email" type="text"/>
-          <b>Password:</b>
-          <input id="password" type="text"/>
-          </div>
-          <button className="btn-send" onClick={sendData}>Log In</button>
-          </div>
-        </div>
+          <body>
+            <Navigator />
+            <div>
+                <div className="container">
+                    <div className="split left">
+                        <div className="center">
+                            <h1>Welcome Back to the Website</h1>
+                        </div>
+                    </div>
+
+                    <div className="split right">
+                        <div className="center">
+                                <h3>Log In</h3>
+                            <div className="input-container">
+                                <label for="email">Email:</label>
+                                <input id="email" type="text" placeholder="Enter your email" />
+
+                                <label for="password">Password:</label>
+                                <input id="password" type="text" placeholder="Enter your password" />
+
+                                <button className="btn-send" onClick={sendData}>Log In</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </body>
       );
 }

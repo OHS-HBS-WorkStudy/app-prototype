@@ -3,11 +3,17 @@ import Navigator from './modules/Navigator.js';
 
 export default function NewThread() {
     return(
-        <div>
+        <> 
             <Navigator />
-            <h1>Create new Thread</h1>
+                <div className="new-thread">
+                    <div className="new-thread-content">
+                        <body>
+                            <h1>Create new Thread</h1>
 
-            <NewThreadInput />
-        </div>
+                            <NewThreadInput />
+                        </body>
+                    </div>
+                </div>
+        </>
     );
 }

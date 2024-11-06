@@ -31,7 +31,7 @@ export default function ThreadList() {
             return(
                 <div className="grid-container">
                     {values.map(value => 
-                        <ThreadButton value={value} className="grid-item "  />
+                        <ThreadButton value={value} className="grid-item"  />
                     )} 
                 </div>
             ) 
