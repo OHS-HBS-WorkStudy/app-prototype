@@ -1,6 +1,8 @@
 import Navigator from "./modules/Navigator.js";
 import ThreadReply from "./modules/ThreadReply.js";
 import ReplyList from "./modules/ReplyList.js";
+import ThreadVote from "./modules/ThreadVote.js";
+
 import DOMPurify from "dompurify";
 
 export default function ThreadPage() {

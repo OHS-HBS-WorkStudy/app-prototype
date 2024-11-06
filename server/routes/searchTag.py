@@ -16,10 +16,12 @@ def sql_searchTag(data):
 
     cursor.execute(f"SELECT * FROM tags WHERE tag_name='{data}'")
     values = cursor.fetchall()
+    print(values)
     values2 = []
 
     for x in range(len(values)):
         values2.append(values[x][1])
+        print(values2)
 
     values3 = []
 
