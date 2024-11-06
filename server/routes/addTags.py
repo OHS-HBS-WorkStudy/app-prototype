@@ -8,7 +8,7 @@ import uuid
 router = APIRouter()
 
 class Tag(BaseModel):
-    tag: str
+    tag: list
     thread_id: str
 
 def sql_addTags(data):
@@ -21,12 +21,12 @@ def sql_addTags(data):
 
 @router.post("/addTags")
 def addTags(tags: Tag):
+    for x in range(len(tags.tag)):
+        data = {
+        "tag": tags.tag[x],
+        "thread_id": tags.thread_id
+        }
 
-    data = {
-    "tag": tags.tag,
-    "thread_id": tags.thread_id
-    }
-
-    sql_addTags(data)
+        sql_addTags(data)
 
     return data
