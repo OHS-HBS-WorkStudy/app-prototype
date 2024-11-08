@@ -10,8 +10,6 @@ export default function ThreadPage() {
 
     console.log(data);
 
-    
-
     const sanitizedTitle = DOMPurify.sanitize(data[0]);
     const sanitizedDesc = DOMPurify.sanitize(data[1]);
 
