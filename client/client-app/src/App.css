@@ -55,6 +55,12 @@ body, html {
 
 }
 
+body {
+  width:  100%;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
   display: flex;
   flex-wrap: nowrap; 
@@ -231,7 +237,7 @@ nav .a {
   background-color: rgba(255, 255, 255, 0.1);
   padding: 20px;
   border-radius: 8px;
-  width: 100%;
+  width: 300px;
   max-width: 400px;
   text-align: left;
 }
@@ -286,52 +292,55 @@ nav .a {
   gap: 15px;
 }
 
-@media (max-width: 640px) {
+@media only screen and (max-width: 770px) {
 
   .container {
     flex-direction: column; 
     height: 100%; 
+    justify-content: space-evenly;
   }
+
+  
 
   .split {
     min-height: 100vh; 
     width: 100%; 
     margin: 0; 
     padding: 20px; 
+    justify-content: space-evenly;
   }
 }
 
 
 /* Home Screen Styling */
 .Home {
+  margin-top: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+  height: fit-content;
   border: 1px solid green;
 }
 
 /* Thread Grid */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(1fr);
   gap: 10px;
   width: 80%;
   max-width: 1200px;
-
   margin: auto; 
   padding: 10px;
   box-sizing: border-box;
-  border: 2px solid red;
+
 }
 
 .grid-item {
   background-color: rgb(90, 36, 90);
   color: white;
   font-size: 15px;
-  
-  padding: 20px;
+  height: 150px;
   text-align: center;
   border-radius: 8px;
 
@@ -340,13 +349,12 @@ nav .a {
   text-overflow: ellipsis;  
   
   max-width: 1199px;  
-  border: 2px solid red; 
+
 }
 
 @media (max-width: 640px) {
 
   .grid-container {
-    margin-top: 80px;
     grid-template-columns: 1fr; 
   }
 }
@@ -556,4 +564,29 @@ nav .a {
   overflow: none; 
   border: none;
   cursor: pointer;
+}
+
+
+
+.account {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100vw;
+  height: auto;
+  padding: 20px;
+  box-sizing: border-box;
+
+}
+.account .center {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  background-color: #6C58CE;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 20px;
+  gap: 20px;
+  overflow: visible; 
 }
