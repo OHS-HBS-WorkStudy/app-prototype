@@ -51,10 +51,10 @@ export default function NewThreadInput() {
             }
           })
             .then((response) => response.json())
-            .then((json) => getTags());
+            .then((json) => getTags(json));
     }
 
-    function getTags() {
+    function getTags(json) {
       let tags = document.getElementsByClassName("tag");
 
       if(tags.length > 0) {
@@ -66,7 +66,7 @@ export default function NewThreadInput() {
 
         let data = {
           tag: tagData,
-          thread_id: JSON.parse(sessionStorage.getItem("thread"))[2]
+          thread_id: json.thread_id
         };
 
         postTags(data);

@@ -22,6 +22,7 @@ export default function ThreadPage() {
                             <h1 className="thread-title" dangerouslySetInnerHTML={{__html: sanitizedTitle  }} />
                             <p className="thread-desc" dangerouslySetInnerHTML={{__html: sanitizedDesc  }} />
                             <div>
+                                <ThreadVote  Startscore={0}/>
                                 <ThreadReply />
                                 <ReplyList />
                             </div>
