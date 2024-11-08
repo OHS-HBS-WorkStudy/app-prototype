@@ -8,6 +8,9 @@ export default function NewThreadInput() {
     const [ThreadTitle, setThreadTitle] = useState("");
     const [ThreadContents, setThreadContents] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+
+    const maxTitleLength = 200;
+    const maxDescLength = 500;
     
     const submitThread = (e) => {
         e.preventDefault();
@@ -54,31 +57,88 @@ export default function NewThreadInput() {
         //changeScreen(0);
       }
 
-    return(
-        <div>
+
+
+  const getPlainText = (htmlContent) => {
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = htmlContent;
+    return tempDiv.innerText || tempDiv.textContent;
+  };
+
+  const handleChange = (value, setValue, maxLength) => {
+    const plainText = getPlainText(value);
+
+    if (plainText.length <= maxLength) {
+      setValue(value);
+    }
+  };
+
+  const editorStyle = {
+    width: "100%",
+    minHeight: "160px",
+    overflowY: "auto",
+    backgroundColor: "white",
+  };
+
+  const editorStyle1 = {
+    width: "100%",
+    minHeight: "240px",
+    overflowY: "auto",
+    backgroundColor: "white",
+  };
+
+  const modules = {
+    toolbar: [
+      [{ 'header': '1' }, { 'header': '2' }, { 'size': [] }],
+      [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'align': [] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      ['link', 'blockquote', 'code-block'],
+      ['clean'],
+    ],
+  };
+
+  return (
+    <div>
+      <div className="nav-space"></div>
       <div className="NewThread">
         <div className="center">
-          <div className="input-container">
-            <label htmlFor="text-box">Question Title</label>
-            <div className="text-box">
-              <ReactQuill theme="snow" value={ThreadTitle} onChange={setThreadTitle} placeholder="Enter Title" />
-            </div>
+          <label htmlFor="text-box ql-container  ql-editor">Question Title</label>
+          <div className="text-box ql-container ql-editor">
+            <ReactQuill
+              theme="snow"
+              modules={modules}
+              style={editorStyle}
+              value={ThreadTitle}
+              onChange={(value) => handleChange(value, setThreadTitle, maxTitleLength)}
+              placeholder="Enter Question"
+            />
+            <div>{getPlainText(ThreadTitle).length}/{maxTitleLength} characters</div>
+          </div>
 
-            <label htmlFor="text-box">Question Description</label>
-            <div className="text-box">
-              <ReactQuill theme="snow"  value={ThreadContents} onChange={setThreadContents} placeholder="Enter Desc" />
-            </div>
+          <label htmlFor="text-box ql-container  ql-editor">Question Description</label>
+          <div className="text-box ql-container  ql-editor">
+            <ReactQuill
+              theme="snow"
+              style={editorStyle1}
+              modules={modules}
+              value={ThreadContents}
+              onChange={(value) => handleChange(value, setThreadContents, maxTitleLength)}
+              placeholder="Enter Desc"
+            />
+            <div>{getPlainText(ThreadContents).length}/{maxDescLength} characters</div>
+          </div>
 
-            <div className="btn-container">
-                <button id="loadButton" className={`btn ${isLoading ? 'loading' : ''}`} onClick={submitThread} disabled={isLoading}>
-                  Submit
-                  {isLoading && <div className="loader" id="loader"></div>}
-                </button>
-            </div>
-       
-      </div>
+          <button
+            id="loadButton"
+            className={`btn ${isLoading ? 'loading' : ''}`}
+            onClick={submitThread}
+            disabled={isLoading}
+          >
+            Submit
+            {isLoading && <div className="loader" id="loader"></div>}
+          </button>
+        </div>
       </div>
     </div>
-    </div>
-    );
+  );
 }
