@@ -3,6 +3,8 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import DOMPurify from 'dompurify';
 
+import AddTags from "./AddTags.js";
+
 
 export default function NewThreadInput() {
     const [ThreadTitle, setThreadTitle] = useState("");
@@ -49,11 +51,43 @@ export default function NewThreadInput() {
             }
           })
             .then((response) => response.json())
-            .then((json) => toHome(json));
+            .then((json) => getTags());
     }
 
-    function toHome(json) {
-        console.log(json);
+    function getTags() {
+      let tags = document.getElementsByClassName("tag");
+
+      if(tags.length > 0) {
+        let tagData = [];
+
+        for(let i = 0; i < tags.length; i++) {
+          tagData.push(tags[i].value);
+        }
+
+        let data = {
+          tag: tagData,
+          thread_id: JSON.parse(sessionStorage.getItem("thread"))[2]
+        };
+
+        postTags(data);
+      }else {
+        toHome();
+      }
+    }
+
+    function postTags(data) {
+      fetch("http://127.0.0.1:8000/addTags", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+        .then((response) => response.json())
+        .then((json) => toHome());
+    }
+
+    function toHome() {
         //changeScreen(0);
       }
 
@@ -127,6 +161,8 @@ export default function NewThreadInput() {
             />
             <div>{getPlainText(ThreadContents).length}/{maxDescLength} characters</div>
           </div>
+
+          <AddTags />
 
           <button
             id="loadButton"
