@@ -5,6 +5,14 @@ import ThreadButton from "./ThreadButton.js";
 export default function ThreadList() {
     const [listActive, activateList] = useState(false);
     try{
+        let isThereSearch = sessionStorage.getItem("search_tag");
+
+        if(isThereSearch !== "") {
+            getListOne(isThereSearch);
+        }else {
+            getListNone()
+        }
+
         let test;
 
         function setList(json) {
@@ -14,9 +22,26 @@ export default function ThreadList() {
             sessionStorage.setItem("threads", JSON.stringify(test));
             activateList(true);
         }
-        
-        function getList() {
+
+        function getListNone() {
             fetch("http://127.0.0.1:8000/threadList")
+                .then((response) => response.json())
+                .then((json) => setList(json))
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
+        
+        function getListOne(val) {
+            fetch("http://127.0.0.1:8000/searchTag", {
+                method: "POST",
+                body: JSON.stringify({
+                    tag: val
+                }),
+                headers: {
+                  "Content-type": "application/json; charset=UTF-8"
+                }
+            })
             .then((response) => response.json())
             .then((json) => setList(json))
             .catch((error) => {
@@ -24,7 +49,7 @@ export default function ThreadList() {
             })
         }
 
-        getList();
+        //getList(isThereSearch);
 
         if(listActive === true) {
             let values = JSON.parse(sessionStorage.getItem("threads"));
