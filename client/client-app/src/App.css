@@ -56,10 +56,11 @@ body, html {
 }
 
 body {
-  width:  100%;
+  width: 100%;
   justify-content: center;
   align-items: center;
 }
+
 
 .container {
   display: flex;
@@ -83,44 +84,132 @@ body {
 nav {
   position: fixed;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  flex-direction: row;
   top: 0;
   left: 0;
   height: 60px;
   width: 100%;
+  max-width: 100%;
   background-color: gray;
-  padding: 10px;
-  z-index: 1000; 
+  padding: 10px 20px;
+  z-index: 1000;
+  box-sizing: border-box;
 }
 
 .nav-space {
-    padding-top: 60px; 
+  padding-top: 60px;
 }
 
 nav h1 {
-  margin-right: auto;
+  margin-right: 15px;
+  white-space: nowrap;
 }
+
+.searchbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;            
+  min-width: 30px;         
+  width: 30px;            
+  border-radius: 25px;
+  overflow: hidden;
+  transition: width 0.3s ease;
+}
+
+.search-box.open {
+  justify-content: flex-start; 
+  width: 100%;           
+}
+
+.search-box input {
+  height: 100%;
+  width: 100%;            
+  max-width: 280px;        
+  padding-left: 20px;
+  padding-right: 50px;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.search-box.open input {
+  opacity: 1;
+}
+
+.search-box .icon {
+  position: relative;
+  height: 100%;
+  width: 30px;
+  background: indigo;
+  text-align: center;
+  border-radius: 0 25px 25px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.5s ease;
+}
+
+.search-box.open .icon {
+  transform: translateX(-40%);
+  background: white;
+}
+
+
+.search-box.open svg {
+  fill: indigo;
+}
+
+.search-box svg {
+  fill: white;
+}
+
+.box {
+  max-width: 700px;
+  width: 100%;
+  display: flex;
+  flex: 1 2;
+  justify-content: flex-end;
+}
+
+.link-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-shrink: 0; 
+  white-space: nowrap;
+  border: 1px solid black;
+}
+
+
 
 nav svg {
   fill: white;
 }
 
-.link-container {
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.link-container .a .hov {
+.link-container #a .hov {
   background-color: #ffffff;
   cursor: pointer;
 }
 
-nav .a {
+nav #a {
   display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0;
   gap: 15px;
 }
@@ -155,24 +244,24 @@ nav .a {
 }
 
 
-@media only screen and (max-width: 640px) {
 
-
+/* Styles for 945px */
+@media only screen and (max-width: 945px) {
   .link-container {
     position: fixed;
     flex-direction: column;
     align-items: flex-start;
     top: 0;
-    right: -50vw; /* Off-screen by default */
+    right: -60vw;
     width: 50vw;
     height: 100vh;
     background-color: gray;
     box-shadow: -5px 0 5px rgba(0, 0, 0, 0.25);
-    transition: right 0.5s ease; 
-    z-index: 1001; 
+    transition: right 0.5s ease;
+    z-index: 1001;
   }
 
-  nav .a {
+  nav #a {
     box-sizing: border-box;
     flex-direction: column;
     align-items: flex-start;
@@ -192,19 +281,27 @@ nav .a {
   }
 
   #overlay {
-    display: none; 
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000; 
+    z-index: 1000;
   }
   #sidebar-active:checked ~ #overlay {
     display: block;
   }
+
+  .search-box.open input {
+         
+    max-width: 60vw;     
+   
+  }
 }
+
+
 
 
 /* General Styles */
@@ -317,24 +414,22 @@ nav .a {
   margin-top: 70px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: fit-content;
+  flex: 0 0;
   border: 1px solid green;
-}
+} 
 
 /* Thread Grid */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(1fr);
+  grid-template-columns: repeat(0, 1fr);
+  flex-shrink: 0;
+  flex-grow: 0;
   gap: 10px;
   width: 80%;
-  max-width: 1200px;
   margin: auto; 
   padding: 10px;
   box-sizing: border-box;
-
-}
+} 
 
 .grid-item {
   background-color: rgb(90, 36, 90);
@@ -344,20 +439,17 @@ nav .a {
   text-align: center;
   border-radius: 8px;
 
+  min-height: 0;  
+  min-width: 0;   
   white-space: nowrap;    
   overflow: hidden;        
   text-overflow: ellipsis;  
   
   max-width: 1199px;  
 
-}
+} 
 
-@media (max-width: 640px) {
 
-  .grid-container {
-    grid-template-columns: 1fr; 
-  }
-}
 
 /* Thread Screen Styling */
 
