@@ -7,10 +7,10 @@ export default function ThreadList() {
     try{
         let isThereSearch = sessionStorage.getItem("search_tag");
 
-        if(isThereSearch !== "") {
-            getListOne(isThereSearch);
+        if(isThereSearch === "" || isThereSearch === null || isThereSearch === undefined) {
+            getListNone();
         }else {
-            getListNone()
+            getListOne(isThereSearch);
         }
 
         let test;
