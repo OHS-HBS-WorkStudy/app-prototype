@@ -10,8 +10,6 @@ export default function ThreadPage() {
 
     console.log(data);
 
-    
-
     const sanitizedTitle = DOMPurify.sanitize(data[0]);
     const sanitizedDesc = DOMPurify.sanitize(data[1]);
 
@@ -24,6 +22,7 @@ export default function ThreadPage() {
                             <h1 className="thread-title" dangerouslySetInnerHTML={{__html: sanitizedTitle  }} />
                             <p className="thread-desc" dangerouslySetInnerHTML={{__html: sanitizedDesc  }} />
                             <div>
+                                <ThreadVote  Startscore={0}/>
                                 <ThreadReply />
                                 <ReplyList />
                             </div>

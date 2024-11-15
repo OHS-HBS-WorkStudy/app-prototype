@@ -24,6 +24,8 @@ export default function Navigator() {
     }
 
     function HomePage() {
+        sessionStorage.removeItem("search_tag");
+        window.location.reload();
         changeScreen(0);
     }
 
