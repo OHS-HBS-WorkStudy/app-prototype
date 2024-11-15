@@ -1,9 +1,12 @@
 import { useState } from "react";
 
-export default function ThreadVote({Startscore}) {
-    const [score, changeScore] = useState(Startscore);
-    const scoreMax = Startscore+1;
-    const scoreMin = Startscore-1;
+export default function ThreadVote() {
+    const [score, changeScore] = useState(Number(sessionStorage.getItem("thread_score")));
+
+    let val = sessionStorage.getItem("thread_score");
+
+    const scoreMax = val+1;
+    const scoreMin = val-1;
 
     const [increase, didIncrease] = useState(false);
     const [decrease, didDecrease] = useState(false);
@@ -11,6 +14,7 @@ export default function ThreadVote({Startscore}) {
     function increaseScore() {
         if(score !== scoreMax) {
             changeScore(score+1);
+            sessionStorage.setItem("thread_score", score+1);
             didIncrease(true);
             postVote("positive")
         }
@@ -19,6 +23,7 @@ export default function ThreadVote({Startscore}) {
     function decreaseScore() {
         if(score !== scoreMin){
             changeScore(score-1);
+            sessionStorage.setItem("thread_score", score-1);
             didDecrease(true);
             postVote("negative")
         }
