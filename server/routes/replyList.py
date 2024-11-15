@@ -5,12 +5,15 @@ from fastapi.middleware.cors import CORSMiddleware
 import sqlite3
 import uuid
 
+class Thread(BaseModel):
+    thread_id: str
+
 router = APIRouter()
 
-def sql_replyList():    
+def sql_replyList(data):    
     conn = sqlite3.connect('app.db')
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM replies")
+    cursor.execute(f"SELECT * FROM replies where thread_id='{data}'")
     values = cursor.fetchall()
     
     new_list = []
@@ -28,8 +31,8 @@ def sql_replyList():
     print(new_list)
     return new_list
 
-@router.get("/replyList")
-def replyList():
-    data = sql_replyList()
+@router.post("/replyList")
+def replyList(id:Thread):
+    data = sql_replyList(id.thread_id)
 
     return data
