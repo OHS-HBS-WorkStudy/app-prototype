@@ -16,20 +16,24 @@ export default function ThreadPage() {
     const sanitizedDesc = DOMPurify.sanitize(data[1]);
 
     return(
-        <>
-         <Navigator />
-            <div className="thread">
-                <div id="thread-content">
-                    <body>
-                            <h1 className="thread-title" dangerouslySetInnerHTML={{__html: sanitizedTitle  }} />
-                            <p className="thread-desc" dangerouslySetInnerHTML={{__html: sanitizedDesc  }} />
-                            <div>
-                                <ThreadReply />
-                                <ReplyList />
+            <div>
+                <Navigator />
+                <div className="nav-space">
+                    <div className="thread">
+                        <div className="center">
+                            <div className="thread-content">
+                                <div className="thread-title" dangerouslySetInnerHTML={{__html: sanitizedTitle  }} />
+                                <div className="thread-desc" dangerouslySetInnerHTML={{__html: sanitizedDesc  }} />
+                                <div>
+                                    <ThreadReply />
+                                    <div className="reply-list-container">
+                                        <ReplyList />
+                                    </div>
+                                </div>
                             </div>
-                    </body>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </>
-    )
+        )
 }
