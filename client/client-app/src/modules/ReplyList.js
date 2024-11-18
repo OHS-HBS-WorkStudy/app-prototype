@@ -14,8 +14,16 @@ export default function ReplyList() {
             activateList(true);
         }
         
-        function getList() {
-            fetch("http://127.0.0.1:8000/replyList")
+        function getList(id) {
+            fetch("http://127.0.0.1:8000/replyList", {
+                method: "POST",
+                body: JSON.stringify({
+                    thread_id: id
+                }),
+                headers: {
+                  "Content-type": "application/json; charset=UTF-8"
+                }
+              })
             .then((response) => response.json())
             .then((json) => setList(json))
             .catch((error) => {
@@ -23,7 +31,7 @@ export default function ReplyList() {
             })
         }
 
-        getList();
+        getList(JSON.parse(sessionStorage.getItem("thread"))[2]);
 
         if(listActive === true) {
             let values = JSON.parse(sessionStorage.getItem("replies"));

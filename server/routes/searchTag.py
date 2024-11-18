@@ -32,8 +32,8 @@ def sql_searchTag(data):
         print(values4)
 
         values5 = {
-            "thread_name": values4[0],
-            "thread_id": values4[2]
+            "name": values4[0],
+            "id": values4[2]
         }
 
         values3.append(values5)
