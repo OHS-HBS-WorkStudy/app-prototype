@@ -37,7 +37,7 @@ export default function SignUp() {
       return(
           <body>
             <Navigator />
-            <div>
+            <div className="Login">
                 <div className="container">
                     <div className="split left">
                         <div className="center">

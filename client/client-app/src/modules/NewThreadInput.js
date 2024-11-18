@@ -11,7 +11,7 @@ import AddTags from "./AddTags.js";
 
 
 export default function NewThreadInput({value}) {
-    const [ThreadTitle, setThreadTitle] = useState("");
+    const[ThreadTitle, setThreadTitle] = useState("");
     const [ThreadContents, setThreadContents] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
@@ -20,11 +20,6 @@ export default function NewThreadInput({value}) {
     
     const submitThread = (e) => {
         e.preventDefault();
-
-        if (!ThreadTitle.trim() || !ThreadContents.trim()) {
-            alert("Please fill out both forms before submitting.");
-            return;
-        }
     
         setIsLoading(true);
 
@@ -32,6 +27,8 @@ export default function NewThreadInput({value}) {
 
             const sanitizedTitle = DOMPurify.sanitize(ThreadTitle);
             const sanitizedContents = DOMPurify.sanitize(ThreadContents);
+
+            
 
             let user = JSON.parse(sessionStorage.getItem("user"));
             let data = {
@@ -113,19 +110,14 @@ export default function NewThreadInput({value}) {
     }
   };
 
-  const editorStyle = {
-    width: "100%",
-    minHeight: "160px",
-    overflowY: "auto",
-    backgroundColor: "white",
-  };
-
   const editorStyle1 = {
     width: "100%",
     minHeight: "240px",
     overflowY: "auto",
     backgroundColor: "white",
   };
+
+
 
   const modules = {
     toolbar: [
@@ -142,24 +134,17 @@ export default function NewThreadInput({value}) {
       <div className="nav-space"></div>
       <div className="NewThread">
         <div className="center">
-          <label htmlFor="text-box ql-container  ql-editor">Question Title</label>
-          <div className="text-box ql-container ql-editor">
-            <ReactQuill
-              theme="snow"
-              modules={modules}
-              style={editorStyle}
-              value={ThreadTitle}
-              onChange={(value) => handleChange(value, setThreadTitle, maxTitleLength)}
-              placeholder="Enter Question"
-            />
+          <label htmlFor="input-container ">Thread Title</label>
+          <div className="input-container">
+
+            <input id="ThreadTitle" type="text" placeholder="Enter Question" onChange={(e) => setThreadTitle(e.target.value)} ></input>
             <div>{getPlainText(ThreadTitle).length}/{maxTitleLength} characters</div>
           </div>
 
-          <label htmlFor="text-box ql-container  ql-editor">Question Description</label>
-          <div className="text-box ql-container  ql-editor">
+          <label htmlFor="text-box ql-container  ql-editor">Thread Description</label>
+          <div className="text-box ql-container  ql-editor ">
             <ReactQuill
               theme="snow"
-              style={editorStyle1}
               modules={modules}
               value={ThreadContents}
               onChange={(value) => handleChange(value, setThreadContents, maxTitleLength)}

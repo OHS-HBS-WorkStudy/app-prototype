@@ -47,7 +47,7 @@ body, html {
   padding: 0;
   height: 100%;
   font-family: Arial, sans-serif;
-  background-color: indigo;
+  background: linear-gradient(-180deg, rgb(118, 0, 202), indigo);
   color: white;
   overflow-x: hidden;
 
@@ -356,9 +356,13 @@ nav #a {
   background-color: rgba(255, 255, 255, 0.1);
   padding: 20px;
   border-radius: 8px;
+  text-align: left;
+}
+
+.Login .input-container,
+.SignUp .input-container {
   width: 300px;
   max-width: 400px;
-  text-align: left;
 }
 
 .input-container label {
@@ -444,24 +448,32 @@ nav #a {
 
 /* Thread Grid */
 .grid-container {
+  border: 1px solid black;
   display: grid;
   grid-template-columns: repeat(1fr);
-  gap: 10px;
+  column-gap: 0;
+  row-gap: 0;
   width: 80%;
   max-width: 1200px;
   margin: auto; 
-  padding: 10px;
+  padding: 0;
   box-sizing: border-box;
+
 
 }
 
 .grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
   background-color: rgb(90, 36, 90);
   color: white;
   font-size: 15px;
   height: 150px;
   text-align: center;
   border-radius: 8px;
+
 
   white-space: nowrap;    
   overflow: hidden;        
@@ -555,6 +567,7 @@ nav #a {
   padding: 20px;
   box-sizing: border-box;
 
+
 }
 
 
@@ -577,7 +590,7 @@ nav #a {
 }
 
 .NewThread .text-box {
-  background-color: black;
+  background-color: white;
   min-height: 100px; 
   max-height: none; 
   width: 100%;
@@ -599,6 +612,19 @@ nav #a {
 .NewThread .text-box .ql-container {
   padding-bottom: 10px; 
 }
+
+.NewThread .input-container {
+  width: 100%;
+  background-color: white;
+  color: black;
+  font-size: small;
+}
+
+.NewThread .input-container input[type="text"] {
+  color: black;
+  border: 0.5px solid lightgray;
+}
+
 
 
 .ql-align-left {

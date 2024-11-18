@@ -63,7 +63,7 @@ export default function SearchBar() {
                         </svg>
                     </label>
                     
-                     <button onClick={searchButton}>search</button>
+                
                 </div>
             </div>
         </div>
