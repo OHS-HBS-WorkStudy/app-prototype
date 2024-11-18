@@ -20,7 +20,7 @@ export default function ThreadReply() {
             }
           })
             .then((response) => response.json())
-            .then((json) => console.log(json));
+            .then((json) => window.location.reload());
     }
 
     return(
