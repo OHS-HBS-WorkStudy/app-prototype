@@ -18,7 +18,7 @@ export default function ThreadPage() {
     const sanitizedDesc = DOMPurify.sanitize(data[1]);
 
     function getCurrentVote(val) {
-        fetch("http://127.0.0.1:8000/scoreVotes", {
+        fetch(sessionStorage.getItem("server_address")+"/scoreVotes", {
             method: "POST",
             body: JSON.stringify({thread_id:val}),
             headers: {

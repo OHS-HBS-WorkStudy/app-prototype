@@ -17,7 +17,7 @@ export default function SignUp() {
       }
     
       function post(val) {
-        fetch("http://127.0.0.1:8000/confirmUser", {
+        fetch(sessionStorage.getItem("server_address")+"/confirmUser", {
           method: "POST",
           body: JSON.stringify(val),
           headers: {
