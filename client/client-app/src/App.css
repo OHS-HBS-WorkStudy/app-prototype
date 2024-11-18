@@ -115,10 +115,6 @@ nav h1 {
 
 }
 
-.searchbar.open {
-  align-items: flex-end;
-  justify-content: flex-end;
-}
 
 .search-box {
   position: relative;
@@ -187,7 +183,7 @@ nav h1 {
 }
 
 .box {
-  max-width: 700px;
+
   width: 100%;
   display: flex;
   flex: 1 2;
@@ -198,7 +194,6 @@ nav h1 {
   display: flex;
   flex-direction: row;
   align-items: center;
-  flex-shrink: 0; 
   white-space: nowrap;
   border: 1px solid black;
 }
@@ -253,6 +248,7 @@ nav #a {
 
 
 
+
 @media only screen and (max-width: 945px) {
   .link-container {
     position: fixed;
@@ -264,7 +260,7 @@ nav #a {
     height: 100vh;
     background-color: gray;
     box-shadow: -5px 0 5px rgba(0, 0, 0, 0.25);
-    transition: right 0.5s ease;
+    transition: right 0.5s ease-out;
     z-index: 1001;
   }
 
@@ -287,6 +283,7 @@ nav #a {
     display: inline-block;
   }
 
+
   #overlay {
     display: none;
     position: fixed;
@@ -303,10 +300,26 @@ nav #a {
 
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 500px){
+
+  .hidden {
+    display: none;
+}
+
+
   .search-box .icon {
     cursor: default;
   }
+}
+
+@media only screen and (max-width: 2560px) {
+
+  .searchbar {
+    align-items: end;
+    justify-content: end;
+
+  }
+  
 }
 
 
@@ -706,6 +719,8 @@ nav #a {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  border: 1px solid black;
+  transform: translateX(-7%);
 }
 
 /* Input Style */
