@@ -6,7 +6,11 @@ import DOMPurify from 'dompurify';
 import AddTags from "./AddTags.js";
 
 
-export default function NewThreadInput() {
+
+
+
+
+export default function NewThreadInput({value}) {
     const [ThreadTitle, setThreadTitle] = useState("");
     const [ThreadContents, setThreadContents] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -36,7 +40,9 @@ export default function NewThreadInput() {
                 uuid: user.uuid
             }
 
+
             postThread(data);
+
             setIsLoading(false);
         }, 3000);
     };

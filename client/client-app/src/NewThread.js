@@ -5,15 +5,11 @@ export default function NewThread() {
     return(
         <> 
             <Navigator />
-                <div className="new-thread">
-                    <div className="new-thread-content">
-                        <body>
-                            <h1>Create new Thread</h1>
+            <body>
+                <h1>Create new Thread</h1>
 
-                            <NewThreadInput />
-                        </body>
-                    </div>
-                </div>
+                <NewThreadInput />
+            </body>
         </>
     );
 }

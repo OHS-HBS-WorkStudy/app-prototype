@@ -55,6 +55,12 @@ body, html {
 
 }
 
+body {
+  width:  100%;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
   display: flex;
   flex-wrap: nowrap; 
@@ -77,44 +83,136 @@ body, html {
 nav {
   position: fixed;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  flex-direction: row;
   top: 0;
   left: 0;
   height: 60px;
   width: 100%;
+  max-width: 100%;
   background-color: gray;
-  padding: 10px;
-  z-index: 1000; 
+  padding: 10px 20px;
+  z-index: 1000;
+  box-sizing: border-box;
 }
 
 .nav-space {
-    padding-top: 60px; 
+  padding-top: 60px;
 }
 
 nav h1 {
-  margin-right: auto;
+  margin-right: 15px;
+  white-space: nowrap;
 }
+
+.searchbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  width: 100%;
+  border: 1px solid black;
+
+}
+
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;            
+  min-width: 30px;         
+  width: 30px;            
+  border-radius: 25px;
+  overflow: hidden;
+  border: 1px solid black;
+}
+
+.search-box.open {
+  justify-content: flex-end;
+  transition: width 0.3s ease-in;
+  width: 100%;        
+}
+
+.search-box input {
+  height: 100%;
+  width: 100%;                  
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.search-box.open input {
+  opacity: 1;
+  width: 100%;
+}
+
+.search-box .icon {
+  position: relative;
+  height: 100%;
+  width: 30px;
+  background: indigo;
+  text-align: center;
+  border-radius: 0 25px 25px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.5s ease;
+}
+
+.search-box.open .icon {
+  transform: translateX(-45%);
+  transition: background 0.5s ease;
+  background: white;
+}
+
+
+.search-box.open svg {
+  fill: indigo;
+}
+
+.search-box svg {
+  fill: white;
+}
+
+.box {
+
+  width: 100%;
+  display: flex;
+  flex: 1 2;
+  justify-content: flex-end;
+} 
+
+.link-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+  border: 1px solid black;
+}
+
+
 
 nav svg {
   fill: white;
 }
 
-.link-container {
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.link-container .a .hov {
+.link-container #a .hov {
   background-color: #ffffff;
   cursor: pointer;
 }
 
-nav .a {
+nav #a {
   display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0;
   gap: 15px;
 }
@@ -149,24 +247,24 @@ nav .a {
 }
 
 
-@media only screen and (max-width: 640px) {
 
 
+@media only screen and (max-width: 945px) {
   .link-container {
     position: fixed;
     flex-direction: column;
     align-items: flex-start;
     top: 0;
-    right: -50vw; /* Off-screen by default */
+    right: -60vw;
     width: 50vw;
     height: 100vh;
     background-color: gray;
     box-shadow: -5px 0 5px rgba(0, 0, 0, 0.25);
-    transition: right 0.5s ease; 
-    z-index: 1001; 
+    transition: right 0.5s ease-out;
+    z-index: 1001;
   }
 
-  nav .a {
+  nav #a {
     box-sizing: border-box;
     flex-direction: column;
     align-items: flex-start;
@@ -185,20 +283,47 @@ nav .a {
     display: inline-block;
   }
 
+
   #overlay {
-    display: none; 
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000; 
+    z-index: 1000;
   }
   #sidebar-active:checked ~ #overlay {
     display: block;
   }
+
 }
+
+@media only screen and (max-width: 500px){
+
+  .hidden {
+    display: none;
+}
+
+
+  .search-box .icon {
+    cursor: default;
+  }
+}
+
+@media only screen and (max-width: 2560px) {
+
+  .searchbar {
+    align-items: end;
+    justify-content: end;
+
+  }
+  
+}
+
+
+
 
 
 /* General Styles */
@@ -231,7 +356,7 @@ nav .a {
   background-color: rgba(255, 255, 255, 0.1);
   padding: 20px;
   border-radius: 8px;
-  width: 100%;
+  width: 300px;
   max-width: 400px;
   text-align: left;
 }
@@ -286,52 +411,55 @@ nav .a {
   gap: 15px;
 }
 
-@media (max-width: 640px) {
+@media only screen and (max-width: 770px) {
 
   .container {
     flex-direction: column; 
     height: 100%; 
+    justify-content: space-evenly;
   }
+
+  
 
   .split {
     min-height: 100vh; 
     width: 100%; 
     margin: 0; 
     padding: 20px; 
+    justify-content: space-evenly;
   }
 }
 
 
 /* Home Screen Styling */
 .Home {
+  margin-top: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+  height: fit-content;
   border: 1px solid green;
 }
 
 /* Thread Grid */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(1fr);
   gap: 10px;
   width: 80%;
   max-width: 1200px;
-
   margin: auto; 
   padding: 10px;
   box-sizing: border-box;
-  border: 2px solid red;
+
 }
 
 .grid-item {
   background-color: rgb(90, 36, 90);
   color: white;
   font-size: 15px;
-  
-  padding: 20px;
+  height: 150px;
   text-align: center;
   border-radius: 8px;
 
@@ -340,37 +468,79 @@ nav .a {
   text-overflow: ellipsis;  
   
   max-width: 1199px;  
-  border: 2px solid red; 
+
 }
 
 @media (max-width: 640px) {
 
   .grid-container {
-    margin-top: 80px;
     grid-template-columns: 1fr; 
   }
 }
 
 /* Thread Screen Styling */
 
+
 .thread {
   display: flex;
-  flex: 2 2;
+  flex: 1 1;
   align-items: center;
   justify-content: center;
   color: black;
   padding: 10px;
 }
 
-#thread-content {
+.thread-content {
+  display: flex;
+  flex-direction: column;
   background-color: white;
-  align-items: center;
-  justify-content: center;
-  height: 85vh;
-  width: 80vh;
+  padding: 20px;
+  width: 90vw; 
+  max-width: 800px; 
   border: 1px solid black;
   margin: 50px;
+  overflow: hidden; 
 }
+
+.thread-content .text-box {
+  background-color: white;
+  min-height: 100px; 
+  max-height: none; 
+  width: 100%;
+  color: black;
+  overflow: visible; 
+}
+
+
+.thread-content .text-box .ql-editor {
+  min-height: 80px; 
+  max-height: none;  
+  color: black;
+  background-color: white;
+}
+
+
+.reply-list-container {
+  background-color: #ffffff;
+  padding: 10px;
+  max-height: 60vh; 
+  overflow-y: auto; 
+  border-top: 1px solid #ddd;
+  margin-top: 20px;
+  border-radius: 8px;
+
+}
+
+
+.reply-list-container h3 {
+  margin: 10px 0; 
+  padding: 8px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  border: 1px solid #eee;
+}
+
+
 
 
 
@@ -387,10 +557,12 @@ nav .a {
 
 }
 
-.NewThread .text-box .ql-container {
-  background-color: white;
-  max-height: 180px; 
+
+
+.NewThread .text-box div {
+  margin-top: 5px;
 }
+
 .NewThread .center {
   width: 100%;
   max-width: 1000px;
@@ -405,23 +577,70 @@ nav .a {
 }
 
 .NewThread .text-box {
-  background-color: white;
+  background-color: black;
   min-height: 100px; 
   max-height: none; 
   width: 100%;
-  border: 1px solid black;
   color: black;
   overflow: visible; 
 }
 
-.NewThread .text-box .ql-editor {
-  min-height: 160px; 
-  max-height: none;  
-
-  border: solid 0.5px black;
-  color: black;
-  background-color: white;
+.NewThread .text-box.first .ql-editor {
+  min-height: 100px;
+  max-height: 160px;
 }
+
+.NewThread .text-box.second .ql-editor {
+  min-height: 200px;
+  background-color: green;
+}
+
+
+.NewThread .text-box .ql-container {
+  padding-bottom: 10px; 
+}
+
+
+.ql-align-left {
+  text-align: left;
+}
+.ql-align-center {
+  text-align: center;
+}
+.ql-align-right {
+  text-align: right;
+}
+.ql-align-justify {
+  text-align: justify;
+}
+
+.ql-editor ol {
+  list-style-type: decimal;
+  padding-left: 20px;
+}
+.ql-editor ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.ql-size-small {
+  font-size: 0.75rem; 
+}
+
+.ql-size-normal {
+  font-size: 1rem; 
+}
+
+.ql-size-large {
+  font-size: 1.5rem; 
+}
+
+.ql-size-huge {
+  font-size: 2rem; 
+}
+
+
+
 
 .btn {
   display: flex;
@@ -433,6 +652,7 @@ nav .a {
 .btn.loading {
  animation: fade 3s forwards;
 }
+
 
 @keyframes fade {
   0% {
@@ -499,6 +719,8 @@ nav .a {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  border: 1px solid black;
+  transform: translateX(-7%);
 }
 
 /* Input Style */
@@ -556,4 +778,29 @@ nav .a {
   overflow: none; 
   border: none;
   cursor: pointer;
+}
+
+
+
+.account {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100vw;
+  height: auto;
+  padding: 20px;
+  box-sizing: border-box;
+
+}
+.account .center {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  background-color: #6C58CE;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 20px;
+  gap: 20px;
+  overflow: visible; 
 }
