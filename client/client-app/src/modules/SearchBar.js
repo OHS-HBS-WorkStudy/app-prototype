@@ -1,49 +1,53 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import {ScreenContext, ScreenStateContext} from '../App.js';
 import '../App.css';
 
 export default function SearchBar() {
     const screen = useContext(ScreenContext);
 
+
+    const [searchbarValue, setSearchbarValue] = useState("");
     const [isOpen, setIsOpen] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    console.log(isOpen);
+
+
 
     const toggleSearch = () => {
-        setIsOpen(prevState => !prevState);
+        if (windowWidth > 600) {
+            setIsOpen(prevState => !prevState);
+        }
     };
 
-    const [SearchBar, setSearchBar] = useState("search-container");
-    const [SearchBar1, setSearchBar1] = useState('');
+    useEffect(() => {
+        const handleResize = () => {
+            if (windowWidth <= 600) {
+                setIsOpen(true)
+            } 
+        };
 
-
-
-    window.addEventListener("resize", function(){
-        var w = window.innerWidth;
-
-    
-
-        if (w <= 600) {
-            setSearchBar("link-container");
-            setSearchBar1("a");
-        }else {
-            setSearchBar("search-container");
-            setSearchBar1('');
-        }
-      });
-
-
-
-
-
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, [windowWidth]); 
 
     if(screen === 0 || screen === 3) {
         return (
-            <div className={SearchBar}>
 
-        <div className={`searchbar ${isOpen ? "open" : ""}`}  id={SearchBar1}>
+        <div className={`searchbar ${isOpen ? "open" : ""}`} >
             <div className="box">
                 <div className={`search-box ${isOpen ? "open" : ""}`}>
                     {isOpen && (
-                        <input type="text" placeholder="Type here..." />
+                        <input 
+                        type="text" 
+                        placeholder="Type here..." 
+                        value={searchbarValue} 
+                        onChange={(e) => setSearchbarValue(e.target.value)} 
+                        />
                     )}
                     <label onClick={toggleSearch} className="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
@@ -52,7 +56,6 @@ export default function SearchBar() {
                     </label>
                 </div>
             </div>
-        </div>
         </div>
         );
     }
