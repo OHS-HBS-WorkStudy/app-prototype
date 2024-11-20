@@ -1,9 +1,14 @@
-export default function TagList({tags}) {
+export default function TagList({tag, val}) {
+    function removeTag() {
+        let rTag = document.getElementById(tag);
+
+        rTag.remove();
+    }
+
     return(
-        <div>
-            {tags.map(tag =>
-                <div><b>Tag:</b><input class="tag"/></div>
-            )}
+        <div id={tag}>
+            <b>Tag:</b><input class="tag"/>
+            <button onClick={removeTag}>Remove</button>
         </div>
     );
 }
