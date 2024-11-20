@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, createContext } from 'react';
 
 import Navigator from "./modules/Navigator.js";
 import ThreadReply from "./modules/ThreadReply.js";
@@ -38,11 +38,6 @@ export default function ThreadPage() {
 
     return(
             <div>
-                <Navigator />
-                <div className="nav-space">
-                    <div className="thread">
-                        <div className="center">
-                            <div className="thread-content">
                                 <div className="thread-title" dangerouslySetInnerHTML={{__html: sanitizedTitle  }} />
                                 <div className="thread-desc" dangerouslySetInnerHTML={{__html: sanitizedDesc  }} />
                                 <div>
@@ -52,9 +47,7 @@ export default function ThreadPage() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
         )
 }

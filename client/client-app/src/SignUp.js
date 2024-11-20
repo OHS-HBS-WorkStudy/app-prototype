@@ -53,7 +53,7 @@ export default function SignUp() {
       return(
         <body>
           <Navigator />
-          <div>
+          <div className="Sign">
             <div className="container">
                 <div class="split right">
                         <div className="center">

@@ -38,8 +38,8 @@ export default function Navigator() {
 
     function HomePage() {
         sessionStorage.removeItem("search_tag");
-        window.location.reload();
         changeScreen(0);
+        window.location.reload();
     }
 
     return (
@@ -72,10 +72,10 @@ export default function Navigator() {
                     <div className={`searchbar ${isSearchBar ? "navlist" : ""}`}>
                         {isSearchBar && <SearchBar />}
                     </div>
-                        <p className="nav-btn" onClick={SignUp}>Sign-Up</p>
-                        <p className="nav-btn" onClick={Login}>Log-in</p>
-                        <p className="nav-btn" onClick={NewThread}>Ask a Question!</p>
-                        <p className="nav-btn" onClick={AccountPage}>Account</p>
+                        <p id="nav-btn" onClick={SignUp}>Sign-Up</p>
+                        <p id="nav-btn" onClick={Login}>Log-in</p>
+                        <p id="nav-btn" onClick={NewThread}>Ask a Question!</p>
+                        <p id="nav-btn" onClick={AccountPage}>Account</p>
                     </div>
                 </div>
             </nav>
