@@ -1,12 +1,10 @@
-import { useContext, createContext } from "react";
+import { useContext } from "react";
 
 import { ScreenStateContext } from "../App.js";
-import { stateContext } from "./ThreadList.js";
 import DOMPurify from 'dompurify';
 
-export default function ThreadButton({value, key}) {
+export default function ThreadButton({value}) {
     const switchScreen = useContext(ScreenStateContext);
-    const setExpandedThread = useContext(stateContext);
 
     function toThreadPage(json) {
         console.log(json);
@@ -14,13 +12,6 @@ export default function ThreadButton({value, key}) {
 
         switchScreen(3);
     }
-
-    function saveThread(json) {
-        console.log(json);
-        sessionStorage.setItem("thread", JSON.stringify(json));
-        setExpandedThread(value);
-    }
-
     function getThreadData() {
         fetch("http://127.0.0.1:8000/retrieveThread", {
             method: "POST",
@@ -31,17 +22,28 @@ export default function ThreadButton({value, key}) {
             }
         })
         .then((response) => response.json())
-        .then((json) => saveThread(json));
+        .then((json) => toThreadPage(json));
     }
+
+    const stripHTML = (html) => {
+        const div = document.createElement('div');
+        div.innerHTML = html;
+        return div.textContent || div.innerText || '';
+      };
 
     const sanitizedName = DOMPurify.sanitize(value.name);
     const sanitizedContents = DOMPurify.sanitize(value.content);
-
     return(
-        <div onClick={getThreadData}>
-            <div dangerouslySetInnerHTML={{__html: sanitizedName  }} > 
+
+    
+            <div className="grid-item" onClick={getThreadData} >
+                
+                    <div className="vote-counter">2</div>
+                        <div className="grid-item-content"> 
+                            <div className="grid-item-title">{stripHTML(sanitizedName)}</div>
+                            <div className="grid-item-desc">{stripHTML(sanitizedContents)}</div>
+                </div>
             </div>
-            <div dangerouslySetInnerHTML={{__html: sanitizedContents  }} />
-        </div>
+
     )
 }

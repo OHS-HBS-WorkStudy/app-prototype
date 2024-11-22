@@ -1,40 +1,14 @@
-import { useState, useContext, createContext } from "react";
-import { ScreenStateContext } from "../App.js";
-
+import { useState } from "react";
 import ThreadButton from "./ThreadButton.js";
-import ReplyList from "./ReplyList.js";
-import ThreadReply from "./ThreadReply.js";
-import ThreadPage from "../ThreadPage.js";
 
-export const stateContext = createContext(0);
-
-export default function ThreadList() {
+export default function ThreadList({value}) {
     const [listActive, activateList] = useState(false);
-    const switchScreen = useContext(ScreenStateContext);
-
-    try {
-    const [expandedThread, setExpandedThread] = useState(null);
 
 
-    function handleExpand(value) {
-        if (expandedThread === value) {
-            setExpandedThread(null);
-            //target.classList.remove("expanding");
-        } else {
-            setExpandedThread(value);
-            //target.classList.add("expanding");
-        }
-    }
 
+    
 
-    function closeExpand(event) {
-        const target = event.currentTarget.closest(".grid-item");
-        event.stopPropagation();
-        setExpandedThread(null);
-        target.classList.remove("expanding");
-    }
-
-
+    try{
         let isThereSearch = sessionStorage.getItem("search_tag");
 
         if(isThereSearch === "" || isThereSearch === null || isThereSearch === undefined) {
@@ -44,7 +18,9 @@ export default function ThreadList() {
         }
 
         let test;
+    
 
+        {/* JSON LIST*/}
         function setList(json) {
             console.log(json);
             test = json;
@@ -79,32 +55,25 @@ export default function ThreadList() {
             })
         }
 
-        //getList(isThereSearch);
+    
 
+        //getList(isThereSearch);
         if(listActive === true) {
             let values = JSON.parse(sessionStorage.getItem("threads"));
-            return (
-                <div className="Home">
-                    <div className="nav-space"></div>
-                    <div className="grid-container">
-                        {values.map( (value, key) => (
-                            <div
-                                className={`grid-item ${expandedThread === value ? "expanding" : "not-expanded"}`}
-                            >
-
-                            <stateContext.Provider value ={handleExpand}>
-                                <ThreadButton value={value} key={key}/>
-                            </stateContext.Provider>
-        
-                                    <div className="expanded-content">
-                                        <ThreadPage />
-                                    </div>
-                            </div>
-                        ))}
+            return(
+                <body>
+                    <div className="Home">
+                        <div className="nav-space"></div>
+                            <div className="grid-container">
+                            {values.map(value => 
+                                    <ThreadButton value={value} />
+                                )}
+                        </div>
                     </div>
-                </div>
-            );
-        } else {
+                </body>
+                
+            ) 
+        }else {
             return(
                 <div>
                      <div className="nav-space"></div>
@@ -113,6 +82,7 @@ export default function ThreadList() {
             )
         }
     }catch(err){
+        console.log("err");
         return(
             <div>
                  <div className="nav-space"></div>

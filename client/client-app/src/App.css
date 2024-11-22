@@ -39,26 +39,23 @@
 
 /* Standardize Styling */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+}
+
+html{
+  overflow: none;
 }
 
 body, html {
   margin: 0;
   padding: 0;
   height: 100%;
+  width: 100%;
   font-family: Arial, sans-serif;
-  background: indigo;
+  background-color: indigo;
   color: white;
-  overflow-x: hidden;
-
-
-
-}
-
-body {
-  width:  100%;
-  justify-content: center;
-  align-items: center;
 }
 
 .container {
@@ -66,8 +63,6 @@ body {
   flex-wrap: nowrap; 
   height: 100vh; 
   width: 100%; 
-
-
 }
 
 .split {
@@ -79,6 +74,7 @@ body {
   padding: 20px;
 }
 
+/* Nav Styles */
 /* Nav Styles */
 nav {
   position: fixed;
@@ -305,8 +301,6 @@ nav #a {
 
 
 
-
-
 /* General Styles */
 .split {
   flex: 1; 
@@ -337,13 +331,9 @@ nav #a {
   background-color: rgba(255, 255, 255, 0.1);
   padding: 20px;
   border-radius: 8px;
-  text-align: left;
-}
-
-.Login .input-container,
-.SignUp .input-container {
-  width: 300px;
+  width: 100%;
   max-width: 400px;
+  text-align: left;
 }
 
 .input-container label {
@@ -396,281 +386,335 @@ nav #a {
   gap: 15px;
 }
 
-@media only screen and (max-width: 770px) {
-
+@media (max-width: 640px) {
   .container {
     flex-direction: column; 
     height: 100%; 
-    justify-content: space-evenly;
   }
-
-  
 
   .split {
     min-height: 100vh; 
     width: 100%; 
     margin: 0; 
     padding: 20px; 
-    justify-content: space-evenly;
   }
 }
 
 
 /* Home Screen Styling */
+
+
+/* Thread Grid */
 .Home {
-  margin-top: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: fit-content;
-  border: 1px solid green;
+  margin-top: 10px;
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0; 
+  width: 60vw;
+  box-sizing: border-box; 
+  height: calc(100vh - 50px); 
+  margin-top: 60px;
+  border: 1px solid black;
+
+}
+
+@media (max-width: 600px) {
+  .leftextra {
+    display: none;
+    opacity: 0;
+  }
+
+}
+
+
 
 
 .grid-item {
+  width: 100%;
+  max-width: 65vw;
+  background: #3a3153;
+  text-align: left;
+  border: 1.5px solid #524d60;
+  box-sizing: border-box;
   cursor: pointer;
-  padding: 20px;
-  margin: 10px;
-  border: 2px solid #ddd;
-  transition: all 0.3s ease;
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 10px;
+}
+
+.grid-item-content {
+  flex: 1; 
+  display: flex;
+  flex-direction: column; 
+  margin-left: 40px;
+  width: calc(100% - 90px);  
+  color: white; 
+  box-sizing: border-box; 
+}
+
+.grid-item-title {
+  color: #7D38B3;
+  font-size: 25px;
+}
+.grid-item-desc {
+  margin-left: 20px;
+  font-size: smaller;
+}
+
+.grid-item-title, .grid-item-desc  {
+  display: inline-block; 
+  overflow: hidden;
+  white-space: nowrap; 
+  text-overflow: ellipsis; 
 }
 
 
+.grid-item:first-child {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border: 1.5px solid #524d60;
+}
+
+.grid-item:last-child  {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
 
 
-.grid-item.expanding {
-  position: fixed;
+.grid-item:hover {
+  transform: scale(1.01); 
+}
+
+.leftextra {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  transform: translateX(-10%);
+  width: 29vw;
+  height: fit-content;
+  padding: 10px;
+  border-radius: 15px;
+  border: 1px solid black;
+}
+
+.leftextra h1 {
   top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  margin-top: 60px;
-  transform: translateX(-2%);
-  background-color: rgb(52, 0, 88);
-  z-index: 9999;
-  color: white;
-  text-align: center;
+}
+
+.leftextracontent {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow-y: auto;
-  border: none;
-  cursor: default;
-  animation: open 0.3s ease-in-out forwards;
+  height: fit-content;
+  border: 1px solid black;
+}
+
+.vote-counter {
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  background-color: rgb(255, 255, 255, 0.1);
+  color: white; 
+  border: 1px solid lightgray; 
+  border-radius: 5px; 
+  padding: 5px 10px; 
+  font-size: 16px; 
+  font-weight: bold; 
+  margin-left: 10px; 
 }
 
 
+.expanding-div {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100px; 
+  height: 100px; 
+  background-color: #001F00; 
+  z-index: 999; 
+  animation: expandAnimation 1s ease-out forwards; 
+}
 
-
-@keyframes open {
-  from {
-    width: 0;
-    height: 0;
+@keyframes expandAnimation {
+  0% {
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
   }
-  to {
-    width: 102vw;
+  100% {
+    width: 100vw;
     height: 100vh;
   }
 }
 
 
-.grid-item.not-expanded .expanded-content {
-  display: none;
+
+
+
+
+
+
+.nav-space {
+  height: 60px;
 }
 
 
-.grid-item.expanding .expanded-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow-y: auto;
-}
-
-
-button#close {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #f44336;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-
-button#close:hover {
-  background-color: #e53935;
-}
 
 
 
 /* Thread Screen Styling */
 
-
 .thread {
   display: flex;
-  flex: 1 1;
+  background-color: #001F00;
+  width: 100vw;
+  height: 100vh;
   align-items: center;
   justify-content: center;
-  color: black;
+  color: white;
   padding: 10px;
 }
 
-.thread-content {
-  display: flex;
-  flex-direction: column;
+#thread-content {
   background-color: white;
-  padding: 20px;
-  width: 90vw; 
-  max-width: 800px; 
+  align-items: center;
+  justify-content: center;
+  height: 85vh;
+  width: 80vh;
   border: 1px solid black;
   margin: 50px;
-  overflow: hidden; 
 }
-
-.thread-content .text-box {
-  background-color: white;
-  min-height: 100px; 
-  max-height: none; 
-  width: 100%;
-  color: black;
-  overflow: visible; 
-}
-
-
-.thread-content .text-box .ql-editor {
-  min-height: 80px; 
-  max-height: none;  
-  color: black;
-  background-color: white;
-}
-
-
-.reply-list-container {
-  background-color: #ffffff;
-  padding: 10px;
-  max-height: 60vh; 
-  overflow-y: auto; 
-  border-top: 1px solid #ddd;
-  margin-top: 20px;
-  border-radius: 8px;
-
-}
-
-
-.reply-list-container h3 {
-  margin: 10px 0; 
-  padding: 8px;
-  background-color: #f9f9f9;
-  border-radius: 4px;
-  border: 1px solid #eee;
-}
-
-
 
 
 
 /* Create Thread Screen Styling */
+
+
 
 .NewThread {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   width: 100vw;
+  
+  min-height: 100vh;
+  margin-top: 20px;
   padding: 20px;
   box-sizing: border-box;
+  background-color: rgb(95, 50, 127); 
 }
 
 .NewThread .center {
-  width: 100%; 
-  height: 100%; 
+  width: 100%;
+
   display: flex;
   flex-direction: column;
-  background-color: #f8f9fa; 
-  border-radius: 0; 
+  background-color: #ffffff; 
+  border-radius: 12px; 
   padding: 24px;
-  gap: 16px;
-  box-shadow: none; 
-  overflow: visible; 
-  box-sizing: border-box; 
+  gap: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); 
+  overflow: visible;
+  box-sizing: border-box;
 }
 
+.NewThread .input-container {
+  width: 100%;
+  
+  border: 2px solid #e0e0e0; 
+  border-radius: 8px; 
+  background-color: #f9f9fc; 
+}
 
-.NewThread label {
+.NewThread .input-container input[type="text"] {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
   font-size: 1rem;
-  font-weight: 500;
-  text-align: center;
-  color: #333; 
+  color: #333333; 
+  background-color: transparent;
+  outline: none;
+}
+
+.center label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4f4f4f; 
   margin-bottom: 8px;
+  text-align: left; 
+}
+
+#questionTitle {
+
+  font-weight: 600;
+  color: #4f4f4f;
 }
 
 .NewThread .text-box {
-  background-color: #fff; 
-  border: 1px solid #ddd; 
-  border-radius: 4px;
-  padding: 12px;
-  color: #333;
-  overflow: visible; 
+  background-color: #f9f9fc; 
+  border: 2px solid #e0e0e0; 
+  border-radius: 8px;
+  padding: 16px;
+  color: #333333;
+  overflow: visible;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.NewThread .text-box:focus-within {
+  border-color: #6C58CE; 
 }
 
 .NewThread .text-box .ql-editor {
-  min-height: 160px; 
-  color: #333;
-  overflow: none;
+  min-height: 160px;
+  font-size: 1rem;
+  color: #333333;
   background-color: transparent;
 }
 
 .NewThread .text-box div {
   margin-top: 8px;
   font-size: 0.875rem;
-  color: #666;
+  color: black; 
 }
 
-#loadButton {
+.loadButton button {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #6C58CE; 
   color: white;
   width: 100%;
-  height: 100%;
-
+  height: 48px;
   font-size: 1rem;
   font-weight: 600;
   padding: 12px 16px;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px; 
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.2s ease-in-out;
 }
 
-#loadButton:hover {
-  background-color: #5438a5; 
+.loadButton button:hover {
+  background-color: #5438a5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
 }
 
-#loadButton.loading {
-  background-color: #aaa;
+.loadButton.loading {
+  background-color: #e0e0e0; 
   cursor: not-allowed;
-}
-
-.loader {
-  width: 16px;
-  height: 16px;
-  border: 2px solid #fff;
-  border-top: 2px solid #6C58CE; 
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  margin-left: 8px;
-}
-
-@keyframes spin {
-  to { 
-    transform: rotate(360deg); 
-  }
+  opacity: 0.7;
 }
 
 @media (max-width: 768px) {
@@ -689,43 +733,13 @@ button#close:hover {
 
 
 
-.ql-align-left {
-  text-align: left;
-}
-.ql-align-center {
-  text-align: center;
-}
-.ql-align-right {
-  text-align: right;
-}
-.ql-align-justify {
-  text-align: justify;
-}
 
-.ql-editor ol {
-  list-style-type: decimal;
-  padding-left: 20px;
-}
-.ql-editor ul {
-  list-style-type: disc;
-  padding-left: 20px;
-}
 
-.ql-size-small {
-  font-size: 0.75rem; 
-}
 
-.ql-size-normal {
-  font-size: 1rem; 
-}
 
-.ql-size-large {
-  font-size: 1.5rem; 
-}
 
-.ql-size-huge {
-  font-size: 2rem; 
-}
+
+
 
 
 
@@ -742,13 +756,7 @@ button#close:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   cursor: pointer;
-  border: 1px solid black;
-}
-
-#title:hover {
-  transform: scale(1.05);
 }
 
 /* Input Style */
@@ -795,7 +803,7 @@ button#close:hover {
   cursor: pointer;
 }
 
-#nav-btn {
+.nav-btn {
   position: relative;
   flex-direction: row;
   color: white;
@@ -803,35 +811,73 @@ button#close:hover {
   font-size: 15px;
   text-transform: uppercase;
   padding: 4px 12px;
+  overflow: none; 
   border: none;
   cursor: pointer;
 }
 
-#nav-btn:hover {
-  transform: scale(1.05);
-}
-
-
-
 .account {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100vw;
-  height: auto;
-  padding: 20px;
-  box-sizing: border-box;
-
-}
-.account .center {
+  height: 100vh;
   width: 100%;
-  max-width: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  background-color: #ffffff;
+}
+
+
+
+.vote-box {
   display: flex;
   flex-direction: column;
-  background-color: #6C58CE;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 20px;
-  gap: 20px;
-  overflow: visible; 
+  justify-content: left;
+  align-items: left;
+  margin-left: 10px;
+  gap: 8px; 
+  width: 65px; 
+  height: 100px;
+  padding: 16px; 
+  background-color: #f1f3f4;
+  border-radius: 8px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  box-sizing: border-box;
+}
+
+
+.vote-box p {
+  color: black;
+}
+
+.vote-box .up-vote,
+.vote-box .down-vote {
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  background-color: #000; 
+  width: 30px; 
+  height: 30px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; 
+}
+
+.vote-box .up-vote:hover,
+.vote-box .down-vote:hover {
+  background-color: #e0e0e0; 
+}
+
+.vote-box .up-vote.selected,
+.vote-box .down-vote.selected {
+  background-color: #4285f4; 
+  color: #fff; 
+}
+
+.vote-box .up-vote.selected svg path,
+.vote-box .down-vote.selected svg path {
+  fill: white; 
+}
+
+.vote-box svg {
+  width: 25px;
+  height: 25px;
 }
