@@ -40,8 +40,12 @@ export default function ThreadButton({value}) {
                 
                     <div className="vote-counter">2</div>
                         <div className="grid-item-content"> 
-                            <div className="grid-item-title">{stripHTML(sanitizedName)}</div>
-                            <div className="grid-item-desc">{stripHTML(sanitizedContents)}</div>
+                            <div className="grid-item-title">
+                                {stripHTML(sanitizedName)}
+                            </div>
+                            <div className="grid-item-desc">
+                                {stripHTML(sanitizedContents)}
+                            </div>
                 </div>
             </div>
 
