@@ -19,6 +19,8 @@ def confirmSQLUser(data):
     cursor.execute("SELECT * FROM users WHERE email='"+data["email"]+"'")
     values = cursor.fetchall()
 
+    print(values)
+
     user_data = {}
 
     for x in values:
@@ -30,6 +32,8 @@ def confirmSQLUser(data):
                 "type": x[4],
                 "uuid": x[5]
             }
+
+    print(user_data)
     return user_data
 
 

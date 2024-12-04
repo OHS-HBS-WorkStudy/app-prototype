@@ -11,10 +11,26 @@ class Thread(BaseModel):
 router = APIRouter()
 
 def sql_replyList(data):    
+    anon_list = []
     conn = sqlite3.connect('app.db')
     cursor = conn.cursor()
-    cursor.execute(f"SELECT * FROM replies where thread_id='{data}'")
+    cursor.execute(f"SELECT * FROM replies WHERE thread_id='{data}'")
     values = cursor.fetchall()
+
+    cursor.execute(f"SELECT creator_id FROM threads WHERE thread_id='{data}'")
+    creator = cursor.fetchone()
+
+    anon_list.append(creator[0])
+
+    for x in range(len(values)):
+        for y in range(len(anon_list)):
+            if values[x][3] == anon_list[y]:
+                break
+        else:
+            anon_list.append(values[x][3])
+            print(values[x][3])
+    print("help:")
+    print(anon_list)
     
     new_list = []
     
