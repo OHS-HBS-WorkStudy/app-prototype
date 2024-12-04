@@ -75,6 +75,13 @@ export default function ThreadList({value}) {
                                     <p>No threads viewed yet</p>
                             </div>
                         </div>
+{/* 
+                        <div className="leftextra">
+                            <h1>Thread Created</h1>
+                            <div className="leftextracontent">
+                                    <p>No threads viewed yet</p>
+                            </div>
+                        </div> */}
 
 
                         <div className="grid-container">

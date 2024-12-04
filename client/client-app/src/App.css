@@ -64,6 +64,7 @@
   --color-accent: hsl(270, 20%, 50%);; /* Slightly vibrant purple for accents */
   --color-text-primary: hsl(0, 0%, 92%); /* Soft white for readability */
   --color-text-secondary: hsl(0, 0%, 70%); /* Light gray for secondary text */
+  --color-text-tertiary: hsl(0, 0%, 100%); /* White  */
 }
 
 
@@ -215,6 +216,7 @@ nav h1 {
   flex-direction: row;
   align-items: center;
   white-space: nowrap;
+  height: 60px;
   border: 1px solid black;
 }
 
@@ -224,15 +226,7 @@ nav svg {
   fill: white;
 }
 
-#hov {
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out;
-    transform: scale(1);
-}
 
-#hov:hover {
-  transform: scale(1.1);
-}
 
 .link-container #a .hov {
   background-color: #ffffff;
@@ -244,6 +238,7 @@ nav #a {
   align-items: center;
   justify-content: center;
   margin: 0;
+  height: 60px;
   gap: 15px;
 }
 
@@ -428,6 +423,13 @@ nav #a {
   animation: fadeInUp 1s ease-out forwards 0.5s;
 }
 
+.center h3 {
+  color: var(--color-text-tertiary);
+  font-size: 30px;
+  transform: translateY(-5%);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+}
+
 @keyframes fadeInUp {
   to {
     opacity: 1;
@@ -436,7 +438,7 @@ nav #a {
 }
 
 .input-container {
-  background-color: var(--color-tertiary);
+  background-color: var(--color-secondary);
   padding: 20px;
   border-radius: 8px;
   width: 100%;
@@ -458,7 +460,7 @@ nav #a {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
-  color: var(--color-primary);
+  color: var(--color-text-tertiary);
   opacity: 0;
   animation: fadeIn 1s ease-out forwards;
   animation-delay: 0.5s;
@@ -471,14 +473,14 @@ nav #a {
   border: none;
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.2);
-  color: var(--color-secondary);
+  color: var(--color-tex);
   transition: all 0.3s ease;
   opacity: 0;
   animation: fadeIn 1s ease-out forwards 0.5s;
 }
 
 .input-container input[type="text"]::placeholder {
-  color: var(--color-primary);
+  color: var(--color-text-secondary);
 }
 
 .input-container input[type="text"]:focus {
@@ -504,8 +506,8 @@ nav #a {
 }
 
 .btn-send:hover {
-  background: var(--color-primary);
-  color: var(--color-secondary);
+  background: var(--color-text-tertiary);
+  color: var(--color-accent);
   transition: background 0.5s ease, color 0.5s ease;
 }
 
@@ -515,33 +517,51 @@ nav #a {
 
 .btn-container {
   width: 100%;
+  min-width: 20vw;
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
+.btn-container h1 {
+  color: var(--color-text-tertiary);
+  font-size: 30px;
+  transform: translateY(-5%);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+}
+
+.btn-container h2 {
+  color: var(--color-text-primary);
+  font-size: 25x;
+  transform: translateY(-5%);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+}
+
 .btn {
   padding: 12px 24px;
   border: none;
+  background-color: var(--color-secondary);
   border-radius: 8px;
+  height: 35px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
   font-weight: bold;
 }
 
 .btn:hover {
-  background-color: var(--color-primary);
+  background-color: var(--color-text-tertiary);
   transform: translateY(-5px);
 }
 
 .btn:hover span {
-  color: var(--color-accent);
+  color: var(--color-secondary);
 }
 
 .btn:active {
-  transform: translateY(2px);
+  transform: translateY(-2px);
 }
+
 
 @media (max-width: 640px) {
   .container {
@@ -560,18 +580,6 @@ nav #a {
     padding: 10px; 
     box-sizing: border-box;
     position: relative;
-  }
-
-  .split.left {
-    background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
-    color: #333333;
-    animation: slideInL 1s ease-out forwards;
-  }
-
-  .split.right {
-    background: linear-gradient(45deg, indigo, rgb(56, 1, 95), rgb(32, 0, 54));
-    color: #ffffff;
-    animation: slideInR 1s ease-out forwards;
   }
 
   .split::before,
@@ -745,7 +753,7 @@ nav #a {
   -webkit-box-orient: vertical;
   white-space: normal;
   height: auto;
-  text-shadow: 0.5px 0.5px 2px rgba(0, 0, 0, 0.3); /* Subtle shadow for better blending */
+  text-shadow: 0.5px 0.5px 2px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -765,10 +773,9 @@ nav #a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 90%; 
+    width: 90vw; 
     top: 0;
-    left: 27.5px;
-
+    left: 0;
     margin-bottom: 20px;
   }
 
@@ -777,28 +784,27 @@ nav #a {
     justify-content: center;
     height: fit-content;
     gap: 0;
-    width: 90%; 
+    width: 90vw; 
     margin: 0 auto;
     box-sizing: border-box;
   }
 
-  .grid-item {
-    width: 100%; 
-    max-width: 90%;
-    gap: 0;
-    box-sizing: border-box;
-  }
+
 
   .grid-item-content {
-    margin-left: 0;
+    margin-left: 30px;
     width: 100%; 
   }
 
-  .grid-item-title,
-  .grid-item-desc {
-    width: 100%;
-    margin-left: 0;
+  .grid-item-title {
+    font-size: clamp(15px, 26px, 3vw);
+
   }
+
+  .grid-item-desc {
+    font-size: clamp(10px, 20px, 2.5vw)
+  }
+
 }
 
 
@@ -1450,7 +1456,7 @@ nav #a {
 .btn {
   position: relative;
   flex-direction: row;
-  background-color: indigo;
+  background-color: var(--color-secondary);
   border-radius: 8px;
   color: white;
   font-weight: 600;
@@ -1463,10 +1469,10 @@ nav #a {
 
 .btn-send {
   position: relative;
-  background-color: black;
+  background-color: var(--color-accent);
   border-radius: 8px;
-  color: white;
-  font-weight: 600;
+  color: var(--color-text-tertiary);
+  font-size: 15px;
   text-transform: uppercase;
   padding: 8px 24px;
   overflow: none; 
