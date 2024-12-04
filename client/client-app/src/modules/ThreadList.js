@@ -33,7 +33,7 @@ export default function ThreadList({value}) {
         }
 
         function getListNone() {
-            fetch("http://127.0.0.1:8000/threadList")
+            fetch(sessionStorage.getItem("server_address")+"/threadList")
                 .then((response) => response.json())
                 .then((json) => setList(json))
                 .catch((error) => {
@@ -42,7 +42,7 @@ export default function ThreadList({value}) {
         }
         
         function getListOne(val) {
-            fetch("http://127.0.0.1:8000/searchTag", {
+            fetch(sessionStorage.getItem("server_address")+"/searchTag", {
                 method: "POST",
                 body: JSON.stringify({
                     tag: val

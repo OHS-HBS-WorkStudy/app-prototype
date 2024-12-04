@@ -48,7 +48,7 @@ export default function NewThreadInput({value}) {
     
 
     function postThread(val) {
-        fetch("http://127.0.0.1:8000/createThread", {
+        fetch(sessionStorage.getItem("server_address")+"/createThread", {
             method: "POST",
             body: JSON.stringify(val),
             headers: {
@@ -81,7 +81,7 @@ export default function NewThreadInput({value}) {
     }
 
     function postTags(data) {
-      fetch("http://127.0.0.1:8000/addTags", {
+      fetch(sessionStorage.getItem("server_address")+"/addTags", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {

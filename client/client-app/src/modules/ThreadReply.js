@@ -12,7 +12,7 @@ export default function ThreadReply() {
     }
 
     function PostReply(data) {
-        fetch("http://127.0.0.1:8000/createReply", {
+        fetch(sessionStorage.getItem("server_address")+"/createReply", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -20,7 +20,7 @@ export default function ThreadReply() {
             }
           })
             .then((response) => response.json())
-            .then((json) => console.log(json));
+            .then((json) => window.location.reload());
     }
 
     return(
