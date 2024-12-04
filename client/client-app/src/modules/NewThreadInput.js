@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import DOMPurify from 'dompurify';
@@ -11,20 +11,17 @@ import AddTags from "./AddTags.js";
 
 
 export default function NewThreadInput({value}) {
-    const [ThreadTitle, setThreadTitle] = useState("");
+    const[ThreadTitle, setThreadTitle] = useState("");
     const [ThreadContents, setThreadContents] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
     const maxTitleLength = 200;
-    const maxDescLength = 500;
+    const maxDescLength = 10000;
+
+    const quillRef = useRef(null);
     
     const submitThread = (e) => {
         e.preventDefault();
-
-        if (!ThreadTitle.trim() || !ThreadContents.trim()) {
-            alert("Please fill out both forms before submitting.");
-            return;
-        }
     
         setIsLoading(true);
 
@@ -32,6 +29,8 @@ export default function NewThreadInput({value}) {
 
             const sanitizedTitle = DOMPurify.sanitize(ThreadTitle);
             const sanitizedContents = DOMPurify.sanitize(ThreadContents);
+
+            
 
             let user = JSON.parse(sessionStorage.getItem("user"));
             let data = {
@@ -96,36 +95,51 @@ export default function NewThreadInput({value}) {
     function toHome() {
         //changeScreen(0);
       }
+    
+    
+    const getPlainText = (htmlContent) => {
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = htmlContent;
+      return tempDiv.innerText || tempDiv.textContent;
+    };
+    
+    const handleQuillChange = (value, setValue, maxLength, quillRef) => {
+      const plainText = getPlainText(value);
+    
+      if (plainText.length <= maxLength) {
+        setValue(value);
+      } else {  
+        const quillText = quillRef.current.getEditor().getContents();
+        const cutQuillText = quillText.slice(0, maxLength);
+        setValue(cutQuillText);
+    
+    
+        const editor = quillRef.current.getEditor();
+        editor.setContents(cutQuillText); 
+        editor.setSelection(maxLength); 
+      }
+    };
+    
+    
+      const handleChange = (value, setValue, maxLength) => {
+        const plainText = getPlainText(value);
+        if (plainText.length <= maxLength) {
+          setValue(value); 
+        } else {
+          setValue(value.substring(0, maxLength)); 
+        }
+      };
+
+      const editorStyle = {
+        width: "100%",
+        minHeight: "160px",
+        overflowY: "auto",
+        border: "black",
+        backgroundColor: "white",
+        paddingBottom: "10px",
+      };
 
 
-
-  const getPlainText = (htmlContent) => {
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = htmlContent;
-    return tempDiv.innerText || tempDiv.textContent;
-  };
-
-  const handleChange = (value, setValue, maxLength) => {
-    const plainText = getPlainText(value);
-
-    if (plainText.length <= maxLength) {
-      setValue(value);
-    }
-  };
-
-  const editorStyle = {
-    width: "100%",
-    minHeight: "160px",
-    overflowY: "auto",
-    backgroundColor: "white",
-  };
-
-  const editorStyle1 = {
-    width: "100%",
-    minHeight: "240px",
-    overflowY: "auto",
-    backgroundColor: "white",
-  };
 
   const modules = {
     toolbar: [
@@ -139,46 +153,43 @@ export default function NewThreadInput({value}) {
 
   return (
     <div>
-      <div className="nav-space"></div>
       <div className="NewThread">
         <div className="center">
-          <label htmlFor="text-box ql-container  ql-editor">Question Title</label>
-          <div className="text-box ql-container ql-editor">
-            <ReactQuill
-              theme="snow"
-              modules={modules}
-              style={editorStyle}
+
+          <label htmlFor="questionTitle">Question Title</label>
+          <div className="input-container text-box ql-container">
+            <input
+              id="questionTitle"
+              className="input-container"
+              placeholder="Enter Question Title"
               value={ThreadTitle}
-              onChange={(value) => handleChange(value, setThreadTitle, maxTitleLength)}
-              placeholder="Enter Question"
+              onChange={(e) =>
+                handleChange(e.target.value, setThreadTitle, maxTitleLength)
+              }
             />
             <div>{getPlainText(ThreadTitle).length}/{maxTitleLength} characters</div>
           </div>
 
-          <label htmlFor="text-box ql-container  ql-editor">Question Description</label>
-          <div className="text-box ql-container  ql-editor">
+          <label htmlFor="questionDesc">Question Description</label>
+          <div className="input-container text-box ql-container">
             <ReactQuill
-              theme="snow"
-              style={editorStyle1}
-              modules={modules}
+              id="questionDesc"
+              ref={quillRef}
+              style={editorStyle}
               value={ThreadContents}
-              onChange={(value) => handleChange(value, setThreadContents, maxTitleLength)}
-              placeholder="Enter Desc"
+              onChange={(value) =>
+                handleQuillChange(value, setThreadContents, maxDescLength, quillRef)
+              }
+              modules={modules}
             />
             <div>{getPlainText(ThreadContents).length}/{maxDescLength} characters</div>
           </div>
 
-          <AddTags />
-
-          <button
-            id="loadButton"
-            className={`btn ${isLoading ? 'loading' : ''}`}
-            onClick={submitThread}
-            disabled={isLoading}
-          >
-            Submit
-            {isLoading && <div className="loader" id="loader"></div>}
-          </button>
+          <div className={`loadButton ${isLoading ? "loading" : ""}`}>
+            <button onClick={submitThread} disabled={isLoading} >
+              {isLoading ? "Submitting..." : "Submit"}
+            </button>
+          </div>
         </div>
       </div>
     </div>

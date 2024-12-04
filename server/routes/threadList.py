@@ -23,7 +23,8 @@ def sql_threadList():
     for a in range(len(start_list)):
         new_data = {
             "name": values[start_list[a]][0],
-            "id": values[start_list[a]][2]
+            "id": values[start_list[a]][2],
+            "content": values[start_list[a]][1]
         }
         return_list.append(new_data)
 

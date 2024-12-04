@@ -37,7 +37,7 @@ export default function SignUp() {
       return(
           <body>
             <Navigator />
-            <div>
+            <div className="Login">
                 <div className="container">
                     <div className="split left">
                         <div className="center">
@@ -55,7 +55,7 @@ export default function SignUp() {
                                 <label for="password">Password:</label>
                                 <input id="password" type="text" placeholder="Enter your password" />
 
-                                <button className="btn-send" onClick={sendData}>Log In</button>
+                                <button className="btn-send" onClick={sendData}>Submit</button>
                             </div>
                         </div>
                     </div>

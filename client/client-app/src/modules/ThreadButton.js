@@ -25,10 +25,29 @@ export default function ThreadButton({value}) {
         .then((json) => toThreadPage(json));
     }
 
+    const stripHTML = (html) => {
+        const div = document.createElement('div');
+        div.innerHTML = html;
+        return div.textContent || div.innerText || '';
+      };
+
     const sanitizedName = DOMPurify.sanitize(value.name);
+    const sanitizedContents = DOMPurify.sanitize(value.content);
     return(
-        <div>
-            <h2 onClick={getThreadData}  className="grid-item" dangerouslySetInnerHTML={{__html: sanitizedName  }} />
-        </div>
+
+    
+            <div className="grid-item" onClick={getThreadData} >
+                
+                    <div className="vote-counter">2</div>
+                        <div className="grid-item-content"> 
+                            <div className="grid-item-title">
+                                {stripHTML(sanitizedName)}
+                            </div>
+                            <div className="grid-item-desc">
+                                {stripHTML(sanitizedContents)}
+                            </div>
+                </div>
+            </div>
+
     )
 }

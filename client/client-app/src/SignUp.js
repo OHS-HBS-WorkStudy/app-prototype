@@ -53,7 +53,7 @@ export default function SignUp() {
       return(
         <body>
           <Navigator />
-          <div>
+          <div className="Sign">
             <div className="container">
                 <div class="split right">
                         <div className="center">
@@ -67,14 +67,16 @@ export default function SignUp() {
                             <input id="password" type="text" placeholder="Enter your password"/>  
                             <label for="email">Email:</label>
                             <input id="email"  type="text" placeholder="Enter your email"/>
+                            <button className="btn-send" onClick={sendData}>Submit</button>
                         </div>
+                      
                     </div>
                 </div>
 
               <div className="split left">
                     <div className="center">
                           <div className="btn-container">
-                            <label for="btn"><b>Current Account Type:</b> {accountType}</label>
+                            <h1><b>Current Account</b></h1> <h2>{accountType}</h2>
                               <button className="btn" onClick={changeStudent}>
                                   <span>Student</span>
                               </button>
@@ -84,7 +86,7 @@ export default function SignUp() {
                               <button className="btn" onClick={changeTeacher}>
                                   <span>Teacher</span>
                               </button>
-                              <button className="btn-send" onClick={sendData}>Submit</button>
+                              
                     </div>
                 </div>
               </div>

@@ -38,16 +38,33 @@ export default function Navigator() {
 
     function HomePage() {
         sessionStorage.removeItem("search_tag");
-        window.location.reload();
         changeScreen(0);
+        window.location.reload();
     }
+
+    const [darkMode, setDarkMode] = useState(() => {
+        return localStorage.getItem('dark-mode') === 'enabled';
+      });
+
+      useEffect(() => {
+        document.body.classList.toggle('dark', darkMode);
+        localStorage.setItem('dark-mode', darkMode ? 'enabled' : 'disabled');
+      }, [darkMode]);
+    
+
+      const toggleDarkMode = () => {
+        setDarkMode((prevMode) => !prevMode);
+      };
 
     return (
         <div>
             <nav>
                 <h1 id="title" className="title1" onClick={HomePage}>
-                    Anonymous Academy
+                    <div id="hov">Anonymous Academy</div>
                 </h1>
+
+
+                <button onClick={toggleDarkMode}>Butttttton</button>
 
                 <div className={`searchbar ${isSearchBar ? "" : "navbar"}`}>
                         {!isSearchBar && <SearchBar />}
@@ -72,10 +89,10 @@ export default function Navigator() {
                     <div className={`searchbar ${isSearchBar ? "navlist" : ""}`}>
                         {isSearchBar && <SearchBar />}
                     </div>
-                        <p className="nav-btn" onClick={SignUp}>Sign-Up</p>
-                        <p className="nav-btn" onClick={Login}>Log-in</p>
-                        <p className="nav-btn" onClick={NewThread}>Ask a Question!</p>
-                        <p className="nav-btn" onClick={AccountPage}>Account</p>
+                            <p id="nav-btn" onClick={SignUp}>Sign-Up</p>
+                            <p id="nav-btn" onClick={Login}>Log-in</p>
+                            <p id="nav-btn" onClick={NewThread}>Ask a Question!</p>
+                            <p id="nav-btn" onClick={AccountPage}>Account</p>
                     </div>
                 </div>
             </nav>
