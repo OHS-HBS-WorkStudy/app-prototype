@@ -148,7 +148,7 @@ function ThreadButton({value}) {
     
             <div className="grid-item" onClick={getThreadData} >
                 
-                    <div className="vote-counter">2</div>
+                    <div className="vote-counter"><p>2</p></div>
                         <div className="grid-item-content"> 
                             <div className="grid-item-title">
                                 {stripHTML(sanitizedName)}
