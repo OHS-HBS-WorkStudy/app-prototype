@@ -116,11 +116,16 @@ export default function ThreadList({value}) {
 function ThreadButton({value}) {
     const switchScreen = useContext(ScreenStateContext);
 
-    function toThreadPage(json) {
+    function toThreadPage(json, data) {
         console.log(json);
         sessionStorage.setItem("thread", JSON.stringify(json));
+        console.log(data);
+        sessionStorage.setItem("thread_score", data);
+
+
 
         switchScreen(3);
+
     }
     function getThreadData() {
         fetch("http://127.0.0.1:8000/retrieveThread", {
@@ -132,7 +137,21 @@ function ThreadButton({value}) {
             }
         })
         .then((response) => response.json())
-        .then((json) => toThreadPage(json));
+        .then((json) => getvotes(json));
+    }
+
+    function getvotes(data) {
+        fetch(sessionStorage.getItem("server_address")+"/createVote", {
+            method: "POST",
+            body: JSON.stringify({
+                thread_id: data.id
+            }),
+            headers: {
+              "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+        .then((response) => response.json())
+        .then((json) => toThreadPage(data, json))
     }
 
     const stripHTML = (html) => {
@@ -148,7 +167,7 @@ function ThreadButton({value}) {
     
             <div className="grid-item" onClick={getThreadData} >
                 
-                    <div className="vote-counter"><p>2</p></div>
+                    <div className="vote-counter"><p>{value.score}</p></div>
                         <div className="grid-item-content"> 
                             <div className="grid-item-title">
                                 {stripHTML(sanitizedName)}
