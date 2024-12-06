@@ -16,7 +16,9 @@ export default function AddTags() {
 
     return(
         <div>
-            <TagList tags={values}/>
+            {values.map(((data, num) =>
+                <TagList tag={data} val={num} />
+            ))}
             <button onClick={addTag}>Add Tag</button>
         </div>
     );

@@ -5,6 +5,8 @@ import { useState, createContext } from 'react';
 
 import Manager from './Manager.js';
 
+import conf from './configs/dev.json';
+
 export const AccountContext = createContext(0);
 export const AccountChangeContext = createContext(0);
 
@@ -16,6 +18,8 @@ function App() {
   const [screenState, changeScreen] = useState(check());
 
   console.log(screenState);
+
+  sessionStorage.setItem("server_address", conf["ip"]);
 
   function switchScreen(val) {
     changeScreen(val);

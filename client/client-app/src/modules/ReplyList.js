@@ -15,7 +15,7 @@ export default function ReplyList() {
         }
         
         function getList(id) {
-            fetch("http://127.0.0.1:8000/replyList", {
+            fetch(sessionStorage.getItem("server_address")+"/replyList", {
                 method: "POST",
                 body: JSON.stringify({
                     thread_id: id

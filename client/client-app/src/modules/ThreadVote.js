@@ -35,7 +35,7 @@ export default function ThreadVote() {
             thread_id: JSON.parse(sessionStorage.getItem("thread"))[2]
         }
 
-        fetch("http://127.0.0.1:8000/createVote", {
+        fetch(sessionStorage.getItem("server_address")+"/createVote", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
