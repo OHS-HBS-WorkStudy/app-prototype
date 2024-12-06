@@ -653,10 +653,17 @@ nav #a {
 
 .leftextra-container {
   display: flex;
+<<<<<<< HEAD
   flex-direction: column; 
   gap: 15px; 
   width: 29vw; 
   margin: 0 auto;
+=======
+  flex-direction: column; /* Stack items vertically */
+  gap: 15px; /* Optional: Add spacing between items */
+  width: 29vw; /* Ensure consistent width */
+  margin: 0 auto; /* Center the container if needed */
+>>>>>>> f9c8ff28591f3ed9a74b21b2fedf2893165a3850
 }
 
 

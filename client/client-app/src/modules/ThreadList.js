@@ -166,7 +166,6 @@ function ThreadButton({value}) {
 
     
             <div className="grid-item" onClick={getThreadData} >
-                
                     <div className="vote-counter"><p>{value.score}</p></div>
                         <div className="grid-item-content"> 
                             <div className="grid-item-title">
