@@ -39,7 +39,7 @@ export default function ReplyList() {
                 <div>
                     <div>
                     {values.map(value => 
-                        <h3>{value.contents}</h3>
+                        <h3>{value.user}: {value.contents}</h3>
                     )} 
                     </div>
                 </div>

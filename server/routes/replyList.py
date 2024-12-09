@@ -12,6 +12,7 @@ router = APIRouter()
 
 def sql_replyList(data):    
     anon_list = []
+    anon_type = []
     conn = sqlite3.connect('app.db')
     cursor = conn.cursor()
     cursor.execute(f"SELECT * FROM replies WHERE thread_id='{data}'")
@@ -35,7 +36,10 @@ def sql_replyList(data):
     anon_dict = {}
 
     for x in range(len(anon_list)):
-        anon_dict[anon_list] = f"Anonymous User {x+1}"
+        print(anon_list[x])
+        cursor.execute(f"SELECT type FROM users WHERE uuid='{anon_list[x]}'")
+        type = cursor.fetchone()
+        anon_dict[anon_list[x]] = f"Anonymous {type[0]} {x+1}"
     
     new_list = []
     
