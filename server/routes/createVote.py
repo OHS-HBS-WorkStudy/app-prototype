@@ -11,12 +11,18 @@ router = APIRouter()
 class Vote(BaseModel):
     score: str
     thread_id: str
+    user_id: str
 
 def sql_createVote(data):
     conn = sqlite3.connect('app.db')
     cursor = conn.cursor()
-    cursor.execute('''CREATE TABLE IF NOT EXISTS votes (score, thread_id)''')
-    cursor.execute(f"INSERT INTO votes VALUES('{data["score"]}', '{data["thread_id"]}')")
+    
+    try:
+        cursor.execute(f"SELECT * FROM votes WHERE user_id='{data["user_id"]}'")
+        print("already voted")
+    except:
+        cursor.execute('''CREATE TABLE IF NOT EXISTS votes (score, thread_id, user_id)''')
+        cursor.execute(f"INSERT INTO votes VALUES('{data["score"]}', '{data["thread_id"]}', '{data["user_id"]}')")
     conn.commit()
     conn.close()
 
@@ -26,7 +32,8 @@ def createVote(vote: Vote):
 
     data = {
         "score": vote.score,
-        "thread_id": vote.thread_id
+        "thread_id": vote.thread_id,
+        "user_id": vote.user_id
     }
 
     sql_createVote(data)
