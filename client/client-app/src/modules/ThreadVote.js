@@ -32,7 +32,8 @@ export default function ThreadVote() {
     function postVote(type) {
         let data = {
             score: type,
-            thread_id: JSON.parse(sessionStorage.getItem("thread"))[2]
+            thread_id: JSON.parse(sessionStorage.getItem("thread"))[2],
+            user_id: JSON.parse(sessionStorage.getItem("user")).uuid
         }
 
         fetch(sessionStorage.getItem("server_address")+"/createVote", {
