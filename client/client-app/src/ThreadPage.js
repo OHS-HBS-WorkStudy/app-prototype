@@ -40,6 +40,10 @@ export default function ThreadPage() {
     getCurrentVote(data[2]);
 
 
+     let user = JSON.parse(sessionStorage.getItem("user"))
+
+
+
     return(
         <div>
             <Navigator />
@@ -47,12 +51,15 @@ export default function ThreadPage() {
             <div className="thread">
                 <div id="thread-content">
                     <div class="profile-container" draggable="false">
+
                         <img class="profile-picture" src={profilePicture} alt="Profile Picture" draggable="false" />
-                            <div className="vote-box">
+                        <h1>{user.first_name} {user.last_name}</h1> 
+                        </div>
+
+                        <div className="vote-box">
                                 <ThreadVote />
                             
                             </div>
-                        </div>
                     <div class="content-container">
                         <div className="submitted-content-title" dangerouslySetInnerHTML={{ __html: sanitizedTitle }} />
                         <div className="submitted-content-desc" dangerouslySetInnerHTML={{ __html: sanitizedDesc }} />

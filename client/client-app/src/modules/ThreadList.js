@@ -120,7 +120,7 @@ function ThreadButton({value}) {
         console.log(json);
         sessionStorage.setItem("thread", JSON.stringify(json));
         console.log(data);
-        sessionStorage.setItem("thread_score", data);
+        sessionStorage.setItem("thread_score", data.score);
 
 
 
@@ -137,21 +137,7 @@ function ThreadButton({value}) {
             }
         })
         .then((response) => response.json())
-        .then((json) => getvotes(json));
-    }
-
-    function getvotes(data) {
-        fetch(sessionStorage.getItem("server_address")+"/createVote", {
-            method: "POST",
-            body: JSON.stringify({
-                thread_id: data.id
-            }),
-            headers: {
-              "Content-type": "application/json; charset=UTF-8"
-            }
-        })
-        .then((response) => response.json())
-        .then((json) => toThreadPage(data, json))
+        .then((json) => toThreadPage(json, value));
     }
 
     const stripHTML = (html) => {
