@@ -43,33 +43,50 @@ export default function ThreadPage() {
      let user = JSON.parse(sessionStorage.getItem("user"))
 
 
+     const [isReplyVisible, setIsReplyVisible] = useState(false);
+
+     const toggleReplyForm = () => {
+         setIsReplyVisible((prev) => !prev);
+     };
+
+
+
 
     return(
         <div>
             <Navigator />
         <div className="threadnav-space"></div>
-            <div className="thread">
-                <div id="thread-content">
-                    <div class="profile-container" draggable="false">
+        <div className="thread">
+            <div id="thread-content">
+                <div className="left-section">
+                    <div className="profile-container" draggable="false">
+                        <img className="profile-picture" src={profilePicture} alt="Profile Picture" draggable="false" />
+                        <h1>username</h1>
+                    </div>
 
-                        <img class="profile-picture" src={profilePicture} alt="Profile Picture" draggable="false" />
-                        <h1>{user.first_name} {user.last_name}</h1> 
-                        </div>
-
-                        <div className="vote-box">
+                    <div className="vote-box">
                                 <ThreadVote />
                             
                             </div>
-                    <div class="content-container">
-                        <div className="submitted-content-title" dangerouslySetInnerHTML={{ __html: sanitizedTitle }} />
-                        <div className="submitted-content-desc" dangerouslySetInnerHTML={{ __html: sanitizedDesc }} />
                     </div>
-            </div>
-        </div>
+            
 
-        <ThreadReply />
+                <div className="content-container">
+                    <div className="submitted-content-title" dangerouslySetInnerHTML={{ __html: sanitizedTitle }} />
+                    <div className="submitted-content-desc" dangerouslySetInnerHTML={{ __html: sanitizedDesc }} />
+                </div>
+                <button onClick={toggleReplyForm}>reply</button>
+                </div>
+                {isReplyVisible && (
+                    <ThreadReply />
+                )}
+            </div>
+
+            
+
+
         <ReplyList />
-    </div>
+        </div>
         );
 }
 
