@@ -1,4 +1,10 @@
+import ReactQuill from "react-quill";
+import { useState } from "react";
+
 export default function ThreadReply() {
+    const [questionDesc, setQuestionDesc] = useState('');
+
+
     function ReplyButton() {
         let data = {
             contents: document.getElementById("reply").value,
@@ -23,16 +29,41 @@ export default function ThreadReply() {
             .then((json) => window.location.reload());
     }
 
-    return(
-        <div>
-            <h2>Reply to Thread</h2>
+    const getPlainText = (htmlContent) => {
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = htmlContent;
+        return tempDiv.innerText || tempDiv.textContent;
+    };
 
-            <div>
-                <br/>
-                <b>Enter Reply:</b><input id="reply"></input>
-                <br/>
-                <button className="btn-send" onClick={ReplyButton}>Submit Reply</button>
+    const handleQuillChange = (value) => {
+        const maxLength = 500; 
+        const plainText = getPlainText(value);
+    
+        if (plainText.length <= maxLength) {
+            setQuestionDesc(value); 
+        } else {
+            const cutValue = value.slice(0, maxLength);
+            setQuestionDesc(cutValue);
+        }
+    };
+
+
+    return(
+        <div className="reply-section">
+                <div className="reply-header">
+                    <h2>Reply to Thread</h2>
+                </div>
+                <div className="reply-container">
+                <ReactQuill
+                    id="questionDesc"
+                    value={questionDesc}
+                    onChange={handleQuillChange}
+                    style={{ borderRadius: '8px', minHeight: '100px' }}
+                />
+                    <button className="btn-send" onClick={ReplyButton}>
+                        Send
+                    </button>
+                </div>
             </div>
-        </div>
     );
 }
