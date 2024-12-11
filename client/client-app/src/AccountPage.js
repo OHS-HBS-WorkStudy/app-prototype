@@ -10,8 +10,8 @@ export default function AccountPage() {
             <body>
             <div className="account">
             <div className="center">
-            <h1>{data.first_name} {data.last_name}</h1>
-            <h2>{data.type}</h2>
+            {/* <h1>{data.first_name} {data.last_name}</h1>
+            <h2>{data.type}</h2> */}
                 </div>
                 </div>
                 

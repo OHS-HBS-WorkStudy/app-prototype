@@ -66,6 +66,7 @@ export default function ThreadList({value}) {
             return(
                 <div>
                 <div className="nav-space"></div>
+                <div className="sidebar-space"></div>
                     <div className="Home">
 
                     <div className="container1">
