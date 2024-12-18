@@ -27,6 +27,7 @@ def sql_threadList():
             "name": values[start_list[a]][0],
             "id": values[start_list[a]][2],
             "content": values[start_list[a]][1],
+            "timestamp": values[start_list[a]][4],
             "score": score
         }
         return_list.append(new_data)
