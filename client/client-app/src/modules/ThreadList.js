@@ -116,6 +116,19 @@ export default function ThreadList({value}) {
 function ThreadButton({value}) {
     const switchScreen = useContext(ScreenStateContext);
 
+    function timeConverter(UNIX_timestamp){
+        var a = new Date(UNIX_timestamp * 1000);
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var year = a.getFullYear();
+        var month = months[a.getMonth()];
+        var date = a.getDate();
+        var hour = a.getHours();
+        var min = a.getMinutes();
+        var sec = a.getSeconds();
+        var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+        return time;
+      }
+
     function toThreadPage(json, data) {
         console.log(json);
         sessionStorage.setItem("thread", JSON.stringify(json));
@@ -148,19 +161,22 @@ function ThreadButton({value}) {
 
     const sanitizedName = DOMPurify.sanitize(value.name);
     const sanitizedContents = DOMPurify.sanitize(value.content);
+    const date = timeConverter(value.timestamp);
+    console.log(date);
     return(
 
     
             <div className="grid-item" onClick={getThreadData} >
-                    <div className="vote-counter"><p>{value.score}</p></div>
-                        <div className="grid-item-content"> 
-                            <div className="grid-item-title">
-                                {stripHTML(sanitizedName)}
-                            </div>
-                            <div className="grid-item-desc">
-                                {stripHTML(sanitizedContents)}
-                            </div>
-                </div>
+                <div className="vote-counter"><p>{value.score}</p></div>
+                    <div className="grid-item-content"> 
+                        <div className="grid-item-title">
+                            {stripHTML(sanitizedName)}
+                        </div>
+                        <div className="grid-item-desc">
+                            {stripHTML(sanitizedContents)}
+                        </div>
+                    </div>
+                    <p>{date}</p>
             </div>
 
     )
