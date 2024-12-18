@@ -70,12 +70,52 @@ export default function ThreadList({value}) {
                     <div className="Home">
 
                     <div className="container1">
-                        <div className="leftextra">
-                            <h1>Thread History</h1>
-                            <div className="leftextracontent">
-                                    <p>No threads viewed yet</p>
+                        <div className="bento-box">
+                            <div className="col-left">
+                                <div className="col-row row1">
+                                    <div className="threadvisted">
+                                        <h1>Thread History</h1>
+
+                                        <div className="threadvisted-content">
+                                            <p>No threads viewed yet</p>
+                                        </div> 
+                                    </div>
+                                </div>
+
+                                <div className="col-row row2">
+                                    <div className="threadcreated">
+                                        <h1>Your Threads</h1>
+
+                                        <div className="threadcreated-content">
+                                            <p>No threads created yet</p>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="col-right">
+                                <div className="col-row top">
+                                    <div className="threadtrending">
+                                        <h1 className="fire">Trending</h1>
+
+                                        <div className="threadtrending-content">
+                                            <p>No trends</p>
+                                        </div>  
+                                    </div>
+                                </div>
+
+                                <div className="col-row bottom">
+                                    <div className="threadtrending">
+                                        <h1>Credibility Score</h1>
+
+                                        <div className="threadtrending-content">
+                                            <p>No data yet</p>
+                                        </div>  
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                            
 {/* 
                         <div className="leftextra">
                             <h1>Thread Created</h1>
@@ -85,11 +125,11 @@ export default function ThreadList({value}) {
                         </div> */}
 
 
-                        <div className="grid-container">
+                         <div className="grid-container">
                             {values.map(value => 
                                 <ThreadButton value={value} />
                             )}
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </div>
