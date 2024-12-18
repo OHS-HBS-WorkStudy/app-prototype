@@ -5,6 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 import sqlite3
 import uuid
 
+from datetime import datetime
+
 class Reply(BaseModel):
     contents: str
     thread_id: str
