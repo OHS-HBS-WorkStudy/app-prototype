@@ -4,12 +4,16 @@ import DOMPurify from 'dompurify';
 
 export default function ThreadList({value}) {
     const [listActive, activateList] = useState(false);
+    let index = 1;
+    let size = 10
 
+    let data = sessionStorage.getItem("size");
+    console.log(data);
 
-    
-
-
-    
+    if(data !== null) {
+        console.log("oh no");
+        size = data;
+    }
 
     try{
         let isThereSearch = sessionStorage.getItem("search_tag");
@@ -36,8 +40,8 @@ export default function ThreadList({value}) {
             fetch(sessionStorage.getItem("server_address")+"/threadList",{
                 method: "POST",
                 body: JSON.stringify({
-                    index: 1,
-                    size: 10
+                    index: index,
+                    size: size
                 }),
                 headers: {
                   "Content-type": "application/json; charset=UTF-8"
@@ -67,6 +71,11 @@ export default function ThreadList({value}) {
             })
         }
 
+
+        function count() {
+            sessionStorage.setItem("size", 1);
+            window.location.reload()
+        }
     
 
         //getList(isThereSearch);
@@ -98,6 +107,8 @@ export default function ThreadList({value}) {
                             {values.map(value => 
                                 <ThreadButton value={value} />
                             )}
+
+                            <button onClick={count}>press Me</button>
                         </div>
                     </div>
                 </div>
