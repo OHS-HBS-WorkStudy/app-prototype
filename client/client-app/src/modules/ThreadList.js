@@ -33,7 +33,16 @@ export default function ThreadList({value}) {
         }
 
         function getListNone() {
-            fetch(sessionStorage.getItem("server_address")+"/threadList")
+            fetch(sessionStorage.getItem("server_address")+"/threadList",{
+                method: "POST",
+                body: JSON.stringify({
+                    index: 1,
+                    size: 10
+                }),
+                headers: {
+                  "Content-type": "application/json; charset=UTF-8"
+                }
+            })
                 .then((response) => response.json())
                 .then((json) => setList(json))
                 .catch((error) => {
