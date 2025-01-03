@@ -14,6 +14,7 @@ class Page(BaseModel):
 router = APIRouter()
 
 def sql_threadList(page):
+    print(page)
     conn = sqlite3.connect('app.db')
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM threads")
@@ -23,12 +24,13 @@ def sql_threadList(page):
         y = x+(page.size*(page.index-1))
         start_list.append(y)
         
-    print(values)
-    print(start_list)
+    #print(values)
+    print(f"start list:{start_list}")
     return_list = []
 
     try:
         for a in range(len(start_list)):
+            print(start_list[a], values[start_list[a]])
             score = sql_scoreVotes(values[start_list[a]][2])
             new_data = {
                 "name": values[start_list[a]][0],
@@ -38,23 +40,14 @@ def sql_threadList(page):
                 "score": score
             }
             return_list.append(new_data)
+            print(return_list)
     except:
-        return_list = []
-        for a in range(len(values)):
-            score = sql_scoreVotes(values[start_list[a]][2])
-            new_data = {
-                "name": values[start_list[a]][0],
-                "id": values[start_list[a]][2],
-                "content": values[start_list[a]][1],
-                "timestamp": values[start_list[a]][4],
-                "score": score
-            }
-            return_list.append(new_data)
+        print("reached end")
 
 
     conn.commit()
     conn.close()
-    print(return_list)
+    #print(return_list)
     return return_list
 
 
