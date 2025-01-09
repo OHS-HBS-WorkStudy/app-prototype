@@ -18,8 +18,14 @@ def sql_createVote(data):
     cursor = conn.cursor()
     
     try:
-        cursor.execute(f"SELECT * FROM votes WHERE user_id='{data["user_id"]}'")
-        print("already voted")
+        cursor.execute(f"SELECT * FROM votes WHERE thread_id='{data["thread_id"]}' AND user_id='{data["user_id"]}'")
+        vals = cursor.fetchall()
+        print(vals)
+        if len(vals) == 0:
+            cursor.execute('''CREATE TABLE IF NOT EXISTS votes (score, thread_id, user_id)''')
+            cursor.execute(f"INSERT INTO votes VALUES('{data["score"]}', '{data["thread_id"]}', '{data["user_id"]}')")
+        else:
+            print("already voted")
     except:
         cursor.execute('''CREATE TABLE IF NOT EXISTS votes (score, thread_id, user_id)''')
         cursor.execute(f"INSERT INTO votes VALUES('{data["score"]}', '{data["thread_id"]}', '{data["user_id"]}')")
@@ -37,5 +43,7 @@ def createVote(vote: Vote):
     }
 
     sql_createVote(data)
+
+    print("test")
 
     return data
