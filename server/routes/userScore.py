@@ -42,10 +42,12 @@ def sql_scoreUser(data):
         
     print(value4)
 
+    return value4/len(values3)
+
 @router.post('/scoreUser')
 def scoreUser(user: User):
     data = user.uuid
 
-    sql_scoreUser(data)
+    score = sql_scoreUser(data)
 
-    return data
+    return score
