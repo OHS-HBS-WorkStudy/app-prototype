@@ -15,6 +15,16 @@ export default function ThreadList({value}) {
         size = data;
     }
 
+    function getQuery() {
+        let item = sessionStorage.getItem("query");
+
+        if(item === null) {
+            return ""
+        }else {
+            return item;
+        }
+    }
+
     try{
         let isThereSearch = sessionStorage.getItem("search_tag");
 
@@ -41,7 +51,8 @@ export default function ThreadList({value}) {
                 method: "POST",
                 body: JSON.stringify({
                     index: index,
-                    size: size
+                    size: size,
+                    query: getQuery()
                 }),
                 headers: {
                   "Content-type": "application/json; charset=UTF-8"

@@ -10,6 +10,7 @@ import random
 class Page(BaseModel):
     index: int
     size: int
+    query: str
 
 router = APIRouter()
 
@@ -17,7 +18,12 @@ def sql_threadList(page):
     print(page)
     conn = sqlite3.connect('app.db')
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM threads")
+    try:
+        cursor.execute(f'SELECT * FROM threads WHERE thread_name LIKE "%{page.query}%"')
+        print("other test")
+    except:
+        print("test")
+        cursor.execute("SELECT * FROM threads")
     values = cursor.fetchall()
     start_list = []
     for x in range(page.size):

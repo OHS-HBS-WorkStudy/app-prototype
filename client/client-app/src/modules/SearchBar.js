@@ -36,8 +36,7 @@ export default function SearchBar() {
     function searchButton() {
         let data = document.getElementById("searchbar").value;
 
-        sessionStorage.setItem("search_tag", data);
-        searchWord(data);
+        sessionStorage.setItem("query", data);
         window.location.reload();
     }
 
