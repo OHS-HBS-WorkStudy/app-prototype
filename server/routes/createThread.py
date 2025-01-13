@@ -38,6 +38,8 @@ def createThread(info: ThreadInfo):
         "timestamp": str(datetime.timestamp(now))
     }
 
+    print(data)
+
     sql_createThread(data)
 
     return data

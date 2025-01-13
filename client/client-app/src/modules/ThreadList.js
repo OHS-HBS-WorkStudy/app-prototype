@@ -2,10 +2,17 @@ import { useState, useContext, useEffect } from "react";
 import { ScreenStateContext } from "../App.js";
 import DOMPurify from 'dompurify';
 
+
 export default function ThreadList({value}) {
     const [listActive, activateList] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+
     let index = 1;
     let size = 10
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 1; 
+    const [inputPage, setInputPage] = useState(currentPage);
 
     let data = sessionStorage.getItem("size");
     console.log(data);
@@ -83,15 +90,69 @@ export default function ThreadList({value}) {
         }
 
 
+
+
         function count() {
             sessionStorage.setItem("size", 1);
             window.location.reload()
         }
+
+
+        let values = JSON.parse(sessionStorage.getItem("threads"));
+
+
+        const totalPages = Math.ceil(values.length / itemsPerPage);
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const currentItems = values.slice(startIndex, startIndex + itemsPerPage);
+
+       
+        const handlePreviousPage = () => {
+          if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+            setInputPage(currentPage - 1);
+          }
+        };
+      
+        const handleNextPage = () => {
+          if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+            setInputPage(currentPage + 1);
+          }
+        };
+      
+        const handleInputChange = (e) => {
+          setInputPage(e.target.value);
+        };
+      
+        const handleInputBlur = () => {
+          const page = Math.max(1, Math.min(totalPages, parseInt(inputPage, 10) || 1));
+          setCurrentPage(page);
+          setInputPage(page);
+          setIsEditing(false);
+        };
+      
+        const handleInputKeyPress = (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            handleInputBlur();
+          }
+        };
+      
+        const saveData = [];
+      
+        console.log(saveData);
+      
+        const handleSpanClick = () => {
+          setIsEditing(true);
+        };
+      
     
 
         //getList(isThereSearch);
         if(listActive === true) {
-            let values = JSON.parse(sessionStorage.getItem("threads"));
+            
+         
+
             return(
                 <div>
                 <div className="nav-space"></div>
@@ -153,9 +214,77 @@ export default function ThreadList({value}) {
                             </div>
                         </div> */}
 
+<div className="grid-header">
+            <div className="title">Filter Options</div>
+            <div className="dropdown">
+              <label htmlFor="tagFilter" style={{ display: "none" }}>
+                Category:
+
+                
+              </label>
+              <input id="customtag" type="text" placeholder="type in..."></input>
+              <select id="tagFilter" name="tagFilter">
+                <option value="all">All Tags</option>
+                <option value="english">English</option>
+                <option value="math">Math</option>
+                <option value="science">Science</option>
+                <option value="social_studies">Social Studies</option>
+              </select>
+              
+            </div>
+            <div className="dropdown">
+              <label htmlFor="dateFilter" style={{ display: "none" }}>
+                Date:
+              </label>
+              <select id="dateFilter" name="dateFilter">
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+                <option value="popular">Most Popular</option>
+              </select>
+            </div>
+
+            <div className="thread-page">
+      <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+        &lt;
+      </button>
+      <span>
+        Page{' '}
+        {isEditing ? (
+          <input
+            type="number"
+            value={inputPage}
+            onChange={handleInputChange}
+            onBlur={handleInputBlur}
+            onKeyPress={handleInputKeyPress}
+            style={{
+              width: '40px',
+              textAlign: 'center',
+              border: 'none',
+              borderBottom: '1px solid black',
+              outline: 'none',
+              fontSize: 'inherit',
+              color: 'hsl(270, 20%, 22%)',
+            }}
+            min="1"
+            max={totalPages}
+            autoFocus
+          />
+        ) : (
+          <span onClick={handleSpanClick} style={{ cursor: 'pointer', borderBottom: '1.5px ridge white', textAlign: 'center' }}>
+            {currentPage}
+          </span>
+        )}{' '}
+        of {totalPages}
+      </span>
+      <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+        &gt;
+      </button>
+    </div>
+          </div>
+
 
                          <div className="grid-container">
-                            {values.map(value => 
+                            {currentItems.map(value => 
                                 <ThreadButton value={value} />
                             )}
 
@@ -239,7 +368,10 @@ function ThreadButton({value}) {
 
     
             <div className="grid-item" onClick={getThreadData} >
+              <div className="left-info">
                 <div className="vote-counter"><p>{value.score}</p></div>
+                <div className="date-display"><p>{date}</p></div>
+                </div>
                     <div className="grid-item-content"> 
                         <div className="grid-item-title">
                             {stripHTML(sanitizedName)}
@@ -248,7 +380,6 @@ function ThreadButton({value}) {
                             {stripHTML(sanitizedContents)}
                         </div>
                     </div>
-                    <p>{date}</p>
             </div>
 
     )

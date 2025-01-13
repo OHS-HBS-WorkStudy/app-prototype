@@ -39,6 +39,8 @@ export default function NewThreadInput({value}) {
                 uuid: user.uuid
             }
 
+            console.log(data);
+
 
             postThread(data);
 
