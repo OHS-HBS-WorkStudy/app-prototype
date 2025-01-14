@@ -5,6 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 import sqlite3
 import uuid
 
+from routes.scoreVotes import sql_scoreVotes
+
 router = APIRouter()
 
 class Tag(BaseModel):
@@ -31,9 +33,14 @@ def sql_searchTag(data):
 
         print(values4)
 
+        score = sql_scoreVotes(values4[2])
+
         values5 = {
             "name": values4[0],
-            "id": values4[2]
+            "id": values4[2],
+            "content": values4[1],
+            "timestamp": values4[4],
+            "score": score
         }
 
         values3.append(values5)
