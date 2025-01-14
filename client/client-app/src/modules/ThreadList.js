@@ -10,9 +10,6 @@ export default function ThreadList({value}) {
 
     const [search, searchWord] = useState("none");
 
-
-
-
     let index = 1;
     let size = 10
 
