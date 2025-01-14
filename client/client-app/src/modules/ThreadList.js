@@ -36,7 +36,11 @@ export default function ThreadList({value}) {
     }
 
     function searchButton() {
-        let data = document.getElementById("customtag").value;
+        data = document.getElementById("tagFilter").value;
+
+        if(data === "all") {
+            data = document.getElementById("customtag").value;
+        }
 
         sessionStorage.setItem("search_tag", data);
         searchWord(data);
