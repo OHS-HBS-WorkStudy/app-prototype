@@ -1667,9 +1667,8 @@ h1.fire {
   width: 100vw;
   height: auto; 
   padding: 0;
-  margin-left: 60px;
+  margin-left: 0px;
   box-sizing: border-box;
-  overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #6C58CE transparent;
   background-color: var(--color-background);
@@ -1703,6 +1702,7 @@ h1.fire {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   animation: fadeInUp 1s ease-out forwards;
   transition: all 0.3s ease;
+  overflow-x: none;
 }
 
 @keyframes fadeInUp {

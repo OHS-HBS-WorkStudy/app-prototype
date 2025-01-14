@@ -34,10 +34,10 @@ export default function ThreadVote() {
     function increaseScore() {
         if(score < scoreMax) {
             changeScore(score+1);
-            console.log("hello?")
-            sessionStorage.setItem("thread_score", score);
-            didIncrease(true);
-            postVote("positive")
+        console.log("hello?")
+        sessionStorage.setItem("thread_score", score);
+        didIncrease(true);
+        postVote("positive")
         }
     }
 
