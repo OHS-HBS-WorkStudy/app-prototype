@@ -11,7 +11,6 @@ export default function ThreadList({value}) {
     const [search, searchWord] = useState("none");
 
 
-    const [search, searchWord] = useState("none");
 
 
     let index = 1;
@@ -323,9 +322,9 @@ export default function ThreadList({value}) {
 
                          <div className="grid-container">
                             {currentItems.map((value, question) => 
-                            <div key={question.id}>
+                         
                                 <ThreadButton value={value} />
-                                </div>
+                                
                             )}
 
                             <button onClick={count}>press Me</button>

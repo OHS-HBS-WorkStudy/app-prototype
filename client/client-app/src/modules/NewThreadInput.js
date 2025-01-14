@@ -4,6 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import DOMPurify from 'dompurify';
 
 import AddTags from "./AddTags.js";
+import TagList from "./TagList.js";
 
 
 
@@ -193,6 +194,7 @@ export default function NewThreadInput({value}) {
               {isLoading ? "Submitting..." : "Submit"}
             </button>
           </div>
+          <AddTags />
         </div>
       </div>
     </div>
