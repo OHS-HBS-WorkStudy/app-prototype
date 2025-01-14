@@ -6,6 +6,10 @@ import DOMPurify from 'dompurify';
 export default function ThreadList({value}) {
     const [listActive, activateList] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
+    const [threadHistory, setThreadHistory] = useState([]);
+
+    const [search, searchWord] = useState("none");
+
 
     const [search, searchWord] = useState("none");
 
@@ -16,6 +20,8 @@ export default function ThreadList({value}) {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 1; 
     const [inputPage, setInputPage] = useState(currentPage);
+
+   
 
     let data = sessionStorage.getItem("size");
     console.log(data);
@@ -116,6 +122,9 @@ export default function ThreadList({value}) {
         let values = JSON.parse(sessionStorage.getItem("threads"));
 
 
+        
+
+
         const totalPages = Math.ceil(values.length / itemsPerPage);
         const startIndex = (currentPage - 1) * itemsPerPage;
         const currentItems = values.slice(startIndex, startIndex + itemsPerPage);
@@ -178,11 +187,23 @@ export default function ThreadList({value}) {
                         <div className="bento-box">
                             <div className="col-left">
                                 <div className="col-row row1">
-                                    <div className="threadvisted">
+                                <div className="threadvisted">
                                         <h1>Thread History</h1>
 
                                         <div className="threadvisted-content">
-                                            <p>No threads viewed yet</p>
+                                        {threadHistory.length > 0 ? (
+                                threadHistory.map((value, history) => (
+                                    <p
+                                        key={history}
+                                        className="history-item"
+                                    >
+                                        d
+                                
+                                    </p>
+                                ))
+                            ) : (
+                                <p>No threads viewed yet</p>
+                            )}
                                         </div> 
                                     </div>
                                 </div>
@@ -301,8 +322,10 @@ export default function ThreadList({value}) {
 
 
                          <div className="grid-container">
-                            {currentItems.map(value => 
+                            {currentItems.map((value, question) => 
+                            <div key={question.id}>
                                 <ThreadButton value={value} />
+                                </div>
                             )}
 
                             <button onClick={count}>press Me</button>
@@ -369,6 +392,10 @@ function ThreadButton({value}) {
         })
         .then((response) => response.json())
         .then((json) => toThreadPage(json, value));
+
+
+
+        
     }
 
     const stripHTML = (html) => {
@@ -383,7 +410,7 @@ function ThreadButton({value}) {
     console.log(date);
     return(
 
-    
+          
             <div className="grid-item" onClick={getThreadData} >
               <div className="left-info">
                 <div className="vote-counter"><p>{value.score}</p></div>
