@@ -7,6 +7,9 @@ export default function ThreadList({value}) {
     const [listActive, activateList] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
 
+    const [search, searchWord] = useState("none");
+
+
     let index = 1;
     let size = 10
 
@@ -30,6 +33,14 @@ export default function ThreadList({value}) {
         }else {
             return item;
         }
+    }
+
+    function searchButton() {
+        let data = document.getElementById("customtag").value;
+
+        sessionStorage.setItem("search_tag", data);
+        searchWord(data);
+        window.location.reload();
     }
 
     try{
@@ -230,6 +241,8 @@ export default function ThreadList({value}) {
                 <option value="science">Science</option>
                 <option value="social_studies">Social Studies</option>
               </select>
+
+              <button onClick={searchButton}>search</button>
               
             </div>
             <div className="dropdown">
