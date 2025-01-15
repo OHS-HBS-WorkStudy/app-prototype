@@ -15,7 +15,8 @@ from routes import (
     addTags,
     searchTag,
     userScore,
-    userThreads
+    userThreads,
+    viewedUser
 )
 
 import sqlite3
@@ -44,3 +45,4 @@ app.include_router(addTags.router)
 app.include_router(searchTag.router)
 app.include_router(userScore.router)
 app.include_router(userThreads.router)
+app.include_router(viewedUser.router)

@@ -2,11 +2,13 @@ import { useState, createContext, useContext } from 'react';
 
 import './App.css';
 
-import {AccountContext, AccountChangeContext, ScreenStateContext} from './App.js';
+import {AccountContext, AccountChangeContext, ScreenStateContext, GetLoggedInState, LoggedinState} from './App.js';
 import Navigator from './modules/Navigator.js';
 
 export default function SignUp() {
       const changeScreen = useContext(ScreenStateContext);
+      const loggedin = useContext(LoggedinState);
+      const getLoggedIn = useContext(GetLoggedInState);
       function sendData() {
         let data = {
           password: document.getElementById("password").value,
@@ -30,7 +32,8 @@ export default function SignUp() {
 
       function toHome(json) {
         sessionStorage.setItem("user", JSON.stringify(json));
-        console.log(json);
+        getLoggedIn(true);
+        console.log(json, loggedin);
         changeScreen(0);
       }
     
