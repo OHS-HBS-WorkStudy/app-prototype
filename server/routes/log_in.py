@@ -5,6 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 import sqlite3
 import uuid
 
+import routes.userScore as clientScore
+
 router = APIRouter()
 
 class Account_log(BaseModel):
@@ -23,12 +25,14 @@ def confirmSQLUser(data):
 
     for x in values:
         if x[2] == data['password']:
+            score = clientScore.sql_scoreUser(x[5])
             user_data = {
                 "first_name": x[0],
                 "last_name": x[1],
                 "email": x[3],
                 "type": x[4],
-                "uuid": x[5]
+                "uuid": x[5],
+                "score": score
             }
     return user_data
 

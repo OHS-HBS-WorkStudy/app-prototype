@@ -1,7 +1,22 @@
 import Navigator from "./modules/Navigator.js";
+import React, { useState, useEffect } from 'react';
 
 export default function AccountPage() {
-    let data = JSON.parse(sessionStorage.getItem("user"))
+    let data = JSON.parse(sessionStorage.getItem("user"));
+
+    const [darkMode, setDarkMode] = useState(() => {
+        return localStorage.getItem("dark-mode") === "enabled";
+      });
+    
+      useEffect(() => {
+        document.body.classList.toggle("dark", darkMode);
+        localStorage.setItem("dark-mode", darkMode ? "enabled" : "disabled");
+      }, [darkMode]);
+    
+      const toggleDarkMode = () => {
+        setDarkMode((prevMode) => !prevMode);
+      };
+    
 
     return(
         <div>
@@ -10,8 +25,11 @@ export default function AccountPage() {
             <body>
             <div className="account">
             <div className="center">
-            {/* <h1>{data.first_name} {data.last_name}</h1>
-            <h2>{data.type}</h2> */}
+                <button className="dark" onClick={toggleDarkMode}>button</button>
+
+                
+            <h1>{data.first_name} {data.last_name}</h1>
+            <h2>{data.type}</h2> 
                 </div>
                 </div>
                 

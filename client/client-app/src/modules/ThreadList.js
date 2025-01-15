@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { ScreenStateContext } from "../App.js";
+import CredScore from "./CredScore.js";
 import DOMPurify from 'dompurify';
 
 
@@ -227,13 +228,26 @@ export default function ThreadList({value}) {
                                 </div>
 
                                 <div className="col-row bottom">
-                                    <div className="threadtrending">
+                                <div className="col-row bottom row1">
+                                <div className="threadtrending">
                                         <h1>Credibility Score</h1>
+                                        <div className="cred-content">
 
-                                        <div className="threadtrending-content">
-                                            <p>No data yet</p>
-                                        </div>  
+
+                                            <CredScore />
+                                            </div>
+
                                     </div>
+
+                                </div>
+                                <div className="col-row bottom row2">
+                                <div className="threadtrending">
+                                        <h1>Sort</h1>
+                                        
+
+                                    </div>
+
+                                </div>
                                 </div>
                             </div>
                         </div>
