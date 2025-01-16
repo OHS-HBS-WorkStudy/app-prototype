@@ -1,6 +1,8 @@
 import Navigator from "./modules/Navigator.js";
 import React, { useState, useEffect } from 'react';
 
+import LogOut from "./modules/Logout.js";
+
 export default function AccountPage() {
     let data = JSON.parse(sessionStorage.getItem("user"));
 
@@ -30,6 +32,8 @@ export default function AccountPage() {
                 
             <h1>{data.first_name} {data.last_name}</h1>
             <h2>{data.type}</h2> 
+
+            <LogOut />
                 </div>
                 </div>
                 

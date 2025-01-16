@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
-import {GetLoggedInUser} from '../App.js';
+import { GetLoggedInState, ScreenStateContext } from '../App.js';
 
 export default function LogOut() {
+    const getLoggedIn = useContext(GetLoggedInState);
+    const screenState = useContext(ScreenStateContext);
+
     const handleLogOut = () => {
         sessionStorage.removeItem('user');
+        screenState(0)
+        getLoggedIn(false);
         // You can also redirect the user to the login page or home page after logout
         // window.location.href = '/login';
     };
