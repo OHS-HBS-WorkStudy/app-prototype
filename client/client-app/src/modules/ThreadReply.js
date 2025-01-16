@@ -7,7 +7,7 @@ export default function ThreadReply() {
 
     function ReplyButton() {
         let data = {
-            contents: document.getElementById("reply").value,
+            contents: questionDesc,
             thread_id: JSON.parse(sessionStorage.getItem("thread"))[2],
             uuid: JSON.parse(sessionStorage.getItem("user")).uuid
         }
