@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
+
+
+
 const FullCircle = ({ score }) => {
   const radius = 40; // Radius of the semi-circle
   const centerScore = 90; // Baseline is always "Average."
@@ -40,7 +43,7 @@ const FullCircle = ({ score }) => {
       case score = 180:
         return 'Superior';
       default:
-        return 'Superior';
+        return 'No Data';
     }
   }
 
@@ -66,7 +69,6 @@ const FullCircle = ({ score }) => {
   }
 
   const colorChange = getColor(rating);
-
   return (
     <div
       style={{
@@ -103,7 +105,7 @@ const FullCircle = ({ score }) => {
               normalizedScore >= 0 ? 0 : 1
             } 1 ${50 + (normalizedScore >= 0 ? 1 : -1) * radius} 50`}
             stroke={colorChange}
-            strokeWidth="10"
+            strokeWidth="9"
             fill="transparent"
             strokeDasharray={`${arcLength} ${Math.PI * radius}`}
             strokeDashoffset="0"
@@ -133,10 +135,24 @@ const FullCircle = ({ score }) => {
   );
 };
 
-const CredScore = () => {
+function tryForScore() {
+  try {
     const score1 = JSON.parse(sessionStorage.getItem("user")).score;
+    return score1;
+  } catch(error) {
+    console.log("null")
+    return null
+  }
+}
+
+tryForScore();
+
+const CredScore = (score1) => {
+ 
+  
     const inflationScore = (parseInt(score1) + 90)
   const [score, setScore] = useState(inflationScore); // Start at the center.
+  
 
   const increaseScore = () => {
     setScore((prevScore) => Math.min(180, prevScore + 10)); // Cap at 180.
@@ -145,6 +161,7 @@ const CredScore = () => {
   const decreaseScore = () => {
     setScore((prevScore) => Math.max(0, prevScore - 10)); // Cap at 0.
   };
+
 
   return (
     <div className="cred-score">
@@ -161,4 +178,8 @@ const CredScore = () => {
   );
 };
 
+
+
+
 export default CredScore;
+
