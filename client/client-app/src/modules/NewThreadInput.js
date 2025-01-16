@@ -189,12 +189,13 @@ export default function NewThreadInput({value}) {
             <div>{getPlainText(ThreadContents).length}/{maxDescLength} characters</div>
           </div>
 
+          <AddTags />
+
           <div className={`loadButton ${isLoading ? "loading" : ""}`}>
             <button onClick={submitThread} disabled={isLoading} >
               {isLoading ? "Submitting..." : "Submit"}
             </button>
           </div>
-          <AddTags />
         </div>
       </div>
     </div>
