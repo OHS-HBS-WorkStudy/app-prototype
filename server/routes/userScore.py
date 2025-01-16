@@ -42,7 +42,10 @@ def sql_scoreUser(data):
         
     print(value4)
 
-    return value4/len(values3)
+    try:
+        return value4/len(values3)
+    except:
+        return 0
 
 @router.post('/scoreUser')
 def scoreUser(user: User):
