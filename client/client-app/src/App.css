@@ -1771,10 +1771,10 @@ h1.fire {
   height: auto; 
   display: flex;
   flex-direction: column;
-  border-radius: 0;
+  border-radius: 15px;
   padding: 24px;
   gap: 20px;
-  background-color: #ffffff;
+  background-color: var(--clr-surface-a10);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   animation: fadeInUp 1s ease-out forwards;
   transition: all 0.3s ease;
@@ -1797,7 +1797,8 @@ h1.fire {
   max-width: 100%;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
-  background-color: #f9f9fb;
+  background-color: var(--clr-surface-a0);
+  color: #e7e7e7FF;
   display: flex;
   flex-direction: column;
   padding: 16px;
@@ -1811,7 +1812,7 @@ h1.fire {
   border: none;
   border-radius: 8px;
   font-size: 1rem;
-  color: #333;
+  color: #ffffff;
   background-color: #ffffff;
   outline: none;
   transition: box-shadow 0.2s ease;
@@ -1829,14 +1830,23 @@ h1.fire {
   border-radius: 8px;
   padding: 16px;
   transition: border-color 0.2s ease-in-out;
-  background-color: #f9f9fb;
+  background-color: var(--clr-surface-a0);
+}
+
+.NewThread .ql-toolbar.ql-snow {
+  background-color: var(--clr-primary-a20);
+  border-radius: 5px !important;
+  margin-bottom: 10px !important;
+}
+.ql-editor.ql-blank {
+  background-color: var(--clr-surface-a0) !important;
 }
 
 .NewThread .text-box .ql-editor {
   width: 100%;
   min-height: 170px;
   font-size: 1rem;
-  color: #333;
+  color: white;
   padding: 8px;
   box-sizing: border-box;
   overflow-y: auto; 

@@ -138,8 +138,6 @@ export default function NewThreadInput({value}) {
         minHeight: "160px",
         overflowY: "auto",
         border: "black",
-        backgroundColor: "white",
-        paddingBottom: "10px",
       };
 
 
