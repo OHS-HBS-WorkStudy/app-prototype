@@ -96,20 +96,18 @@ export default function ThreadPage() {
             
 
                 <div className="content-container">
+
                     <div className="submitted-content-title" dangerouslySetInnerHTML={{ __html: sanitizedTitle }} />
                     <div className="submitted-content-desc" dangerouslySetInnerHTML={{ __html: sanitizedDesc }} />
                 </div>
+
                 <button onClick={toggleReplyForm}>reply</button>
                 </div>
                 {isReplyVisible && (
                     <ThreadReply />
                 )}
             </div>
-
-            
-
-
-        <ReplyList />
+            <ReplyList />
         </div>
         );
 }
