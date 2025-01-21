@@ -11,10 +11,26 @@ export default function ThreadList({value}) {
 
     const [search, searchWord] = useState("none");
 
-    let index = 1;
-    let size = 10
+    const [index, changeIndex] = useState(getIndex);
 
-    const [currentPage, setCurrentPage] = useState(1);
+    const [list, giveList] = useState([]);
+
+    function getIndex() {
+        let val = Number(sessionStorage.getItem("current_index"));
+
+        console.log(val);
+
+        if(val === null) {
+            return 1;
+        }else {
+            return val;
+        }
+    }
+
+    //let index = 1;
+    let size = 2;
+
+    const [currentPage, setCurrentPage] = useState(index);
     const itemsPerPage = 1; 
     const [inputPage, setInputPage] = useState(currentPage);
 
@@ -65,8 +81,9 @@ export default function ThreadList({value}) {
         {/* JSON LIST*/}
         function setList(json) {
             console.log(json);
-            test = json;
+            test = json.list;
             console.log(test);
+            sessionStorage.setItem("index_max", json.totalPages);
             sessionStorage.setItem("threads", JSON.stringify(test));
             activateList(true);
         }
@@ -122,23 +139,35 @@ export default function ThreadList({value}) {
         
 
 
-        const totalPages = Math.ceil(values.length / itemsPerPage);
-        const startIndex = (currentPage - 1) * itemsPerPage;
-        const currentItems = values.slice(startIndex, startIndex + itemsPerPage);
+        const totalPages = Number(sessionStorage.getItem("index_max"));
+        //const startIndex = index;
+        //const currentItems = setCurrentPage(Number(sessionStorage.getItem("current_index")));
+        const currentItems = values;
 
        
         const handlePreviousPage = () => {
-          if (currentPage > 1) {
+          /*if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
             setInputPage(currentPage - 1);
-          }
+          }*/
+            sessionStorage.setItem("current_index", index - 1);
+
+            window.location.reload()
+
+            //changeIndex(index - 1);
         };
       
         const handleNextPage = () => {
-          if (currentPage < totalPages) {
+          /*if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
             setInputPage(currentPage + 1);
-          }
+          }*/
+
+            sessionStorage.setItem("current_index", index + 1);
+
+            window.location.reload()
+
+            //changeIndex(index + 1);
         };
       
         const handleInputChange = (e) => {
@@ -292,7 +321,7 @@ export default function ThreadList({value}) {
             </div>
 
             <div className="thread-page">
-      <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+      <button onClick={handlePreviousPage} disabled={index === 1}>
         &lt;
       </button>
       <span>
@@ -319,12 +348,12 @@ export default function ThreadList({value}) {
           />
         ) : (
           <span onClick={handleSpanClick} style={{ cursor: 'pointer', borderBottom: '1.5px ridge white', textAlign: 'center' }}>
-            {currentPage}
+            {index}
           </span>
         )}{' '}
         of {totalPages}
       </span>
-      <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+      <button onClick={handleNextPage} disabled={index === totalPages}>
         &gt;
       </button>
     </div>
