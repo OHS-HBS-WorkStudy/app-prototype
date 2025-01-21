@@ -16,6 +16,7 @@ router = APIRouter()
 
 def sql_threadList(page):
     print(page)
+    max_index = 0
     conn = sqlite3.connect('app.db')
     cursor = conn.cursor()
     try:
@@ -25,6 +26,20 @@ def sql_threadList(page):
         print("test")
         cursor.execute("SELECT * FROM threads")
     values = cursor.fetchall()
+
+    count = len(values)
+
+    for x in range(len(values)):
+        count -= page.size
+
+        if count >= page.size:
+            max_index += 1
+            continue
+        else:
+            max_index += 1
+            break
+
+
     start_list = []
     for x in range(page.size):
         y = x+(page.size*(page.index-1))
@@ -50,11 +65,15 @@ def sql_threadList(page):
     except:
         print("reached end")
 
+    list_data = {
+        "list": return_list,
+        "totalPages": max_index
+    }
 
     conn.commit()
     conn.close()
     #print(return_list)
-    return return_list
+    return list_data
 
 
 @router.post("/threadList")

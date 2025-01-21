@@ -25,7 +25,11 @@ def confirmSQLUser(data):
 
     for x in values:
         if x[2] == data['password']:
-            score = clientScore.sql_scoreUser(x[5])
+            score = 0
+            try:
+                score = clientScore.sql_scoreUser(x[5])
+            except:
+                print("no threads to his name")
             user_data = {
                 "first_name": x[0],
                 "last_name": x[1],
