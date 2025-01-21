@@ -123,7 +123,7 @@ export default function ThreadList({value}) {
 
 
         const totalPages = Math.ceil(values.length / itemsPerPage);
-        const startIndex = (currentPage - 1) * itemsPerPage;
+         const startIndex = (currentPage - 1) * itemsPerPage;
         const currentItems = values.slice(startIndex, startIndex + itemsPerPage);
 
        

@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import TagList from './TagList.js';
 
-export default function AddTags() {
+export default function AddTags({tagContent}) {
     const [tagCount, newTag] = useState(0);
     const [values, setValues] = useState([])
 
@@ -14,12 +14,94 @@ export default function AddTags() {
         values[tagCount] = 0;
     }
 
+    const [tags, setTags] = useState([]); 
+    const [inputValue, setInputValue] = useState("#"); 
+    const [tagRemoving, setTagRemoving] = useState(null); 
+  
+    useEffect(() => {
+      const savedTags = sessionStorage.getItem("tags");
+      if (savedTags) {
+        setTags(JSON.parse(savedTags));
+      }
+    }, []);
+  
+    const tagInputChange = (e) => {
+      const value = e.target.value;
+      if (!value.startsWith("#")) {
+        setInputValue("#");
+      } else {
+        setInputValue(value);
+      }
+    };
+  
+    const enterCheck = (e) => {
+      if (e.key === "Enter") {
+        const tagContent = inputValue.trim(); 
+        if (tagContent.length > 1 && !tags.includes(tagContent)) {
+          const updatedTags = [...tags, tagContent];
+          setTags(updatedTags); 
+          console.log(tagContent)
+          setInputValue("#");
+          return tagContent;
+        } else {
+          alert("Tag must be unique and not empty.");
+        }
+      }
+    };
+  
+    const removeTag = (index) => {
+      setTagRemoving(index); 
+      setTimeout(() => {
+        const updatedTags = tags.filter((_, i) => i !== index);
+        setTags(updatedTags);
+
+        setTagRemoving(null); 
+      }, 300); 
+    };
+    
+
     return(
         <div>
-            {values.map(((data, num) =>
-                <TagList tag={data} val={num} />
+           <label htmlFor="questionDesc" className="threadDir"><h1>Tags (Optional)</h1></label>
+            
+            <div className="fill">
+              <div className="input-container text-box ql-container">
+              <p>Make sure to make them accurate and clear as possible</p>
+           
+           
+            <input
+              id="tag-input"
+              className="tag-input-container"
+              type="text"
+              value={inputValue}
+              onChange={tagInputChange}
+              onKeyDown={enterCheck}
+              style={{
+                border: "none",
+                outline: "none",
+                flexGrow: 1,
+                minWidth: "150px",
+                fontSize: "15px",
+              }}
+            />
+            
+          
+
+        </div>
+
+        <div className="tags-container">
+
+            {tags.map((tag, index) => (
+            <div
+                key={index}
+                className={`tag${tagRemoving === index ? "removing" : ""}`}
+                onClick={() => removeTag(index)}
+            >
+                {tag}
+            </div>
             ))}
-            <button onClick={addTag}>Add Tag</button>
+            </div>
+            </div>
         </div>
     );
 }
