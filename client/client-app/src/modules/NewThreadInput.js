@@ -69,7 +69,8 @@ export default function NewThreadInput({value}) {
         let tagData = [];
 
         for(let i = 0; i < tags.length; i++) {
-          tagData.push(tags[i].value);
+          tagData.push(tags[i].innerText);
+          console.log(tagData);
         }
 
         let data = {
@@ -138,8 +139,6 @@ export default function NewThreadInput({value}) {
         minHeight: "160px",
         overflowY: "auto",
         border: "black",
-        backgroundColor: "white",
-        paddingBottom: "10px",
       };
 
 
@@ -160,7 +159,7 @@ export default function NewThreadInput({value}) {
       <div className="NewThread">
         <div className="center">
 
-          <label htmlFor="questionTitle">Question Title</label>
+          <label htmlFor="questionTitle" className="threadDir"><h1>Question Title</h1></label>
           <div className="input-container text-box ql-container">
             <input
               id="questionTitle"
@@ -171,10 +170,10 @@ export default function NewThreadInput({value}) {
                 handleChange(e.target.value, setThreadTitle, maxTitleLength)
               }
             />
-            <div>{getPlainText(ThreadTitle).length}/{maxTitleLength} characters</div>
+            <div className="charCounter">{getPlainText(ThreadTitle).length}/{maxTitleLength} characters</div>
           </div>
 
-          <label htmlFor="questionDesc">Question Description</label>
+          <label htmlFor="questionDesc" className="threadDir"><h1>Question Description</h1></label>
           <div className="input-container text-box ql-container">
             <ReactQuill
               id="questionDesc"
@@ -184,9 +183,18 @@ export default function NewThreadInput({value}) {
               onChange={(value) =>
                 handleQuillChange(value, setThreadContents, maxDescLength, quillRef)
               }
-              modules={modules}
+              modules={{
+                toolbar: [
+                  [{ header: "1" }, { header: "2" },],
+                  [{ size: [] }],
+                  ["bold", "italic", "underline", "strike"],
+                  [{ list: "ordered" }, { list: "bullet" }, { align: [] }],
+                  [{ indent: "-1" }, { indent: "+1" }, { background: [] }],
+                  ["clean"], 
+                ]
+              }}
             />
-            <div>{getPlainText(ThreadContents).length}/{maxDescLength} characters</div>
+            <div className="charCounter">{getPlainText(ThreadContents).length}/{maxDescLength} characters</div>
           </div>
 
           <AddTags />
