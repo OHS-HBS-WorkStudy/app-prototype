@@ -106,8 +106,9 @@ export default function ThreadPage() {
                 {isReplyVisible && (
                     <ThreadReply />
                 )}
-            </div>
+
             <ReplyList />
+            </div>
         </div>
         );
 }

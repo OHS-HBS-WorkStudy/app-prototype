@@ -26,12 +26,14 @@ export default function AccountPage() {
             <div className="nav-space"></div>
             <body>
             <div className="account">
+            
             <div className="center">
-                <button className="dark" onClick={toggleDarkMode}>button</button>
 
-                
-            <h1>{data.first_name} {data.last_name}</h1>
-            <h2>{data.type}</h2> 
+               
+
+            <button className="dark" onClick={toggleDarkMode}>button</button>
+            {/* <h1>{data.first_name} {data.last_name}</h1>
+            <h2>{data.type}</h2>  */}
 
             <LogOut />
                 </div>
