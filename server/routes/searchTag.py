@@ -46,7 +46,8 @@ def sql_searchTag(data):
         values3.append(values5)
 
         values6 = {
-            list: values3
+            "list": values3,
+            "totalPages": 1
         }
 
     conn.commit()
