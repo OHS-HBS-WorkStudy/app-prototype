@@ -45,10 +45,14 @@ def sql_searchTag(data):
 
         values3.append(values5)
 
+        values6 = {
+            list: values3
+        }
+
     conn.commit()
     conn.close()
 
-    return values3
+    return values6
 
 @router.post("/searchTag")
 def searchTag(tag: Tag):
