@@ -81,3 +81,27 @@ def threadList(contents: Page):
     data = sql_threadList(contents)
 
     return data
+
+def sortAge(array):
+    sortedArray = []
+    
+    for x in range(len(array)):
+        if x == 0:
+            sortedArray.append(array[x])
+        else:
+            placement_found = False
+            for y in range(len(sortedArray)):
+                if array[x][1] > sortedArray[y][1]:
+                    if y == 0:
+                        sortedArray.insert(0, array[x])
+                    else:
+                        sortedArray.insert(y-1, array[x])
+                    placement_found = True
+                    break
+                else:
+                    continue
+                
+            if placement_found == False:
+                sortedArray.append(array[x])
+                
+    return sortedArray
