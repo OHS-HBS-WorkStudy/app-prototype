@@ -39,6 +39,8 @@ def sql_threadList(page):
             max_index += 1
             break
 
+    values = sortAge(values)
+
 
     start_list = []
     for x in range(page.size):
@@ -91,7 +93,7 @@ def sortAge(array):
         else:
             placement_found = False
             for y in range(len(sortedArray)):
-                if array[x][1] > sortedArray[y][1]:
+                if array[x][4] > sortedArray[y][4]:
                     if y == 0:
                         sortedArray.insert(0, array[x])
                     else:
