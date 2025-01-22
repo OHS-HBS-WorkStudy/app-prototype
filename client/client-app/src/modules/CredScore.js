@@ -5,26 +5,19 @@ import React, { useState, useEffect } from 'react';
 
 const FullCircle = ({ score }) => {
   const radius = 40; // Radius of the semi-circle
-  const centerScore = 90; // Baseline is always "Average."
-  const maxScore = 180; // Cap total score to ±180.
-  const normalizedScore = score % 90; // Score within the current 90° segment.
-  const segment = Math.floor(score / 182); // Determines which 90° segment we are in (-2 to 2).
+  const centerX = 50; // Center X-coordinate of the SVG
+  const centerY = 50; // Center Y-coordinate of the SVG
+  const circumference = Math.PI * radius; // Total circumference of the semi-circle
+  const maxScore = 180; // Maximum score
+  const minScore = 0; // Minimum score
 
-  // Calculate arc length for the current segment.
-  const arcLength = (Math.abs(normalizedScore) / 90) * (Math.PI * radius);
+  // Normalize the score between 0 and 1
+  const normalizedScore = (score - minScore) / (maxScore - minScore);
+  const strokeLength = normalizedScore * circumference; // Map score to arc length
 
-  console.log(arcLength);
-
-
-
-
-
-  const rotation = (segment); // Shift the arc when transitioning segments.
-  console.log(rotation);
-  console.log(segment);
-
-
+  // Get rating and color based on the score
   const rating = getRating(score);
+  const colorChange = getColor(rating);
 
   function getRating(score) {
     switch (true) {
@@ -40,10 +33,10 @@ const FullCircle = ({ score }) => {
         return 'Good';
       case score < 150:
         return 'Very Good';
-      case score = 180:
+      case score <= 180:
         return 'Superior';
       default:
-        return 'No Data';
+        return 'No data';
     }
   }
 
@@ -68,7 +61,6 @@ const FullCircle = ({ score }) => {
     }
   }
 
-  const colorChange = getColor(rating);
   return (
     <div
       style={{
@@ -85,32 +77,30 @@ const FullCircle = ({ score }) => {
         <svg
           viewBox="0 0 100 100"
           xmlns="http://www.w3.org/2000/svg"
-          style={{
-            transform: `rotate(${rotation}deg)`,
-            transition: 'transform 0.5s ease',
-          }}
         >
           {/* Base semi-circle */}
           <path
-            d={`M ${50 - radius} 50 A ${radius} ${radius} 0 0 1 ${50 + radius} 50`}
+            d={`M ${centerX - radius} ${centerY} 
+               A ${radius} ${radius} 0 1 1 ${centerX + radius} ${centerY}`}
             stroke="#b0b0b0"
-            strokeWidth="11"
+            strokeWidth="10"
             fill="transparent"
             strokeLinecap="round"
           />
 
-          {/* Dynamic arc */}
+          {/* Dynamic arc using stroke-dasharray */}
           <path
-            d={`M ${50 - radius} 50 A ${radius} ${radius} 0 ${
-              normalizedScore >= 0 ? 0 : 1
-            } 1 ${50 + (normalizedScore >= 0 ? 1 : -1) * radius} 50`}
+            d={`M ${centerX - radius} ${centerY} 
+               A ${radius} ${radius} 0 1 1 ${centerX + radius} ${centerY}`}
             stroke={colorChange}
             strokeWidth="9"
             fill="transparent"
-            strokeDasharray={`${arcLength} ${Math.PI * radius}`}
-            strokeDashoffset="0"
             strokeLinecap="round"
-            style={{ transition: 'stroke-dasharray 0.2s ease' }}
+            strokeDasharray={`${circumference}`}
+            strokeDashoffset={`${circumference - strokeLength}`}
+            style={{
+              transition: 'stroke-dashoffset 0.3s ease-in-out, stroke 0.3s ease',
+            }}
           />
         </svg>
 
@@ -126,9 +116,7 @@ const FullCircle = ({ score }) => {
             color: '#333',
           }}
         >
-          <div className="wa">
-            <h3>{rating}</h3>
-          </div>
+          <h3>{rating}</h3>
         </div>
       </div>
     </div>
@@ -151,15 +139,15 @@ const CredScore = (score1) => {
  
   
     const inflationScore = (parseInt(score1) + 90)
-  const [score, setScore] = useState(inflationScore); // Start at the center.
+  const [score, setScore] = useState(inflationScore); 
   
 
   const increaseScore = () => {
-    setScore((prevScore) => Math.min(180, prevScore + 10)); // Cap at 180.
+    setScore((prevScore) => Math.min(180, prevScore + 10));
   };
 
   const decreaseScore = () => {
-    setScore((prevScore) => Math.max(0, prevScore - 10)); // Cap at 0.
+    setScore((prevScore) => Math.max(0, prevScore - 10)); 
   };
 
 

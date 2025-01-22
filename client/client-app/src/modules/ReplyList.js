@@ -33,14 +33,25 @@ export default function ReplyList() {
 
         getList(JSON.parse(sessionStorage.getItem("thread"))[2]);
 
+        const replyDescription = document.getElementsByClassName("contents");
+
+
         if(listActive === true) {
             let values = JSON.parse(sessionStorage.getItem("replies"));
             return(
                 <div>
-                    <div>
+                    <div className="reply-section">
+
+                  
+                <div className="reply-header">
+                    <h2>Reply to Thread</h2>
+                </div>
+                
+                <div className="reply-container">
                     {values.map(value => 
-                        <div><div>{value.user}:</div> {value.contents}</div>
+                        <div><div>{value.user}:</div> <div className="contents">{value.contents}</div></div>
                     )} 
+                    </div>
                     </div>
                 </div>
             ) 
