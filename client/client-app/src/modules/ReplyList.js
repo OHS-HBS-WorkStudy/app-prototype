@@ -38,8 +38,6 @@ export default function ReplyList() {
 
         getList(JSON.parse(sessionStorage.getItem("thread"))[2]);
 
-      
-
         const replyDescription = document.getElementsByClassName("contents");
 
 
@@ -86,6 +84,7 @@ export default function ReplyList() {
                 
         
                     </div>
+
                 </div>
                 </div>
                 </div>
