@@ -73,43 +73,67 @@ export default function ThreadPage() {
          setIsReplyVisible((prev) => !prev);
      };
 
+     const reliesCount = JSON.parse(sessionStorage.getItem("replies")).length;
+
+      console.log(reliesCount)
+
 
 
 
     return(
         <div>
             <Navigator />
-        <div className="threadnav-space"></div>
-        <div className="thread">
-            <div id="thread-content">
-                <div className="left-section">
-                    <div className="profile-container" draggable="false">
-                        <img className="profile-picture" src={profilePicture} alt="Profile Picture" draggable="false" />
-                        <h1>username</h1>
+            <div>
+            <div className="threadnav-space"></div>
+            <div className="thread">
+                <div className="threadpage">
+                <div id="thread-content">
+
+                <div className="thread-top">
+                        <div className="submitted-content-title" dangerouslySetInnerHTML={{ __html: sanitizedTitle }} />
+                        <div className="thread-top-stats">
+                            <p>Created By: User</p>
+                            <p>Creation Date: Today</p>
+                            <p>Viewed: 45</p>
+                        </div>
                     </div>
 
-                    <div className="vote-box">
-                                <ThreadVote />
-                            
-                            </div>
-                    </div>
+
+            
+                  
+
+                    
+                    
             
 
                 <div className="content-container">
 
-                    <div className="submitted-content-title" dangerouslySetInnerHTML={{ __html: sanitizedTitle }} />
+                <div className="vote-box">
+                                <ThreadVote />
+                            
+                            </div>
+
+                    
                     <div className="submitted-content-desc" dangerouslySetInnerHTML={{ __html: sanitizedDesc }} />
                 </div>
 
-                <button onClick={toggleReplyForm}>reply</button>
-                </div>
-                {isReplyVisible && (
-                    <ThreadReply />
-                )}
+                <ThreadReply />
 
-            <ReplyList />
+                <div className="Replylist">
+                    <div className="ReplylistTop">
+                        <h1>Replies: {reliesCount}</h1>
+                    </div>
+
+                    <ReplyList />
+
+                </div>
+                
+                </div>
             </div>
         </div>
+        </div>
+        </div>
+ 
         );
 }
 
