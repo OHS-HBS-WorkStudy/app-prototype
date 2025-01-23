@@ -39,6 +39,8 @@ def sql_threadList(page):
             max_index += 1
             break
 
+    values = sortAge(values)
+
 
     start_list = []
     for x in range(page.size):
@@ -84,7 +86,6 @@ def threadList(contents: Page):
 
     return data
 
-
 def getTagList(id):
     try:
         conn = sqlite3.connect('app.db')
@@ -109,3 +110,27 @@ def getTagList(id):
         return values2
     except:
         return "No tags"
+      
+def sortAge(array):
+    sortedArray = []
+    
+    for x in range(len(array)):
+        if x == 0:
+            sortedArray.append(array[x])
+        else:
+            placement_found = False
+            for y in range(len(sortedArray)):
+                if array[x][4] > sortedArray[y][4]:
+                    if y == 0:
+                        sortedArray.insert(0, array[x])
+                    else:
+                        sortedArray.insert(y-1, array[x])
+                    placement_found = True
+                    break
+                else:
+                    continue
+                
+            if placement_found == False:
+                sortedArray.append(array[x])
+                
+    return sortedArray
