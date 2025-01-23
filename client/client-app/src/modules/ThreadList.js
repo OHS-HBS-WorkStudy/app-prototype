@@ -20,12 +20,14 @@ export default function ThreadList({value}) {
 
         console.log(val);
 
-        if(val === null) {
+        if(val === 0) {
             return 1;
         }else {
             return val;
         }
     }
+
+    console.log(index)
 
     //let index = 1;
     let size = 2;
@@ -54,13 +56,32 @@ export default function ThreadList({value}) {
         }
     }
 
-    function searchButton() {
-        data = document.getElementById("tagFilter").value;
+    const [tagInput, setTagInput] = useState("#");
 
-        if(data === "all") {
-            data = document.getElementById("customtag").value;
+    const tagInputChange = (e) => {
+        const value = e.target.value;
+        console.log(value)
+        if (!value.startsWith("#")) {
+            setTagInput("#");
+        } else {
+            setTagInput(value);
         }
+      };
 
+    const enterCheck = (e) => {
+        if (e.key === "Enter") {
+            if (tagInput.length > 1) {
+                setTagInput("#");
+                searchButton();
+            } else {
+              alert("Tag must be unique and not empty.");
+            }
+          }
+    };
+
+    function searchButton() {
+        data = document.getElementById("customtag").value;
+    
         sessionStorage.setItem("search_tag", data);
         searchWord(data);
         window.location.reload();
@@ -195,14 +216,9 @@ export default function ThreadList({value}) {
         const handleSpanClick = () => {
           setIsEditing(true);
         };
-      
-    
 
         //getList(isThereSearch);
         if(listActive === true) {
-            
-         
-
             return(
                 <div>
                 <div className="nav-space"></div>
@@ -297,15 +313,16 @@ export default function ThreadList({value}) {
 
                 
               </label>
-              <input id="customtag" type="text" placeholder="type in..."></input>
-              <select id="tagFilter" name="tagFilter">
-                <option value="all">All Tags</option>
-                <option value="english">English</option>
-                <option value="math">Math</option>
-                <option value="science">Science</option>
-                <option value="social_studies">Social Studies</option>
-              </select>
-
+              <input 
+                id="customtag" 
+                className="tag-input-container" 
+                value={tagInput}
+                onChange={tagInputChange}
+                onKeyDown={enterCheck}
+                type="text" 
+                placeholder="type in..."
+                />
+              
               <button onClick={searchButton}>search</button>
               
             </div>

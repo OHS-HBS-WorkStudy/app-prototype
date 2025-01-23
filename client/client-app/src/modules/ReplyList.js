@@ -1,4 +1,7 @@
 import { useState } from "react";
+import ThreadVote from "./ThreadVote.js";
+
+import DOMPurify from "dompurify";
 
 export default function ReplyList() {
     const [listActive, activateList] = useState(false);
@@ -31,29 +34,64 @@ export default function ReplyList() {
             })
         }
 
+        
+
         getList(JSON.parse(sessionStorage.getItem("thread"))[2]);
+
+      
 
         const replyDescription = document.getElementsByClassName("contents");
 
 
         if(listActive === true) {
             let values = JSON.parse(sessionStorage.getItem("replies"));
+            // Saved for Friday Tmr to make it safer 
+            // const sanitizedRepliesDesc = DOMPurify.sanitize(sessionStorage.getItem("thread")).contents;
+            // console.log(sanitizedRepliesDesc);
             return(
                 <div>
                     <div className="reply-section">
 
-                  
-                <div className="reply-header">
-                    <h2>Reply to Thread</h2>
-                </div>
+                    <div className="reply-list">
+                    <div className="thread">
+                    <div className="threadpage">
+                <div id="thread-content">
+
                 
-                <div className="reply-container">
-                    {values.map(value => 
-                        <div><div>{value.user}:</div> <div className="contents">{value.contents}</div></div>
+
+                    <div className="reply submitted-content-desc">
+                    <div className="reply-container">
+                    {values.map(value =>
+                    <div> 
+                    <div className="thread-top reply">
+                    <div className="thread-top-stats">
+                                <h2>{value.user}</h2>
+                        </div>
+                        </div>
+    
+                        <div className="content-container"> 
+                            <div className="vote-box">
+                                <ThreadVote />                
+                            </div>
+    
+                            <div className="submitted-content-desc" dangerouslySetInnerHTML={{ __html: value.contents }}></div>
+                        </div>
+
+                          
+                        
+                        </div>
                     )} 
                     </div>
                     </div>
+                
+        
+                    </div>
                 </div>
+                </div>
+                </div>
+                </div>
+                </div>
+            
             ) 
         }else {
             return(
