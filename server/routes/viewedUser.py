@@ -26,6 +26,7 @@ def sql_createView(data):
         else:
             print("already viewed")
     except:
+        cursor.execute('''CREATE TABLE IF NOT EXISTS views (thread_id, user_id)''')
         print("already viewed, or something broke")
     conn.commit()
     conn.close()
