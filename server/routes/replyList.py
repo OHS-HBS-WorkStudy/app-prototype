@@ -5,6 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 import sqlite3
 import uuid
 
+import routes.scoreReplyVotes as SRV
+
 class Thread(BaseModel):
     thread_id: str
 
@@ -42,13 +44,16 @@ def sql_replyList(data):
         anon_dict[anon_list[x]] = f"Anonymous {type[0]} {x+1}"
     
     new_list = []
+
+    scores = SRV.sql_scoreVotes(data)
     
     for x in range(len(values)):
         data = {
             "contents": values[x][0],
             "reply_id": values[x][1],
             "thread_id": values[x][2],
-            "user": anon_dict[values[x][3]]
+            "user": anon_dict[values[x][3]],
+            "score": hasNoScore(scores, values[x][1])
         }
         new_list.append(data)
 
@@ -62,3 +67,9 @@ def replyList(id:Thread):
     data = sql_replyList(id.thread_id)
 
     return data
+
+def hasNoScore(score_dict, reply_id):
+    try:
+        return score_dict[reply_id]
+    except:
+        return 0
