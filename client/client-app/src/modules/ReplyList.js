@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ThreadVote from "./ThreadVote.js";
+import ReplyVote from "./ReplyVote.js";
 
 import DOMPurify from "dompurify";
 
@@ -70,7 +70,7 @@ export default function ReplyList({getCount}) {
     
                         <div className="content-container"> 
                             <div className="vote-box">
-                                <ThreadVote />                
+                                <ReplyVote id={value.thread_id}/>
                             </div>
     
                             <div className="submitted-content-desc" dangerouslySetInnerHTML={{ __html: value.contents }}></div>
