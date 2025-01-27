@@ -1,7 +1,4 @@
 import { useState } from "react";
-import ReplyVote from "./ReplyVote.js";
-
-import DOMPurify from "dompurify";
 
 export default function ReplyList({getCount}) {
     const [listActive, activateList] = useState(false);
@@ -49,36 +46,9 @@ export default function ReplyList({getCount}) {
             // console.log(sanitizedRepliesDesc);
             return(
                 <div>
-                    <div className="reply-section">
-
-                    <div className="reply-list">
-                    <div className="thread">
-                    <div className="threadpage">
-                <div id="thread-content">
-
-                
-
-                    <div className="reply submitted-content-desc">
-                    <div className="reply-container">
-                    {values.map(value =>
-                    <div> 
-                    <div className="thread-top reply">
-                    <div className="thread-top-stats">
-                                <h2>{value.user}</h2>
-                        </div>
-                        </div>
-    
-                        <div className="content-container"> 
-                            <div className="vote-box">
-                                <ReplyVote id={value.thread_id}/>
-                            </div>
-    
-                            <div className="submitted-content-desc" dangerouslySetInnerHTML={{ __html: value.contents }}></div>
-                        </div>
-
-                          
-                        
-                        </div>
+                    <div>
+                    {values.map(value => 
+                        <div><div>{value.user}:</div> {value.contents}</div>
                     )} 
                     </div>
                     </div>
