@@ -16,6 +16,8 @@ export default function ThreadPage() {
     const [score, findScore] = useState(0);
     const loggedin = useContext(LoggedinState);
 
+    const [relies, getReliesCount] = useState(0);
+
     let data = JSON.parse(sessionStorage.getItem("thread"));
 
     console.log(data);
@@ -32,7 +34,7 @@ export default function ThreadPage() {
             }
           })
             .then((response) => response.json())
-            .then((json) => giveVal(json));
+            .then((json) => giveVal(json));     
     }
 
     function nowViewing() {
@@ -73,13 +75,6 @@ export default function ThreadPage() {
          setIsReplyVisible((prev) => !prev);
      };
 
-     const reliesCount = JSON.parse(sessionStorage.getItem("replies")).length;
-
-      console.log(reliesCount)
-
-
-
-
     return(
         <div>
             <Navigator />
@@ -97,15 +92,7 @@ export default function ThreadPage() {
                             <p>Viewed: 45</p>
                         </div>
                     </div>
-
-
-            
-                  
-
                     
-                    
-            
-
                 <div className="content-container">
 
                 <div className="vote-box">
@@ -121,10 +108,10 @@ export default function ThreadPage() {
 
                 <div className="Replylist">
                     <div className="ReplylistTop">
-                        <h1>Replies: {reliesCount}</h1>
+                        <h1 id="reply-counter">Replies: {relies}</h1>
                     </div>
 
-                    <ReplyList />
+                    <ReplyList getCount={getReliesCount}/>
 
                 </div>
                 

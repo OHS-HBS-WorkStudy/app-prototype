@@ -3,7 +3,7 @@ import ThreadVote from "./ThreadVote.js";
 
 import DOMPurify from "dompurify";
 
-export default function ReplyList() {
+export default function ReplyList({getCount}) {
     const [listActive, activateList] = useState(false);
 
     try{
@@ -14,7 +14,24 @@ export default function ReplyList() {
             test = json;
             console.log(test);
             sessionStorage.setItem("replies", JSON.stringify(test));
+            getCount(test.length)
             activateList(true);
+        }
+
+        function getReliesCount() {
+ 
+            if (JSON.parse(sessionStorage.getItem("replies")).length > 0) {
+                const reliesCount = JSON.parse(sessionStorage.getItem("replies")).length;
+                console.log(reliesCount + "idkdkkdkd");
+                if (reliesCount !== null){
+                    return reliesCount;
+                } 
+            } else {
+                return 0
+            }
+            
+        
+                
         }
         
         function getList(id) {
