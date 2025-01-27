@@ -18,22 +18,6 @@ export default function ReplyList({getCount}) {
             activateList(true);
         }
 
-        function getReliesCount() {
- 
-            if (JSON.parse(sessionStorage.getItem("replies")).length > 0) {
-                const reliesCount = JSON.parse(sessionStorage.getItem("replies")).length;
-                console.log(reliesCount + "idkdkkdkd");
-                if (reliesCount !== null){
-                    return reliesCount;
-                } 
-            } else {
-                return 0
-            }
-            
-        
-                
-        }
-        
         function getList(id) {
             fetch(sessionStorage.getItem("server_address")+"/replyList", {
                 method: "POST",
