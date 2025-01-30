@@ -20,7 +20,8 @@ from routes import (
     countViews,
     createReplyVote,
     scoreReplyVotes,
-    topThreads
+    topThreads,
+    topReplies
 )
 
 import sqlite3
@@ -54,3 +55,4 @@ app.include_router(countViews.router)
 app.include_router(createReplyVote.router)
 app.include_router(scoreReplyVotes.router)
 app.include_router(topThreads.router)
+app.include_router(topReplies.router)
