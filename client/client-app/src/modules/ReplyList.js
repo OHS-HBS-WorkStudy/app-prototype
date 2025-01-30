@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ReplyVote from './ReplyVote.js';
 
 export default function ReplyList({getCount}) {
     const [listActive, activateList] = useState(false);
@@ -46,21 +47,55 @@ export default function ReplyList({getCount}) {
             // console.log(sanitizedRepliesDesc);
             return(
                 <div>
-                    <div>
+                <div className="reply-list">
+
                     {values.map(value => 
-                        <div><div>{value.user}:</div> {value.contents}</div>
-                    )} 
+
+                    
+                        <div>
+
+                              
+        
+<div className="thread">
+                <div className="threadpage">
+                <div id="thread-content">
+
+                <div className="thread-top reply">
+                        <div className="thread-top-stats">
+                            <p>Reply From {value.user}</p>
+                            
                     </div>
                     </div>
                 
-        
+               
+                    
+    
+                    
+                    <div className="content-container ">
+
+                    <div className="vote-box">
+                            <ReplyVote />
+                        </div>
+                        <div className="reply submitted-content-desc" dangerouslySetInnerHTML={{__html: value.contents}} />
                     </div>
+                    
+                
+                    
 
                 </div>
-                </div>
-                </div>
-                </div>
-                </div>
+            </div>
+            </div>
+            </div>
+                            
+                            
+                            
+                          
+                    )} 
+                    </div>
+                    </div>
+
+
+
             
             ) 
         }else {

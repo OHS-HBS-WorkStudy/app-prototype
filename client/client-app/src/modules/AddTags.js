@@ -76,6 +76,7 @@ export default function AddTags({tagContent}) {
               value={inputValue}
               onChange={tagInputChange}
               onKeyDown={enterCheck}
+              placeholder='Press Enter To Confirm'
               style={{
                 border: "none",
                 outline: "none",

@@ -220,7 +220,7 @@ export default function ThreadList({value}) {
         //getList(isThereSearch);
         if(listActive === true) {
             return(
-                <div>
+                <div className="layout-wrapper">
                 <div className="nav-space"></div>
                 <div className="sidebar-space"></div>
                     <div className="Home">
@@ -286,7 +286,7 @@ export default function ThreadList({value}) {
 
                                 </div>
                                 <div className="col-row bottom row2">
-                                <div className="threadtrending">
+                                <div className="thread-sort">
                                         <h1>Sort</h1>
                                         
 
@@ -313,17 +313,6 @@ export default function ThreadList({value}) {
 
                 
               </label>
-              <input 
-                id="customtag" 
-                className="tag-input-container" 
-                value={tagInput}
-                onChange={tagInputChange}
-                onKeyDown={enterCheck}
-                type="text" 
-                placeholder="type in..."
-                />
-              
-              <button onClick={searchButton}>search</button>
               
             </div>
             <div className="dropdown">
@@ -336,6 +325,19 @@ export default function ThreadList({value}) {
                 <option value="popular">Most Popular</option>
               </select>
             </div>
+
+            <input 
+                id="customtag" 
+                className="tag-input-container" 
+                value={tagInput}
+                onChange={tagInputChange}
+                onKeyDown={enterCheck}
+                type="text" 
+                placeholder="type in..."
+                />
+              
+              <button onClick={searchButton}>search</button>
+              
 
             <div className="thread-page">
       <button onClick={handlePreviousPage} disabled={index === 1}>
