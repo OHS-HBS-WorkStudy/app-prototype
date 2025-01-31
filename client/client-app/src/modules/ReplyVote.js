@@ -1,25 +1,13 @@
 import { useState } from "react";
 
-export default function ThreadVote() {
-    const [score, changeScore] = useState(Number(sessionStorage.getItem("thread_score")));
-
-    function scoreVotes() {
-        fetch(sessionStorage.getItem("server_address")+"/scoreVotes", {
-            method: "POST",
-            body: JSON.stringify({
-                thread_id: JSON.parse(sessionStorage.getItem("thread"))[2]
-            }),
-            headers: {
-              "Content-type": "application/json; charset=UTF-8"
-            }
-        })
-        .then((response) => response.json())
-        .then((json) => changeScore(json))
-    }
+export default function ReplyVote({id}) {
+    const [score, changeScore] = useState(Number(sessionStorage.getItem("relies_score")));
 
 
-    scoreVotes();
-    let val = Number(sessionStorage.getItem("thread_score"));
+
+
+
+    let val = Number(sessionStorage.getItem("reply_score"));
 
     const scoreMax = val+1;
     const scoreMin = val-1;
@@ -34,30 +22,31 @@ export default function ThreadVote() {
     function increaseScore() {
         if(score < scoreMax) {
             changeScore(score+1);
-        console.log("hello?")
-        sessionStorage.setItem("thread_score", score);
-        didIncrease(true);
-        postVote("positive")
+            console.log("hello?")
+            sessionStorage.setItem("replies", score);
+            didIncrease(true);
+            postVote("positive")
         }
     }
 
     function decreaseScore() {
         if(score > scoreMin){
             changeScore(score-1);
-            sessionStorage.setItem("thread_score", score);
+            sessionStorage.setItem("replies", score);
             didDecrease(true);
             postVote("negative")
         }
     }
 
-    function postVote(type) {
+    function postVote(type,) {
         let data = {
             score: type,
+            reply_id: id,
             thread_id: JSON.parse(sessionStorage.getItem("thread"))[2],
             user_id: JSON.parse(sessionStorage.getItem("user")).uuid
         }
 
-        fetch(sessionStorage.getItem("server_address")+"/createVote", {
+        fetch(sessionStorage.getItem("server_address")+"/createReplyVote", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {

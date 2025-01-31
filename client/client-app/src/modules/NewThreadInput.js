@@ -145,17 +145,18 @@ export default function NewThreadInput({value}) {
 
   const modules = {
     toolbar: [
-      [{ 'header': '1' }, { 'header': '2' }, { 'size': [] }],
-      [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'align': [] }],
-      ['bold', 'italic', 'underline', 'strike'],
-      ['link', 'blockquote', 'code-block'],
-      ['clean'],
-    ],
+      [{ header: "1" }, { header: "2" },],
+      [{ size: [] }],
+      ["bold", "italic", "underline", "strike"],
+      [{ list: "ordered" }, { list: "bullet" }, { align: [] }],
+      [{ indent: "-1" }, { indent: "+1" }, { background: [] }],
+      ["clean"], 
+    ]
   };
 
   return (
     <div>
-      <div className="nav-space"></div>
+   
       <div className="NewThread">
         <div className="center">
 
@@ -183,16 +184,7 @@ export default function NewThreadInput({value}) {
               onChange={(value) =>
                 handleQuillChange(value, setThreadContents, maxDescLength, quillRef)
               }
-              modules={{
-                toolbar: [
-                  [{ header: "1" }, { header: "2" },],
-                  [{ size: [] }],
-                  ["bold", "italic", "underline", "strike"],
-                  [{ list: "ordered" }, { list: "bullet" }, { align: [] }],
-                  [{ indent: "-1" }, { indent: "+1" }, { background: [] }],
-                  ["clean"], 
-                ]
-              }}
+              modules={modules}
             />
             <div className="charCounter">{getPlainText(ThreadContents).length}/{maxDescLength} characters</div>
           </div>

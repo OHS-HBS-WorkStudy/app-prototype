@@ -48,6 +48,18 @@ export default function ThreadReply() {
     };
 
 
+    const modules = {
+        toolbar: [
+          [{ header: "1" }, { header: "2" },],
+          [{ size: [] }],
+          ["bold", "italic", "underline", "strike"],
+          [{ list: "ordered" }, { list: "bullet" }, { align: [] }],
+          [{ indent: "-1" }, { indent: "+1" }, { background: [] }],
+          ["clean"], 
+        ]
+      };
+
+
     return(
         <div className="reply-section">
                 <div className="reply-header">
@@ -59,6 +71,7 @@ export default function ThreadReply() {
                     value={questionDesc}
                     onChange={handleQuillChange}
                     style={{ borderRadius: '8px', minHeight: '100px' }}
+                    modules={modules}
                 />
                     <button className="btn-send" onClick={ReplyButton}>
                         Send
