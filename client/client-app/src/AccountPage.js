@@ -146,19 +146,19 @@ export default function AccountPage() {
           <h2>User Stats</h2>
   <div class="user-stats">
     Answers
-    <div class="number">123</div>
+    <div class="number">{data.replies}</div>
   </div>
   <div class="user-stats">
     Questions
-    <div class="number">456</div>
+    <div class="number">{data.threads}</div>
   </div>
   <div class="user-stats">
     User Score
-    <div class="number">789</div>
+    <div class="number">{Math.floor(data.score*100)}</div>
   </div>
   <div class="user-stats">
     Views
-    <div class="number">1011</div>
+    <div class="number">{data.views}</div>
   </div>
 </div>
 
