@@ -223,7 +223,9 @@ export default function ThreadList({value}) {
                 <div className="layout-wrapper">
                 <div className="nav-space"></div>
                 <div className="sidebar-space"></div>
-                    <div className="Home">
+                <div className="layout-content">
+            <div className="Home">
+
 
                     <div className="container1">
                         <div className="bento-box">
@@ -389,6 +391,7 @@ export default function ThreadList({value}) {
                             <button onClick={count}>press Me</button>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
                 
