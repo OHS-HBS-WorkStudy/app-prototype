@@ -125,6 +125,7 @@ export default function ThreadList({value}) {
                 .then((json) => setList(json))
                 .catch((error) => {
                     console.log(error);
+                    activateList(false);
                 })
         }
         
@@ -426,7 +427,7 @@ function ThreadButton({value}) {
         var sec = a.getSeconds();
         var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
         return time;
-      }
+    }
 
     function toThreadPage(json, data) {
         console.log(json);

@@ -40,7 +40,8 @@ def confirmSQLUser(data):
                 "score": score,
                 "threads": totals.total_threads(x[5]),
                 "replies": totals.total_replies(x[5]),
-                "views": totals.total_views(x[5])
+                "views": totals.total_views(x[5]),
+                "timestamp": x[6]
             }
     return user_data
 

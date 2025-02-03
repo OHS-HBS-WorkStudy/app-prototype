@@ -19,6 +19,9 @@ def sql_threadList(page):
     max_index = 0
     conn = sqlite3.connect('app.db')
     cursor = conn.cursor()
+
+    cursor.execute('''CREATE TABLE IF NOT EXISTS threads (thread_name, thread_contents, thread_id, creator_id, timestamp)''')
+    
     try:
         cursor.execute(f'SELECT * FROM threads WHERE thread_name LIKE "%{page.query}%"')
         print("other test")
