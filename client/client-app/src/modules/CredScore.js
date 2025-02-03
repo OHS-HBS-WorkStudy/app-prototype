@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-
-
-
 const FullCircle = ({ score }) => {
   const radius = 40; // Radius of the semi-circle
   const centerX = 50; // Center X-coordinate of the SVG
@@ -125,37 +122,37 @@ const FullCircle = ({ score }) => {
 
 function tryForScore() {
   try {
-    const score1 = JSON.parse(sessionStorage.getItem("user")).score;
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    const score1 = user?.score ?? null;
     return score1;
-  } catch(error) {
-    console.log("null")
-    return null
+  } catch (error) {
+    console.error("Error retrieving user score:", error);
+    return null;
   }
 }
 
-tryForScore();
+const CredScore = () => {
+  const score1 = tryForScore();
+  const inflationScore = score1 !== null ? parseInt(score1) + 90 : null;
+  const [score, setScore] = useState(inflationScore);
 
-const CredScore = (score1) => {
- 
-  
-    const inflationScore = (parseInt(score1) + 90)
-  const [score, setScore] = useState(inflationScore); 
-  
+  useEffect(() => {
+    setScore(inflationScore);
+  }, [inflationScore]);
 
   const increaseScore = () => {
     setScore((prevScore) => Math.min(180, prevScore + 10));
   };
 
   const decreaseScore = () => {
-    setScore((prevScore) => Math.max(0, prevScore - 10)); 
+    setScore((prevScore) => Math.max(0, prevScore - 10));
   };
-
 
   return (
     <div className="cred-score">
       {/* <button onClick={increaseScore}>Increase Score</button>
       <button onClick={decreaseScore}>Decrease Score</button> */}
-      {score !== undefined && score !== null ? (
+      {score !== null ? (
         <div>
           <FullCircle score={score} />
         </div>
@@ -166,8 +163,4 @@ const CredScore = (score1) => {
   );
 };
 
-
-
-
 export default CredScore;
-

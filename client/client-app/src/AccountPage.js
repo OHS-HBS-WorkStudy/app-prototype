@@ -43,7 +43,7 @@ export default function AccountPage() {
         try{
           return(
             <div>
-            {data.first_name}{data.last_name}
+            {data.first_name} {data.last_name}
             </div>
           );
         } catch(err) {
@@ -130,6 +130,8 @@ export default function AccountPage() {
         <h2>Account Info</h2>
         <div className="user-details">
           <p>Joined on {timeConverter(data.timestamp)}</p>
+          <h5>{data.type}</h5>
+          <LogOut />
         </div>
       </div>
       <div className="achievements">
