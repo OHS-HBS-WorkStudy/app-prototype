@@ -114,7 +114,7 @@ const FullCircle = ({ score }) => {
             color: '#333',
           }}
         >
-          <h3>{rating}</h3>
+          <h3 className="rating-display">{rating}</h3>
         </div>
       </div>
     </div>

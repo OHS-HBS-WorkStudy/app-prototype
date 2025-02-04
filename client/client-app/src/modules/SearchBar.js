@@ -11,29 +11,21 @@ export default function SearchBar() {
 
     const [search, searchWord] = useState("none");
 
-    document.onkeydown = keydown
 
-    function keydown(e) {
-        var keycode;
-        if (window.event)
-        {
-            keycode = window.event.key;
-        }
-        else if (e)
-        {
-            keycode = e.which;
-        }
 
-        console.log(keycode);
-
-        if(keycode === 'Enter') {
-            searchButton();
-        }
-        
-    }
+    const enterCheck = (e) => {
+        if (e.key === "Enter") {
+            if (searchbarValue.length >= 1) {
+                searchButton();
+            } else {
+              alert("Tag must be unique and not empty.");
+            }
+          }
+    };
+    
 
     function searchButton() {
-        let data = document.getElementById("searchbar").value;
+        let data = document.getElementById("searchbar").value ?? "none";
 
         sessionStorage.setItem("query", data);
         window.location.reload();
@@ -66,6 +58,7 @@ export default function SearchBar() {
                             type="text" 
                             placeholder="Type here..." 
                             value={searchbarValue} 
+                            onKeyDown={enterCheck}
                             onChange={(e) => setSearchbarValue(e.target.value)} 
                         />
                     </div>
