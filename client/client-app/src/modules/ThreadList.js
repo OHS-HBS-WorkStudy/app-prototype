@@ -125,7 +125,7 @@ export default function ThreadList({value}) {
                 .then((json) => setList(json))
                 .catch((error) => {
                     console.log(error);
-                    activateList(false);
+                    activateList(false)
                 })
         }
         
@@ -224,9 +224,7 @@ export default function ThreadList({value}) {
                 <div className="layout-wrapper">
                 <div className="nav-space"></div>
                 <div className="sidebar-space"></div>
-                <div className="layout-content">
-            <div className="Home">
-
+                    <div className="Home">
 
                     <div className="container1">
                         <div className="bento-box">
@@ -393,7 +391,6 @@ export default function ThreadList({value}) {
                         </div>
                     </div>
                 </div>
-                </div>
             </div>
                 
             ) 
@@ -430,7 +427,7 @@ function ThreadButton({value}) {
         var sec = a.getSeconds();
         var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
         return time;
-    }
+      }
 
     function toThreadPage(json, data) {
         console.log(json);

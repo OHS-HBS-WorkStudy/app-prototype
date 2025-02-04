@@ -6,6 +6,8 @@ import LogOut from "./modules/Logout.js";
 export default function AccountPage() {
     let data = JSON.parse(sessionStorage.getItem("user"));
 
+    fetchTopThreads();
+
     const [darkMode, setDarkMode] = useState(() => {
         return localStorage.getItem("dark-mode") === "enabled";
       });
@@ -37,7 +39,87 @@ export default function AccountPage() {
         var sec = a.getSeconds();
         var time = date + ' ' + month + ' ' + year + ' at ' + hour + ':' + min + ':' + sec ;
         return time;
-    }
+      }
+
+      function getTopThreads(){
+        let data = JSON.parse(sessionStorage.getItem("topThreads"));
+
+        if(data.length > 0){
+          let threads = [];
+
+          for(let i = 0; i < data.length; i++){
+            threads.push(data[i][0]);
+          }
+
+          return(
+            <div>
+              <h2>{threads[0]}</h2>
+              <h2>{threads[1]}</h2>
+              <h2>{threads[2]}</h2>
+            </div>
+          );
+        }else {
+          return "No Threads";
+        }
+      }
+
+      function getTopReplies(){
+        let data = JSON.parse(sessionStorage.getItem("topReplies"));
+
+        if(data.length > 0){
+          let replies = [];
+
+          for(let i = 0; i < data.length; i++){
+            replies.push(data[i][0]);
+          }
+
+          return(
+            <div>
+              <h2>{replies[0]}</h2>
+              <h2>{replies[1]}</h2>
+              <h2>{replies[2]}</h2>
+            </div>
+          );
+        }else {
+          return "No Replies";
+        }
+      }
+
+      function fetchTopThreads(){
+        console.log(sessionStorage.getItem("server_address")+"/topThreads");
+        fetch(sessionStorage.getItem("server_address")+"/topThreads", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({user_id: data.uuid})
+        })
+        .then((response) => response.json())
+        .then((json) => toReplies(json))
+        .catch((error) => {
+          console.log(error);
+        })
+      }
+
+      function toReplies(json) {
+        sessionStorage.setItem("topThreads", JSON.stringify(json));
+        fetchTopReplies();
+      }
+
+      function fetchTopReplies(){
+        fetch(sessionStorage.getItem("server_address")+"/topReplies", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({user_id: data.uuid})
+        })
+        .then((response) => response.json())
+        .then((json) => sessionStorage.setItem("topReplies", JSON.stringify(json)))
+        .catch((error) => {
+          console.log(error);
+        })
+      }
 
       function nameFetch(){
         try{
@@ -92,6 +174,7 @@ export default function AccountPage() {
               </li>
             ))} */}
           </ul>
+          <div>{getTopThreads()}</div>
           </div>
         </div>
         <div className='my-trending-comments'> 
@@ -104,9 +187,9 @@ export default function AccountPage() {
               </li>
             ))} */}
           </ul>
+          <div>{getTopReplies()}</div>
         </div>
         </div>
-
         <div>
         <div className="my-recent-tags">
         <h2>Recent Tags</h2>
