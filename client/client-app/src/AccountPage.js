@@ -6,6 +6,8 @@ import LogOut from "./modules/Logout.js";
 export default function AccountPage() {
     let data = JSON.parse(sessionStorage.getItem("user"));
 
+    fetchTopThreads();
+
     const [darkMode, setDarkMode] = useState(() => {
         return localStorage.getItem("dark-mode") === "enabled";
       });
@@ -25,6 +27,99 @@ export default function AccountPage() {
         setActiveSection(section);
     
       };
+
+      function timeConverter(UNIX_timestamp){
+        var a = new Date(UNIX_timestamp * 1000);
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var year = a.getFullYear();
+        var month = months[a.getMonth()];
+        var date = a.getDate();
+        var hour = a.getHours();
+        var min = a.getMinutes();
+        var sec = a.getSeconds();
+        var time = date + ' ' + month + ' ' + year + ' at ' + hour + ':' + min + ':' + sec ;
+        return time;
+      }
+
+      function getTopThreads(){
+        let data = JSON.parse(sessionStorage.getItem("topThreads"));
+
+        if(data.length > 0){
+          let threads = [];
+
+          for(let i = 0; i < data.length; i++){
+            threads.push(data[i][0]);
+          }
+
+          return(
+            <div>
+              <h2>{threads[0]}</h2>
+              <h2>{threads[1]}</h2>
+              <h2>{threads[2]}</h2>
+            </div>
+          );
+        }else {
+          return "No Threads";
+        }
+      }
+
+      function getTopReplies(){
+        let data = JSON.parse(sessionStorage.getItem("topReplies"));
+
+        if(data.length > 0){
+          let replies = [];
+
+          for(let i = 0; i < data.length; i++){
+            replies.push(data[i][0]);
+          }
+
+          return(
+            <div>
+              <h2>{replies[0]}</h2>
+              <h2>{replies[1]}</h2>
+              <h2>{replies[2]}</h2>
+            </div>
+          );
+        }else {
+          return "No Replies";
+        }
+      }
+
+      function fetchTopThreads(){
+        console.log(sessionStorage.getItem("server_address")+"/topThreads");
+        fetch(sessionStorage.getItem("server_address")+"/topThreads", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({user_id: data.uuid})
+        })
+        .then((response) => response.json())
+        .then((json) => toReplies(json))
+        .catch((error) => {
+          console.log(error);
+        })
+      }
+
+      function toReplies(json) {
+        sessionStorage.setItem("topThreads", JSON.stringify(json));
+        fetchTopReplies();
+      }
+
+      function fetchTopReplies(){
+        fetch(sessionStorage.getItem("server_address")+"/topReplies", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({user_id: data.uuid})
+        })
+        .then((response) => response.json())
+        .then((json) => sessionStorage.setItem("topReplies", JSON.stringify(json)))
+        .catch((error) => {
+          console.log(error);
+        })
+      }
 
       function nameFetch(){
         try{
@@ -79,6 +174,7 @@ export default function AccountPage() {
               </li>
             ))} */}
           </ul>
+          <div>{getTopThreads()}</div>
           </div>
         </div>
         <div className='my-trending-comments'> 
@@ -91,9 +187,9 @@ export default function AccountPage() {
               </li>
             ))} */}
           </ul>
+          <div>{getTopReplies()}</div>
         </div>
         </div>
-
         <div>
         <div className="my-recent-tags">
         <h2>Recent Tags</h2>
@@ -116,7 +212,7 @@ export default function AccountPage() {
         <div className="account-info">
         <h2>Account Info</h2>
         <div className="user-details">
-          <p>Joined on January 1, 2023</p>
+          <p>Joined on {timeConverter(data.timestamp)}</p>
           <h5>{data.type}</h5>
           <LogOut />
         </div>
@@ -148,19 +244,19 @@ export default function AccountPage() {
           <h2>User Stats</h2>
   <div class="user-stats">
     Answers
-    <div class="number">123</div>
+    <div class="number">{data.replies}</div>
   </div>
   <div class="user-stats">
     Questions
-    <div class="number">456</div>
+    <div class="number">{data.threads}</div>
   </div>
   <div class="user-stats">
     User Score
-    <div class="number">789</div>
+    <div class="number">{Math.floor(data.score*100)}</div>
   </div>
   <div class="user-stats">
     Views
-    <div class="number">1011</div>
+    <div class="number">{data.views}</div>
   </div>
 </div>
 

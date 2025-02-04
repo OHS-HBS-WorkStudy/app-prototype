@@ -6,6 +6,7 @@ import sqlite3
 import uuid
 
 import routes.userScore as clientScore
+import routes.totals as totals
 
 router = APIRouter()
 
@@ -36,7 +37,11 @@ def confirmSQLUser(data):
                 "email": x[3],
                 "type": x[4],
                 "uuid": x[5],
-                "score": score
+                "score": score,
+                "threads": totals.total_threads(x[5]),
+                "replies": totals.total_replies(x[5]),
+                "views": totals.total_views(x[5]),
+                "timestamp": x[6]
             }
     return user_data
 

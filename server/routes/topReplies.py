@@ -13,48 +13,51 @@ class Owner(BaseModel):
 router = APIRouter()
 
 def sql_topReplies(owner):
-    conn = sqlite3.connect('app.db')
-    cursor = conn.cursor()
-    cursor.execute(f"SELECT * FROM replies WHERE user_id='{owner}'")
-    values = cursor.fetchall()
-
-    print(values)
-
-    values_score = {}
-
-    for x in range(len(values)):
-        score = SV.sql_scoreVotes(values[x][2])
-        values_score[values[x][2]] = addlist(score)
-
-    print(values_score)
-    
-    values = sorted(values, key=lambda x: values_score[x[2]], reverse=True)
-    print(values)
-
     try:
-        values2 = [
-            values[0],
-            values[1],
-            values[2]
-        ]
-    except:
+        conn = sqlite3.connect('app.db')
+        cursor = conn.cursor()
+        cursor.execute(f"SELECT * FROM replies WHERE user_id='{owner}'")
+        values = cursor.fetchall()
+
+        print(values)
+
+        values_score = {}
+
+        for x in range(len(values)):
+            score = SV.sql_scoreVotes(values[x][2])
+            values_score[values[x][2]] = addlist(score)
+
+        print(values_score)
+        
+        values = sorted(values, key=lambda x: values_score[x[2]], reverse=True)
+        print(values)
+
         try:
             values2 = [
                 values[0],
-                values[1]
+                values[1],
+                values[2]
             ]
         except:
             try:
                 values2 = [
-                    values[0]
+                    values[0],
+                    values[1]
                 ]
             except:
-                values2 = []
+                try:
+                    values2 = [
+                        values[0]
+                    ]
+                except:
+                    values2 = []
 
-    conn.commit()
-    conn.close()
+        conn.commit()
+        conn.close()
 
-    return values2
+        return values2
+    except:
+        return []
 
 @router.post("/topReplies")
 def getTopReplies(owner:Owner):
