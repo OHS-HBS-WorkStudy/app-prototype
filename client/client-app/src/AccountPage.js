@@ -209,6 +209,7 @@ export default function AccountPage() {
 
       {activeSection === 'stats' && ( 
         <div className="account-content">
+
         <div className="account-info">
         <h2>Account Info</h2>
         <div className="user-details">
@@ -217,6 +218,7 @@ export default function AccountPage() {
           <LogOut />
         </div>
       </div>
+      
       <div className="achievements">
         <h2>Achievements</h2>
         <div className="achievement-list">
@@ -228,6 +230,7 @@ export default function AccountPage() {
           ))} */}
         </div>
       </div>
+
       <div className="my-notifications">
         <h2>My Notifications</h2>
         {/* <ul>
@@ -238,6 +241,21 @@ export default function AccountPage() {
           ))}
         </ul> */}
       </div>
+
+
+        <div className="site-customizations">
+        <h2>Theme Switch</h2>
+        <div className="theme-switch">
+          <label className="switch">
+            <input type="checkbox" checked={darkMode} onChange={toggleDarkMode} />
+            {/* <span className="slider round"></span> */}
+          </label>
+        </div>
+        
+        </div>
+
+       
+
 
 
       <div class="my-user-stats">
@@ -260,20 +278,7 @@ export default function AccountPage() {
   </div>
 </div>
 
-      <div>
-        <div className="site-customizations">
-        <h2>Theme Switch</h2>
-        <div className="theme-switch">
-          <label className="switch">
-            <input type="checkbox" checked={darkMode} onChange={toggleDarkMode} />
-            {/* <span className="slider round"></span> */}
-          </label>
-        </div>
-        
-        </div>
-
-       
-        </div>
+    
         </div>
       )}
 

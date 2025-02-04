@@ -1,19 +1,20 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { ScreenStateContext } from "../App.js";
-import CredScore from "./CredScore.js";
 import DOMPurify from 'dompurify';
+import BentoBox from "./BentoBox.js";
+import ThreadFilter from "./ThreadFilter.js";
 
 
-export default function ThreadList({value}) {
+export default function ThreadList() {
     const [listActive, activateList] = useState(false);
-    const [isEditing, setIsEditing] = useState(false);
-    const [threadHistory, setThreadHistory] = useState([]);
 
-    const [search, searchWord] = useState("none");
+
+
 
     const [index, changeIndex] = useState(getIndex);
 
-    const [list, giveList] = useState([]);
+    let size = 2;
+
 
     function getIndex() {
         let val = Number(sessionStorage.getItem("current_index"));
@@ -26,17 +27,6 @@ export default function ThreadList({value}) {
             return val;
         }
     }
-
-    console.log(index)
-
-    //let index = 1;
-    let size = 2;
-
-    const [currentPage, setCurrentPage] = useState(index);
-    const itemsPerPage = 1; 
-    const [inputPage, setInputPage] = useState(currentPage);
-
-   
 
     let data = sessionStorage.getItem("size");
     console.log(data);
@@ -56,35 +46,16 @@ export default function ThreadList({value}) {
         }
     }
 
-    const [tagInput, setTagInput] = useState("#");
+    let values = JSON.parse(sessionStorage.getItem("threads"));
 
-    const tagInputChange = (e) => {
-        const value = e.target.value;
-        console.log(value)
-        if (!value.startsWith("#")) {
-            setTagInput("#");
-        } else {
-            setTagInput(value);
-        }
-      };
+    const totalPages = Number(sessionStorage.getItem("index_max"));
+    //const startIndex = index;
+    //const currentItems = setCurrentPage(Number(sessionStorage.getItem("current_index")));
+    const currentItems = values;
 
-    const enterCheck = (e) => {
-        if (e.key === "Enter") {
-            if (tagInput.length > 1) {
-                setTagInput("#");
-                searchButton();
-            } else {
-              alert("Tag must be unique and not empty.");
-            }
-          }
-    };
-
-    function searchButton() {
-        data = document.getElementById("customtag").value;
-    
-        sessionStorage.setItem("search_tag", data);
-        searchWord(data);
-        window.location.reload();
+    function count() {
+        sessionStorage.setItem("size", 1);
+        window.location.reload()
     }
 
     try{
@@ -146,77 +117,11 @@ export default function ThreadList({value}) {
             })
         }
 
-
-
-
-        function count() {
-            sessionStorage.setItem("size", 1);
-            window.location.reload()
-        }
-
-
-        let values = JSON.parse(sessionStorage.getItem("threads"));
-
-
-        
-
-
-        const totalPages = Number(sessionStorage.getItem("index_max"));
-        //const startIndex = index;
-        //const currentItems = setCurrentPage(Number(sessionStorage.getItem("current_index")));
-        const currentItems = values;
-
-       
-        const handlePreviousPage = () => {
-          /*if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-            setInputPage(currentPage - 1);
-          }*/
-            sessionStorage.setItem("current_index", index - 1);
-
-            window.location.reload()
-
-            //changeIndex(index - 1);
-        };
-      
-        const handleNextPage = () => {
-          /*if (currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
-            setInputPage(currentPage + 1);
-          }*/
-
-            sessionStorage.setItem("current_index", index + 1);
-
-            window.location.reload()
-
-            //changeIndex(index + 1);
-        };
-      
-        const handleInputChange = (e) => {
-          setInputPage(e.target.value);
-        };
-      
-        const handleInputBlur = () => {
-          const page = Math.max(1, Math.min(totalPages, parseInt(inputPage, 10) || 1));
-          setCurrentPage(page);
-          setInputPage(page);
-          setIsEditing(false);
-        };
-      
-        const handleInputKeyPress = (e) => {
-          if (e.key === 'Enter') {
-            e.preventDefault();
-            handleInputBlur();
-          }
-        };
       
         const saveData = [];
       
         console.log(saveData);
       
-        const handleSpanClick = () => {
-          setIsEditing(true);
-        };
 
         //getList(isThereSearch);
         if(listActive === true) {
@@ -227,76 +132,8 @@ export default function ThreadList({value}) {
                     <div className="Home">
 
                     <div className="container1">
-                        <div className="bento-box">
-                            <div className="col-left">
-                                <div className="col-row row1">
-                                <div className="threadvisted">
-                                        <h1>Thread History</h1>
-
-                                        <div className="threadvisted-content">
-                                        {threadHistory.length > 0 ? (
-                                threadHistory.map((value, history) => (
-                                    <p
-                                        key={history}
-                                        className="history-item"
-                                    >
-                                        d
-                                
-                                    </p>
-                                ))
-                            ) : (
-                                <p>No threads viewed yet</p>
-                            )}
-                                        </div> 
-                                    </div>
-                                </div>
-
-                                <div className="col-row row2">
-                                    <div className="threadcreated">
-                                        <h1>Your Threads</h1>
-
-                                        <div className="threadcreated-content">
-                                            <p>No threads created yet</p>
-                                        </div> 
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="col-right">
-                                <div className="col-row top">
-                                    <div className="threadtrending">
-                                        <h1 className="fire">Trending</h1>
-
-                                        <div className="threadtrending-content">
-                                            <p>No trends</p>
-                                        </div>  
-                                    </div>
-                                </div>
-
-                                <div className="col-row bottom">
-                                <div className="col-row bottom row1">
-                                <div className="threadtrending">
-                                        <h1>Credibility Score</h1>
-                                        <div className="cred-content">
-
-
-                                            <CredScore />
-                                            </div>
-
-                                    </div>
-
-                                </div>
-                                <div className="col-row bottom row2">
-                                <div className="thread-sort">
-                                        <h1>Sort</h1>
-                                        
-
-                                    </div>
-
-                                </div>
-                                </div>
-                            </div>
-                        </div>
+                        <BentoBox />
+                
                             
 {/* 
                         <div className="leftextra">
@@ -306,79 +143,7 @@ export default function ThreadList({value}) {
                             </div>
                         </div> */}
 
-<div className="grid-header">
-            <div className="title">Filter Options</div>
-            <div className="dropdown">
-              <label htmlFor="tagFilter" style={{ display: "none" }}>
-                Category:
-
-                
-              </label>
-              
-            </div>
-            <div className="dropdown">
-              <label htmlFor="dateFilter" style={{ display: "none" }}>
-                Date:
-              </label>
-              <select id="dateFilter" name="dateFilter">
-                <option value="newest">Newest</option>
-                <option value="oldest">Oldest</option>
-                <option value="popular">Most Popular</option>
-              </select>
-            </div>
-
-            <input 
-                id="customtag" 
-                className="tag-input-container" 
-                value={tagInput}
-                onChange={tagInputChange}
-                onKeyDown={enterCheck}
-                type="text" 
-                placeholder="type in..."
-                />
-              
-              <button onClick={searchButton}>search</button>
-              
-
-            <div className="thread-page">
-      <button onClick={handlePreviousPage} disabled={index === 1}>
-        &lt;
-      </button>
-      <span>
-        Page{' '}
-        {isEditing ? (
-          <input
-            type="number"
-            value={inputPage}
-            onChange={handleInputChange}
-            onBlur={handleInputBlur}
-            onKeyPress={handleInputKeyPress}
-            style={{
-              width: '40px',
-              textAlign: 'center',
-              border: 'none',
-              borderBottom: '1px solid black',
-              outline: 'none',
-              fontSize: 'inherit',
-              color: 'hsl(270, 20%, 22%)',
-            }}
-            min="1"
-            max={totalPages}
-            autoFocus
-          />
-        ) : (
-          <span onClick={handleSpanClick} style={{ cursor: 'pointer', borderBottom: '1.5px ridge white', textAlign: 'center' }}>
-            {index}
-          </span>
-        )}{' '}
-        of {totalPages}
-      </span>
-      <button onClick={handleNextPage} disabled={index === totalPages}>
-        &gt;
-      </button>
-    </div>
-          </div>
-
+                        <ThreadFilter index={index} totalPages={totalPages}/>
 
                          <div className="grid-container">
                             {currentItems.map((value, question) => 
