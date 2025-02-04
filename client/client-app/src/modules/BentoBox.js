@@ -6,7 +6,17 @@ export default function BentoBox() {
 
 
     return(
+        <>
+        <div className="nav-space"></div>
+        <div className="sidebar-space"></div>
+        <div className="layout-content">
+            <div className="Home">
+
+
+                    <div className="container1">
         <div className="bento-box">
+
+        
                             <div className="col-left">
                                 <div className="col-row row1">
                                 <div className="threadvisted">
@@ -30,7 +40,7 @@ export default function BentoBox() {
                             </div>
 
                             <div className="col-right">
-                                <div className="col-row top row1">
+                                <div className="col-row top">
                                     <div className="threadtrending">
                                         <h1 className="fire">Trending</h1>
 
@@ -42,7 +52,7 @@ export default function BentoBox() {
 
                                 <div className="col-row bottom">
                                 <div className="col-row bottom row1">
-                                <div className="threadtrending">
+                                <div className="credibility">
                                         <h1>Credibility Score</h1>
                                         <div className="cred-content">
 
@@ -56,5 +66,9 @@ export default function BentoBox() {
                                 </div>
                             </div>
                     </div>
+                </div>
+            </div>
+        </div>
+                    </>
     );
 }

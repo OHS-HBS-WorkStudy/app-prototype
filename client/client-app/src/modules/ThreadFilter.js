@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 
 export default function ThreadFilter({data, searchButton, totalPages, index}) {
     const [isEditing, setIsEditing] = useState(false);
     const [search, searchWord] = useState("none");
+
+    const [filterOpen, setFilterOpen] = useState(false); 
+    const filterButtonRef = useRef(null); 
+    const dropdownRef = useRef(null);
 
 
 
@@ -102,9 +106,29 @@ export default function ThreadFilter({data, searchButton, totalPages, index}) {
             setIsEditing(true);
           };
 
+
+  const toggleFilter = () => {
+    setFilterOpen(!filterOpen);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        filterButtonRef.current && !filterButtonRef.current.contains(event.target) &&
+        dropdownRef.current && !dropdownRef.current.contains(event.target)
+      ) {
+        setFilterOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
     return(
-        <div className="grid-header">
-            <div className="title">Filter Options</div>
+      <div>
+        <div className={`grid-header ${filterOpen ? "open" : ""}`}>
+        <div className="title">Thread Controller</div>
             <div className="dropdown">
               <label htmlFor="tagFilter" style={{ display: "none" }}>
                 Category:
@@ -113,30 +137,17 @@ export default function ThreadFilter({data, searchButton, totalPages, index}) {
               </label>
               
             </div>
-            <div className="dropdown">
-              <label htmlFor="dateFilter" style={{ display: "none" }}>
-                Date:
-              </label>
-              <select id="dateFilter" name="dateFilter">
-                <option value="newest">Newest</option>
-                <option value="oldest">Oldest</option>
-                <option value="popular">Most Popular</option>
-              </select>
-            </div>
 
-            <input 
-                id="customtag" 
-                className="tag-input-container" 
-                value={tagInput}
-                onChange={tagInputChange}
-                onKeyDown={enterCheck}
-                type="text" 
-                placeholder="type in..."
-                />
-              
-              <button onClick={searchButton}>search</button>
 
-              <button>Filter</button>
+              <button
+                ref={filterButtonRef}
+                onClick={toggleFilter}
+                aria-expanded={filterOpen ? "true" : "false"}
+                className="filter-button"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M440-120v-240h80v80h320v80H520v80h-80Zm-320-80v-80h240v80H120Zm160-160v-80H120v-80h160v-80h80v240h-80Zm160-80v-80h400v80H440Zm160-160v-240h80v80h160v80H680v80h-80Zm-480-80v-80h400v80H120Z"/></svg>
+                Filter
+              </button>
               
 
             <div className="thread-page">
@@ -176,6 +187,52 @@ export default function ThreadFilter({data, searchButton, totalPages, index}) {
         &gt;
       </button>
     </div>
-          </div>
+        </div>
+
+        <div
+                ref={dropdownRef}
+                className={`dropdown-content ${filterOpen ? "open" : ""}`}
+              >
+                <div className="dropdown">
+                  <label htmlFor="tagFilter" style={{ display: "none" }}>
+                    Category:
+                  </label>
+                  <select id="tagFilter" name="tagFilter">
+                    <option value="math">Math</option>
+                    <option value="science">Science</option>
+                    <option value="technology">Technology</option>
+                  </select>
+
+                  <h1>Hello</h1>
+                </div>
+                <div className="dropdown">
+                  <label htmlFor="dateFilter" style={{ display: "none" }}>
+                    Date:
+                  </label>
+                  <select id="dateFilter" name="dateFilter">
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                    <option value="popular">Most Popular</option>
+                  </select>
+
+                  <h1>Hello2</h1>
+                </div>
+                <div className="dropdown">
+                <input 
+                id="customtag" 
+                className="tag-input-container" 
+                value={tagInput}
+                onChange={tagInputChange}
+                onKeyDown={enterCheck}
+                type="text" 
+                placeholder="type in..."
+                />
+              
+              <button onClick={searchButton}>search</button>
+                </div>
+              </div>
+              </div>
+
+
     );
 }

@@ -64,6 +64,7 @@ const FullCircle = ({ score }) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        flex: `1 1 auto`,
         height: '100%',
         marginTop: 20,
         textAlign: 'center',
@@ -140,20 +141,14 @@ const CredScore = () => {
     setScore(inflationScore);
   }, [inflationScore]);
 
-  const increaseScore = () => {
-    setScore((prevScore) => Math.min(180, prevScore + 10));
-  };
-
-  const decreaseScore = () => {
-    setScore((prevScore) => Math.max(0, prevScore - 10));
-  };
+  // Removed unused increaseScore and decreaseScore functions
 
   return (
     <div className="cred-score">
       {/* <button onClick={increaseScore}>Increase Score</button>
       <button onClick={decreaseScore}>Decrease Score</button> */}
       {score !== null ? (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <FullCircle score={score} />
         </div>
       ) : (
