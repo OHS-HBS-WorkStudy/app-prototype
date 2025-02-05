@@ -764,41 +764,53 @@ body, html {
 
 
 /* Home Screen Styling */
+
+.body {
+  background-color: var(--color-background);
+}
 .Home {
   background-color: var(--color-background);
   display: flex;
   flex-direction: column; 
   width: 100vw;
   height: fit-content;
+  min-height: 100vh;
+  min-width: 992px;
   margin-top: 10px;
   gap: 20px;
   border: 1px solid var(--color-secondary);
   padding-bottom: 15px;
+  margin-left: -40px;
+  overflow-x: auto; 
+  padding-bottom: 10px;
 }
 
 .layout-wrapper {
-  max-width: 100%;
-  overflow-x: auto; 
-  padding-bottom: 10px;
+  padding-bottom: -1px;
   box-sizing: border-box;
   border: 1px solid yellow;
   background-color: var(--color-background);
   display: flex;
   flex-direction: row; 
+  width: 100vw;
+  min-width: 100%; 
+/* Ensure background color applies to the full width */
 }
 
+.layout-content {
+  width: 20px;
+  border: 1px solid green;
+}
 
 .grid-header {
   display: flex;
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   justify-content: left;
   align-items: center;
   margin-left: 140px;
-  margin-right: 65px;
-  width: auto;
-  max-height: calc(100vh - 40px);
-  min-height: fit-content;
-  min-width: 840px;
+  margin-right: 100px;
+  width: 100%;
+  max-width: calc(100vw - 145px); 
   gap: 20px;
   padding: 10px 20px;
   background-color: var(--color-secondary);
@@ -806,9 +818,13 @@ body, html {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   margin-bottom: 0px;
   flex-wrap: nowrap;
- 
 }
 
+@media (max-width: 992px) {
+  .grid-header {
+    max-width: 835px;
+  }
+}
 .filter-button {
   display: flex;
   align-items: center;
@@ -875,7 +891,8 @@ body, html {
   width: auto;
   max-height: 500px;  
   min-height: fit-content;
-  min-width: 840px;
+  width: 100%;
+  max-width: calc(100vw - 145px); 
   padding: 10px;
   background-color: var(--color-secondary-accent);
   border: 1px solid var(--color-primary);
@@ -1026,7 +1043,11 @@ body, html {
   transform: none;
 }
 
+.container2 {
+  display: flex;
 
+
+}
 
 .grid-container {
   position: relative;
@@ -1034,18 +1055,19 @@ body, html {
   flex-direction: column; 
   justify-content: flex-start;
   gap: 0.5px;
-  min-width: fit-content;
+
+  width: 100%;
+  min-width: calc(100% - 1fr); 
   margin-top: 10px;
   top: 0;
   right: 5px;
   margin-left: 145px;
-  margin-right: 65px;
-  width: auto; 
+  margin-right: 10px;
+
   box-sizing: border-box;
   max-height: calc(100vh - 40px);
   min-height: fit-content;
-  min-width: 840px;
-  border: 1px solid var(--color-secondary);
+
   background-color: var(--color-secondary);
   border-radius: 10px;
   overflow: auto;
@@ -1053,12 +1075,14 @@ body, html {
   transition: transform 0.4s ease, box-shadow 0.4s ease;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  border: 2px solid green;
 }
 
 
 .grid-item {
   min-width: 850px;
-  max-width: 100%; 
+  max-width: 100vw;
+  width: 100%; 
   height: auto;
   background: linear-gradient(
     135deg,
@@ -1229,6 +1253,8 @@ body, html {
   flex-wrap: nowrap;
   gap: 1em;
   box-sizing: border-box;
+  width: 100%;
+  max-width: calc(100vw - 200px); 
 }
 
 
@@ -1250,7 +1276,7 @@ body, html {
 
 .col-row.row1 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  min-width: 500px;
+  /* min-width: 500px; */
   transition: box-shadow 0.3s ease;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   background: linear-gradient(135deg, var(--color-accent), var(--color-secondary-accent), var(--color-secondary));
@@ -1384,7 +1410,7 @@ body, html {
 .col-row.row2 {
   background: linear-gradient(to right, var(--color-primary), var(--color-primary-accent));
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  min-width: 500px;
+  /* min-width: 500px; */
   transition: box-shadow 0.3s ease;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   overflow: scroll;
@@ -1543,54 +1569,7 @@ h1.fire {
   }
 }
 
-@media (max-width: 600px) {
-  .bento-box {
-    flex-direction: column; 
-    margin-right: 0;
-    height: auto; 
-    max-width: 100%; 
-    gap: 1em;
-    overflow-y: auto; 
-  }
 
-  .col-left, 
-  .col-right {
-    width: 100%; 
-  }
-
-  .col-row {
-    border: 1px solid red; 
-    padding: 0.8em; 
-    border-radius: 1em; 
-  }
-
-  .col-row.row1, 
-  .col-row.row2 {
-    transform: none; 
-    transition: none;
-    transform: scale(0.95);
-  }
-
-  .col-row.row2 {
-    flex-direction: row;
-  }
-
-  .cred-content {
-    flex-direction: row; 
-    padding-bottom: 1em; 
-  }
-
-  .threadvisted-content p,
-  .threadcreated-content p {
-    font-size: 12px; 
-    padding: 0.6em; 
-    text-shadow: none; 
-  }
-
-  .threadtrending h1 {
-    font-size: 22px; 
-  }
-}
 
 
 .col-row.row2::-webkit-scrollbar {

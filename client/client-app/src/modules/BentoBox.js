@@ -8,12 +8,7 @@ export default function BentoBox() {
     return(
         <>
         <div className="nav-space"></div>
-        <div className="sidebar-space"></div>
-        <div className="layout-content">
-            <div className="Home">
 
-
-                    <div className="container1">
         <div className="bento-box">
 
         
@@ -66,9 +61,6 @@ export default function BentoBox() {
                                 </div>
                             </div>
                     </div>
-                </div>
-            </div>
-        </div>
                     </>
     );
 }

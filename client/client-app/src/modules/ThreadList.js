@@ -126,13 +126,17 @@ export default function ThreadList() {
         //getList(isThereSearch);
         if(listActive === true) {
             return(
+                <>
                 <div className="layout-wrapper">
                 <div className="nav-space"></div>
                 <div className="sidebar-space"></div>
+                <div className="layout-content">
                     <div className="Home">
 
                     <div className="container1">
                         <BentoBox />
+
+                        
                 
                             
 {/* 
@@ -145,18 +149,33 @@ export default function ThreadList() {
 
                         <ThreadFilter index={index} totalPages={totalPages}/>
 
-                         <div className="grid-container">
-                            {currentItems.map((value, question) => 
-                         
-                                <ThreadButton value={value} />
-                                
-                            )}
 
-                            <button onClick={count}>press Me</button>
+                        <div className="container2">
+                        <div className="grid-container">
+{currentItems.map((value, question) => 
+
+    <ThreadButton value={value} />
+    
+)}
+
+<button onClick={count}>press Me</button>
+</div>
+
+    </div>
+
                         </div>
-                    </div>
-                </div>
+                        </div>
+
+
+
+                        
+    
+                    
+                
             </div>
+            </div>
+
+</>
                 
             ) 
         }else {
