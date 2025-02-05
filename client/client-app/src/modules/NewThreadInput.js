@@ -1,4 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
+import { ScreenStateContext } from "../App.js";
+
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import DOMPurify from 'dompurify';
@@ -15,6 +17,7 @@ export default function NewThreadInput({value}) {
     const[ThreadTitle, setThreadTitle] = useState("");
     const [ThreadContents, setThreadContents] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const switchScreen = useContext(ScreenStateContext);
 
     const maxTitleLength = 200;
     const maxDescLength = 10000;
@@ -80,7 +83,7 @@ export default function NewThreadInput({value}) {
 
         postTags(data);
       }else {
-        toHome();
+        getThreadData(json.thread_id);
       }
     }
 
@@ -93,7 +96,27 @@ export default function NewThreadInput({value}) {
         }
       })
         .then((response) => response.json())
-        .then((json) => toHome());
+        .then((json) => getThreadData(data.thread_id));
+    }
+
+    function getThreadData(value) {
+      fetch(sessionStorage.getItem("server_address")+"/retrieveThread", {
+          method: "POST",
+          body: JSON.stringify({id:value}),
+          headers: {
+              "Content-type": "application/json; charset=UTF-8",
+              "ngrok-skip-browser-warning": "69420"
+          }
+      })
+      .then((response) => response.json())
+      .then((json) => toThreadPage(json));
+      }
+
+      function toThreadPage(json) {
+        console.log(json);
+        sessionStorage.setItem("thread", JSON.stringify(json));
+
+        switchScreen(3);
     }
 
     function toHome() {

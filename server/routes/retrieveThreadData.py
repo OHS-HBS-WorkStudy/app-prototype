@@ -11,7 +11,6 @@ import routes.countViews as CV
 router = APIRouter()
 
 class ThreadData(BaseModel):
-    name: str
     id: str
 
 def sql_retrieveThread(id):
