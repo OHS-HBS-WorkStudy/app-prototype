@@ -25,6 +25,19 @@ export default function ThreadPage() {
     const sanitizedTitle = DOMPurify.sanitize(data[0]);
     const sanitizedDesc = DOMPurify.sanitize(data[1]);
 
+    function timeConverter(UNIX_timestamp){
+        var a = new Date(UNIX_timestamp * 1000);
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var year = a.getFullYear();
+        var month = months[a.getMonth()];
+        var date = a.getDate();
+        var hour = a.getHours();
+        var min = a.getMinutes();
+        var sec = a.getSeconds();
+        var time = date + ' ' + month + ' ' + year + ' at ' + hour + ':' + min + ':' + sec ;
+        return time;
+      }
+
     function getCurrentVote(val) {
         fetch(sessionStorage.getItem("server_address")+"/scoreVotes", {
             method: "POST",
@@ -87,9 +100,9 @@ export default function ThreadPage() {
                 <div className="thread-top">
                         <div className="submitted-content-title" dangerouslySetInnerHTML={{ __html: sanitizedTitle }} />
                         <div className="thread-top-stats">
-                            <p>Created By: User</p>
-                            <p>Creation Date: Today</p>
-                            <p>Viewed: 45</p>
+                            <p>Created By: {data[4]}</p>
+                            <p>Creation Date: {timeConverter(data[3])}</p>
+                            <p>Viewed: {data[5]}</p>
                         </div>
                     </div>
                     
