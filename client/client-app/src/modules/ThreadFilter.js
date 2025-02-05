@@ -193,7 +193,7 @@ export default function ThreadFilter({data, searchButton, totalPages, index}) {
                 ref={dropdownRef}
                 className={`dropdown-content ${filterOpen ? "open" : ""}`}
               >
-                <div className="dropdown">
+                <div className={`dropdown ${filterOpen ? "open" : ""}`}>
                   <label htmlFor="tagFilter" style={{ display: "none" }}>
                     Category:
                   </label>
@@ -205,7 +205,7 @@ export default function ThreadFilter({data, searchButton, totalPages, index}) {
 
                   <h1>Hello</h1>
                 </div>
-                <div className="dropdown">
+                <div className={`dropdown ${filterOpen ? "open" : ""}`}>
                   <label htmlFor="dateFilter" style={{ display: "none" }}>
                     Date:
                   </label>
@@ -217,7 +217,11 @@ export default function ThreadFilter({data, searchButton, totalPages, index}) {
 
                   <h1>Hello2</h1>
                 </div>
-                <div className="dropdown">
+                <div className={`dropdown ${filterOpen ? "open" : ""}`}>
+                  <label htmlFor="customtag" style={{ display: "none" }}>
+                  
+                    </label>
+                    <h3 className="customTagtitle">Tag Search</h3>
                 <input 
                 id="customtag" 
                 className="tag-input-container" 
@@ -228,7 +232,7 @@ export default function ThreadFilter({data, searchButton, totalPages, index}) {
                 placeholder="type in..."
                 />
               
-              <button onClick={searchButton}>search</button>
+              <button className="tagsearchbutton" onClick={searchButton}>search</button>
                 </div>
               </div>
               </div>

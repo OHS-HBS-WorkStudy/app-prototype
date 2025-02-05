@@ -877,13 +877,24 @@ body, html {
   min-height: fit-content;
   min-width: 840px;
   padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  background-color: var(--color-secondary-accent);
+  border: 1px solid var(--color-primary);
   z-index: 10;
-  transform: translateY(-30%);
+  transform: translateY(0%);
 }
 
+
+
 .dropdown {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.dropdown.open {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
   margin-bottom: 10px;
   border: 1px solid black;
 }
@@ -894,12 +905,63 @@ body, html {
   margin-bottom: 5px;
 }
 
+.customTagtitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--color-text-tertiary);
+  margin-bottom: 10px;
+}
+
 #customtag {
   padding: 8px 12px;
   border-radius: 6px;
-  width: 200px;
+  width: calc(100%); /* Adjust width to accommodate the button */
   border: 1px solid gray;
+  display: inline-block;
+  vertical-align: middle;
 }
+
+.tagsearchbutton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 28px;
+  margin: 0;
+
+  background-color: white;
+  color: black;  
+  padding: 0;
+
+  border: 2px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  vertical-align: middle;
+  margin-left: -52px; 
+}
+
+.filter-button.search:focus {
+  outline: none;  
+  border-color: var(--color-secondary-accent);  
+}
+
+.filter-button.search:active {
+  background-color:  var(--color-primary);  
+  color: white; 
+  border-color:  var(--color-primary);  
+}
+
+.filter-button.search:hover {
+  background-color: rgba(0, 0, 255, 0.1); 
+  border-color:  var(--color-primary); 
+}
+
+.filter-button.search:focus-visible {
+  outline: 2px solid  var(--color-primary); 
+}
+
 
 .grid-header .dropdown {
   position: relative;
@@ -907,14 +969,19 @@ body, html {
 }
 
 .grid-header .dropdown select {
-  padding: 8px 12px;
-  border: 1px solid var(--color-primary-accent);
-  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
   background-color: var(--color-secondary-accent);
-  color: var(--color-text-primary);
+  color: var(--color-text-primary);  
   font-size: 1rem;
+  font-weight: bold;
+  border: 2px solid transparent;
+  border-radius: 5px;
   cursor: pointer;
-  appearance: none;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 .grid-header .dropdown select:focus {
@@ -1379,6 +1446,10 @@ body, html {
 
 .cred-score{
   height: 100%;
+}
+.rating-display {
+  color: white;
+  margin-top: 35px;
 }
 .threadtrending {
   display: flex;
