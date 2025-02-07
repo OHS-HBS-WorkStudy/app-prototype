@@ -125,6 +125,25 @@ export default function ThreadFilter({data, searchButton, totalPages, index}) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const radioButtons = document.querySelectorAll('.dropdown input[type="radio"]');
+
+
+let lastSelectedButton = null;
+
+radioButtons.forEach(button => {
+  button.addEventListener('click', (event) => {
+    const clickedButton = event.target;
+
+    if (lastSelectedButton === clickedButton) {
+      clickedButton.checked = false;
+      lastSelectedButton = null; 
+    } else {
+      lastSelectedButton = clickedButton; 
+    }
+  });
+});
+
+
     return(
       <div>
         <div className={`grid-header ${filterOpen ? "open" : ""}`}>
@@ -193,49 +212,131 @@ export default function ThreadFilter({data, searchButton, totalPages, index}) {
                 ref={dropdownRef}
                 className={`dropdown-content ${filterOpen ? "open" : ""}`}
               >
-                <div className={`dropdown ${filterOpen ? "open" : ""}`}>
-                  <label htmlFor="tagFilter" style={{ display: "none" }}>
+                <div className="dropdown col1">
+                  <label htmlFor="categoryFilter" style={{ display: "none" }}>
                     Category:
                   </label>
-                  <select id="tagFilter" name="tagFilter">
-                    <option value="math">Math</option>
-                    <option value="science">Science</option>
-                    <option value="technology">Technology</option>
-                  </select>
 
-                  <h1>Hello</h1>
+                  <div className="left">
+                  <h3>Tag Filter</h3>
+                    <input type="radio" id="math" name="category" value="math" />
+                    <label htmlFor="math">#Math</label>
+
+                    <input type="radio" id="english" name="category" value="english" />
+                    <label htmlFor="english">#English</label>
+
+                    <input type="radio" id="science" name="category" value="science" />
+                    <label htmlFor="science">#Science</label>
+
+                    <input type="radio" id="socialstudies" name="category" value="socialstudies" />
+                    <label htmlFor="socialstudies">#Social Studies</label>
+
+                    <label htmlFor="tagsInput" style={{ display: "none" }}>
+                    Tags:
+                  </label>
+            
+
+
+                  </div>
+
+                   <div className="right">
+                   <div>
+                    <input
+                      type="text"
+                      id="tagsInput"
+                      name="tagsInput"
+                      placeholder="Enter tags (comma separated)"
+                    />
+                  </div>
+                   </div>
                 </div>
-                <div className={`dropdown ${filterOpen ? "open" : ""}`}>
+
+                <div class="dropdown col2">
+                  <div className="left">
+                  <h3>Date Filter</h3>
                   <label htmlFor="dateFilter" style={{ display: "none" }}>
                     Date:
                   </label>
-                  <select id="dateFilter" name="dateFilter">
-                    <option value="newest">Newest</option>
-                    <option value="oldest">Oldest</option>
-                    <option value="popular">Most Popular</option>
-                  </select>
+                  <div>
+                    <input type="radio" id="newest" name="date" value="newest" />
+                    <label htmlFor="newest">Newest</label>
 
-                  <h1>Hello2</h1>
-                </div>
-                <div className={`dropdown ${filterOpen ? "open" : ""}`}>
-                  <label htmlFor="customtag" style={{ display: "none" }}>
+                    <input type="radio" id="oldest" name="date" value="oldest" />
+                    <label htmlFor="oldest">Oldest</label>
+
+                    <input type="radio" id="trending" name="date" value="trending" />
+                    <label htmlFor="trending">Trending</label>
+
+                  <input type="date" id="startDate" name="startDate" />
+                  </div>
+
+                  </div>
                   
-                    </label>
-                    <h3 className="customTagtitle">Tag Search</h3>
-                <input 
-                id="customtag" 
-                className="tag-input-container" 
-                value={tagInput}
-                onChange={tagInputChange}
-                onKeyDown={enterCheck}
-                type="text" 
-                placeholder="type in..."
-                />
-              
-              <button className="tagsearchbutton" onClick={searchButton}>search</button>
+                  <div className="right">
+                  <h3>List Size</h3>
+                  <label htmlFor="listFilter" style={{ display: "none" }}>
+                    listSize:
+                  </label>
+                
+                  <div>
+                    <input type="radio" id="thread10" name="listSize" value="10" />
+                    <label htmlFor="thread10">10</label>
+
+                    <input type="radio" id="thread25" name="listSize" value="25" />
+                    <label htmlFor="thread25">25</label>
+
+                    <input type="radio" id="thread50" name="listSize" value="50" />
+                    <label htmlFor="thread50">50</label>
+
+                    <input type="radio" id="thread100" name="listSize" value="100" />
+                    <label htmlFor="thread100">100</label>
+                  </div>
+
+                  </div>
+                </div>
+
+                <div className="dropdown col3">
+                
+                  <div className="left">
+                  <h3>Thread Status</h3>
+                  <label htmlFor="statusFilter" style={{ display: "none" }}>
+                    Thread Status:
+                  </label>
+                  <div>
+                    <input type="radio" id="open" name="status" value="open" />
+                    <label htmlFor="open">Open</label>
+
+                    <input type="radio" id="closed" name="status" value="closed" />
+                    <label htmlFor="closed">Closed</label>
+
+                    <input type="radio" id="pinned" name="status" value="pinned" />
+                    <label htmlFor="pinned">Pinned</label>
+                  </div>
+                  </div>
+
+                  <div className="right">
+                    <h3>Sort</h3>
+                  <label htmlFor="sortFilter" style={{ display: "none" }}>
+                    Sort By:
+                  </label>
+                  <div>
+                    <input type="radio" id="sortAnswered" name="sortBy" value="answered" />
+                    <label htmlFor="sortAnswered">Answered</label>
+
+                    <input type="radio" id="sortViews" name="sortBy" value="views" />
+                    <label htmlFor="sortViews">Most Views</label>
+
+                    <input type="radio" id="sortComments" name="sortBy" value="comments" />
+                    <label htmlFor="sortComments">Most Comments</label>
+
+                    <input type="radio" id="sortLikes" name="sortBy" value="likes" />
+                    <label htmlFor="sortLikes">Most Likes</label>
+                    </div>
+                  </div>
+                  </div>
                 </div>
               </div>
-              </div>
+
 
 
     );
