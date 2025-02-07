@@ -106,13 +106,13 @@ def getTagList(id):
             for x in range(len(values)):
                 values2.append(values[x][0])
         else:
-            values2.append("No tags")
+            values2.append("#No tags")
 
         print(values2) 
 
         return values2
     except:
-        return "No tags"
+        return "#No tags"
       
 def sortAge(array):
     sortedArray = []

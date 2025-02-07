@@ -5,6 +5,8 @@ import LogOut from "./modules/Logout.js";
 
 export default function AccountPage() {
     let data = JSON.parse(sessionStorage.getItem("user"));
+    window.scrollTo(0, 0);
+
 
     fetchTopThreads();
 
@@ -131,7 +133,7 @@ export default function AccountPage() {
         } catch(err) {
           return(
             <div>
-            ERRROR YOU"RE BEING HACKED 
+            Failed to fetch user
             </div>
           );
 
@@ -213,8 +215,8 @@ export default function AccountPage() {
         <div className="account-info">
         <h2>Account Info</h2>
         <div className="user-details">
-          <p>Joined on {timeConverter(data.timestamp)}</p>
-          <h5>{data.type}</h5>
+          <h4>Joined on {timeConverter(data.timestamp)}</h4>
+          <h4>{data.type}</h4>
           <LogOut />
         </div>
       </div>
@@ -248,7 +250,7 @@ export default function AccountPage() {
         <div className="theme-switch">
           <label className="switch">
             <input type="checkbox" checked={darkMode} onChange={toggleDarkMode} />
-            {/* <span className="slider round"></span> */}
+            <span className="slider round"></span>
           </label>
         </div>
         
