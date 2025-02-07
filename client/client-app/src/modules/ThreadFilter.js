@@ -241,12 +241,15 @@ radioButtons.forEach(button => {
 
                    <div className="right">
                    <div>
-                    <input
-                      type="text"
-                      id="tagsInput"
-                      name="tagsInput"
-                      placeholder="Enter tags (comma separated)"
-                    />
+                   <input 
+                id="customtag" 
+                className="tag-input-container" 
+                value={tagInput}
+                onChange={tagInputChange}
+                onKeyDown={enterCheck}
+                type="text" 
+                placeholder="type in..."
+                />
                   </div>
                    </div>
                 </div>
