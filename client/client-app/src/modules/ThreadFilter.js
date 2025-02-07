@@ -16,6 +16,40 @@ export default function ThreadFilter({data, searchButton, totalPages, index}) {
 
 
 
+    function setNewest() {
+      sessionStorage.setItem("ageType", "newest");
+      window.location.reload();
+    }
+
+    function setOldest() {
+      sessionStorage.setItem("ageType", "oldest");
+      window.location.reload();
+    }
+
+    function setTen() {
+      sessionStorage.setItem("size", 10);
+      window.location.reload();
+    }
+
+    function setTwentyFive() {
+      sessionStorage.setItem("size", 25);
+      window.location.reload();
+    }
+
+    function setFifty() {
+      sessionStorage.setItem("size", 50);
+      window.location.reload();
+    }
+
+    function setHundred() {
+      sessionStorage.setItem("size", 100);
+      window.location.reload();
+    }
+
+    function setMost() {
+      sessionStorage.setItem("likeType", "most");
+      window.location.reload();
+    }
 
 
     const [currentPage, setCurrentPage] = useState(index);
@@ -261,10 +295,10 @@ radioButtons.forEach(button => {
                     Date:
                   </label>
                   <div>
-                    <input type="radio" id="newest" name="date" value="newest" />
+                    <input type="radio" id="newest" name="date" value="newest" onClick={setNewest} />
                     <label htmlFor="newest">Newest</label>
 
-                    <input type="radio" id="oldest" name="date" value="oldest" />
+                    <input type="radio" id="oldest" name="date" value="oldest" onClick={setOldest} />
                     <label htmlFor="oldest">Oldest</label>
 
                     <input type="radio" id="trending" name="date" value="trending" />
@@ -282,16 +316,16 @@ radioButtons.forEach(button => {
                   </label>
                 
                   <div>
-                    <input type="radio" id="thread10" name="listSize" value="10" />
+                    <input type="radio" id="thread10" name="listSize" value="10" onClick={setTen}/>
                     <label htmlFor="thread10">10</label>
 
-                    <input type="radio" id="thread25" name="listSize" value="25" />
+                    <input type="radio" id="thread25" name="listSize" value="25" onClick={setTwentyFive}/>
                     <label htmlFor="thread25">25</label>
 
-                    <input type="radio" id="thread50" name="listSize" value="50" />
+                    <input type="radio" id="thread50" name="listSize" value="50" onClick={setFifty}/>
                     <label htmlFor="thread50">50</label>
 
-                    <input type="radio" id="thread100" name="listSize" value="100" />
+                    <input type="radio" id="thread100" name="listSize" value="100" onClick={setHundred}/>
                     <label htmlFor="thread100">100</label>
                   </div>
 
@@ -332,7 +366,7 @@ radioButtons.forEach(button => {
                     <input type="radio" id="sortComments" name="sortBy" value="comments" />
                     <label htmlFor="sortComments">Most Comments</label>
 
-                    <input type="radio" id="sortLikes" name="sortBy" value="likes" />
+                    <input type="radio" id="sortLikes" name="sortBy" value="likes" onClick={setMost}/>
                     <label htmlFor="sortLikes">Most Likes</label>
                     </div>
                   </div>
