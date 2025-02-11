@@ -13,7 +13,17 @@ export default function ThreadList() {
 
     const [index, changeIndex] = useState(getIndex);
 
-    let size = 2;
+    const [size, setSize] = useState(getSize());
+
+    function getSize() {
+        let val = Number(sessionStorage.getItem("size"));
+
+        if(val === 0) {
+            return 10;
+        }else {
+            return Number(val);
+        }
+    }
 
 
     function getIndex() {
@@ -26,14 +36,6 @@ export default function ThreadList() {
         }else {
             return val;
         }
-    }
-
-    let data = sessionStorage.getItem("size");
-    console.log(data);
-
-    if(data !== null) {
-        console.log("oh no");
-        size = data;
     }
 
     function getQuery() {
@@ -80,14 +82,41 @@ export default function ThreadList() {
             activateList(true);
         }
 
+        function getAgeType() {
+            let data = sessionStorage.getItem("ageType");
+
+            if(data === null) {
+                return "newest";
+            }else {
+                return data;
+            }
+        
+        }
+
+        function getContentType() {
+            let data = sessionStorage.getItem("contentType");
+
+            if(data === undefined || data === null) {
+                return "none";
+            }else {
+                return data;
+            }
+        }
+
         function getListNone() {
+            let data = {
+                index: index,
+                size: size,
+                query: getQuery(),
+                ageType: getAgeType(),
+                contentType: getContentType()
+            }
+
+            console.log(data);
+
             fetch(sessionStorage.getItem("server_address")+"/threadList",{
                 method: "POST",
-                body: JSON.stringify({
-                    index: index,
-                    size: size,
-                    query: getQuery()
-                }),
+                body: JSON.stringify(data),
                 headers: {
                   "Content-type": "application/json; charset=UTF-8"
                 }

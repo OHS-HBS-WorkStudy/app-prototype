@@ -2,6 +2,8 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from routes.scoreVotes import sql_scoreVotes
+from routes.countViews import sql_scoreViews
+from routes.totals import thread_reply_count
 
 import sqlite3
 import uuid
@@ -11,6 +13,8 @@ class Page(BaseModel):
     index: int
     size: int
     query: str
+    ageType: str
+    contentType: str
 
 router = APIRouter()
 
@@ -42,7 +46,22 @@ def sql_threadList(page):
             max_index += 1
             break
 
-    values = sortAge(values)
+    try:
+        values = sortAgeType(values, page.ageType)
+    except:
+        print("no age type")
+
+    if page.contentType == "likes":
+        values = sortLikes(values)
+        print("likes")
+    elif page.contentType == "views":    
+        values = sortViews(values)
+        print("views")
+    elif page.contentType == "replies":
+        values = sortReplies(values)
+        print("replies")
+    else:
+        print("no content type")
 
 
     start_list = []
@@ -114,6 +133,13 @@ def getTagList(id):
     except:
         return "#No tags"
       
+def sortAgeType(array, type):
+    if type == "newest":
+        return sortAge(array)
+    elif type == "oldest":
+        return array
+
+
 def sortAge(array):
     sortedArray = []
     
@@ -124,6 +150,97 @@ def sortAge(array):
             placement_found = False
             for y in range(len(sortedArray)):
                 if array[x][4] > sortedArray[y][4]:
+                    if y == 0:
+                        sortedArray.insert(0, array[x])
+                    else:
+                        sortedArray.insert(y-1, array[x])
+                    placement_found = True
+                    break
+                else:
+                    continue
+                
+            if placement_found == False:
+                sortedArray.append(array[x])
+                
+    return sortedArray
+
+
+def sortLikes(array):
+    sorted_score = {}
+    sortedArray = []
+    
+    for x in range(len(array)):
+        data = sql_scoreVotes(array[x][2])
+
+        sorted_score[array[x][2]] = data
+
+    for x in range(len(array)):
+        if x == 0:
+            sortedArray.append(array[x])
+        else:
+            placement_found = False
+            for y in range(len(sortedArray)):
+                if sorted_score[array[x][2]] > sorted_score[sortedArray[y][2]]:
+                    if y == 0:
+                        sortedArray.insert(0, array[x])
+                    else:
+                        sortedArray.insert(y-1, array[x])
+                    placement_found = True
+                    break
+                else:
+                    continue
+                
+            if placement_found == False:
+                sortedArray.append(array[x])
+                
+    return sortedArray
+
+def sortViews(array):
+    sorted_score = {}
+    sortedArray = []
+    
+    for x in range(len(array)):
+        data = sql_scoreViews(array[x][2])
+
+        sorted_score[array[x][2]] = data
+
+    for x in range(len(array)):
+        if x == 0:
+            sortedArray.append(array[x])
+        else:
+            placement_found = False
+            for y in range(len(sortedArray)):
+                if sorted_score[array[x][2]] > sorted_score[sortedArray[y][2]]:
+                    if y == 0:
+                        sortedArray.insert(0, array[x])
+                    else:
+                        sortedArray.insert(y-1, array[x])
+                    placement_found = True
+                    break
+                else:
+                    continue
+                
+            if placement_found == False:
+                sortedArray.append(array[x])
+                
+    return sortedArray
+
+def sortReplies(array):
+    sorted_score = {}
+    sortedArray = []
+    
+    for x in range(len(array)):
+        data = thread_reply_count(array[x][2])
+
+        sorted_score[array[x][2]] = data
+
+    for x in range(len(array)):
+        if x == 0:
+            sortedArray.append(array[x])
+        else:
+            placement_found = False
+            for y in range(len(sortedArray)):
+                if sorted_score[array[x][2]] > sorted_score[sortedArray[y][2]]:
                     if y == 0:
                         sortedArray.insert(0, array[x])
                     else:
