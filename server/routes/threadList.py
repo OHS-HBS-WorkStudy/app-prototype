@@ -131,7 +131,7 @@ def getTagList(id):
 
         return values2
     except:
-        return "No tags"
+        return "#No tags"
 
 
 def sortAgeType(array, type):
