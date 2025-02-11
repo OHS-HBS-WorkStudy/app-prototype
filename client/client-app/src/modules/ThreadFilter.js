@@ -47,7 +47,17 @@ export default function ThreadFilter({data, searchButton, totalPages, index}) {
     }
 
     function setMost() {
-      sessionStorage.setItem("likeType", "most");
+      sessionStorage.setItem("contentType", "likes");
+      window.location.reload();
+    }
+
+    function setViewed() {
+      sessionStorage.setItem("contentType", "views");
+      window.location.reload();
+    }
+
+    function setReplies() {
+      sessionStorage.setItem("contentType", "replies");
       window.location.reload();
     }
 
@@ -360,10 +370,10 @@ radioButtons.forEach(button => {
                     <input type="radio" id="sortAnswered" name="sortBy" value="answered" />
                     <label htmlFor="sortAnswered">Answered</label>
 
-                    <input type="radio" id="sortViews" name="sortBy" value="views" />
+                    <input type="radio" id="sortViews" name="sortBy" value="views" onClick={setViewed}/>
                     <label htmlFor="sortViews">Most Views</label>
 
-                    <input type="radio" id="sortComments" name="sortBy" value="comments" />
+                    <input type="radio" id="sortComments" name="sortBy" value="comments" onClick={setReplies}/>
                     <label htmlFor="sortComments">Most Comments</label>
 
                     <input type="radio" id="sortLikes" name="sortBy" value="likes" onClick={setMost}/>

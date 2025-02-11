@@ -24,6 +24,18 @@ def total_replies(user_id):
         return len(values)
     except:
         return 0
+    
+def thread_reply_count(thread_id):
+    try:
+        conn = sqlite3.connect('app.db')
+        cursor = conn.cursor()
+        cursor.execute(f"SELECT COUNT(*) FROM replies WHERE thread_id='{thread_id}'")
+        values = cursor.fetchall()
+        conn.commit()
+        conn.close()
+        return len(values)
+    except:
+        return 0
 
 def total_views(user_id):
     try:

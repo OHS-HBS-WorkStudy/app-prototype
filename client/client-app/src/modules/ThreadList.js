@@ -93,10 +93,10 @@ export default function ThreadList() {
         
         }
 
-        function getlikeType() {
-            let data = sessionStorage.getItem("likeType");
+        function getContentType() {
+            let data = sessionStorage.getItem("contentType");
 
-            if(data === null) {
+            if(data === undefined || data === null) {
                 return "none";
             }else {
                 return data;
@@ -109,7 +109,7 @@ export default function ThreadList() {
                 size: size,
                 query: getQuery(),
                 ageType: getAgeType(),
-                likeType: getlikeType()
+                contentType: getContentType()
             }
 
             console.log(data);
