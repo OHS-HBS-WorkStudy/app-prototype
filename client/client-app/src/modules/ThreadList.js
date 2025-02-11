@@ -187,7 +187,7 @@ export default function ThreadList() {
     
 )}
 
-<button onClick={count}>press Me</button>
+
 </div>
 
     </div>
@@ -280,6 +280,15 @@ function ThreadButton({value}) {
     const sanitizedContents = DOMPurify.sanitize(value.content);
     const date = timeConverter(value.timestamp);
     console.log(date);
+
+    try {
+    const item = JSON.parse(sessionStorage.getItem(value));
+    const getTag = item ? item.tags : "#No Tags";
+    console.log(getTag);
+    } catch(err) {
+        console.log("err");
+    }
+
     return(
 
           
@@ -294,6 +303,11 @@ function ThreadButton({value}) {
                         </div>
                         <div className="grid-item-desc">
                             {stripHTML(sanitizedContents)}
+                        </div>
+                        <div className="grid-item-tags-container ">
+                            <div className="grid-item-tags">
+                                <p>{value.tags}</p>
+                            </div>
                         </div>
                     </div>
             </div>
