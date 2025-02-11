@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 import Navigator from "./modules/Navigator.js";
 import ThreadReply from "./modules/ThreadReply.js";
@@ -88,12 +88,23 @@ export default function ThreadPage() {
          setIsReplyVisible((prev) => !prev);
      };
 
+
+     const [hasLoaded, setHasLoaded] = useState(false);
+
+    useEffect(() => { 
+        setHasLoaded(true); 
+        console.log("loaded");
+
+        
+    }, []);
+
+
     return(
         <div>
             <Navigator />
             <div>
             <div className="threadnav-space"></div>
-            <div className="thread">
+            <div className={`thread ${hasLoaded ? "" : "play"}`}>
                 <div className="threadpage">
                 <div id="thread-content">
 

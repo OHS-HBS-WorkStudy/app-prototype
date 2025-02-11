@@ -38,7 +38,7 @@ export default function ReplyVote({id}) {
         }
     }
 
-    function postVote(type,) {
+    function postVote(type) {
         let data = {
             score: type,
             reply_id: id,
