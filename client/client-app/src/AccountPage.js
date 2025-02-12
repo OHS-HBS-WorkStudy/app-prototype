@@ -45,22 +45,25 @@ export default function AccountPage() {
 
       function getTopThreads(){
         let data = JSON.parse(sessionStorage.getItem("topThreads"));
+        try{
+          if(data.length > 0){
+            let threads = [];
 
-        if(data.length > 0){
-          let threads = [];
+            for(let i = 0; i < data.length; i++){
+              threads.push(data[i][0]);
+            }
 
-          for(let i = 0; i < data.length; i++){
-            threads.push(data[i][0]);
+            return(
+              <div>
+                <h2>{threads[0]}</h2>
+                <h2>{threads[1]}</h2>
+                <h2>{threads[2]}</h2>
+              </div>
+            );
+          }else {
+            return "No Threads";
           }
-
-          return(
-            <div>
-              <h2>{threads[0]}</h2>
-              <h2>{threads[1]}</h2>
-              <h2>{threads[2]}</h2>
-            </div>
-          );
-        }else {
+        } catch(err) {
           return "No Threads";
         }
       }

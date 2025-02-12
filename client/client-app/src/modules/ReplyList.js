@@ -74,7 +74,7 @@ export default function ReplyList({getCount}) {
                     <div className="content-container ">
 
                     <div className="vote-box">
-                            <ReplyVote />
+                            <ReplyVote id={value.reply_id}/>
                         </div>
                         <div className="reply submitted-content-desc" dangerouslySetInnerHTML={{__html: value.contents}} />
                     </div>
