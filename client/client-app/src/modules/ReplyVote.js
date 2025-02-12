@@ -46,6 +46,8 @@ export default function ReplyVote({id}) {
             user_id: JSON.parse(sessionStorage.getItem("user")).uuid
         }
 
+        console.log(data);
+
         fetch(sessionStorage.getItem("server_address")+"/createReplyVote", {
             method: "POST",
             body: JSON.stringify(data),
