@@ -167,7 +167,6 @@ body, html {
 .top-nav {
   position: fixed;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   top: 0;
   left: 0;
@@ -178,6 +177,7 @@ body, html {
   padding: 10px 20px;
   z-index: 1000;
   box-sizing: border-box;
+  border: 1px solid black;
 }
 
 .nav-space {
@@ -202,7 +202,64 @@ body, html {
 
 }
 
-.navigator.menu-open,
+.top-nav-content {
+  display: flex;
+  margin-left: -15px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: 1px solid yellow;
+  justify-content: space-between;
+}
+
+.nav-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  width: fit-content;
+ padding: 10px;
+  background-color: var(--color-secondary-accent);
+  color: var(--color-text-primary);  
+  font-size: 1rem;
+  font-weight: bold;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-toggle svg {
+  transform: scale(1.1);
+  fill: var(--clr-primary-a0); 
+}
+
+.nav-toggle:focus {
+  outline: none;  
+  border-color: var(--color-primary);  
+}
+
+.nav-toggle:active {
+  background-color:  var(--color-primary);  
+  color: white; 
+  border-color:  var(--color-primary);  
+}
+
+
+.nav-toggle:hover {
+  background-color: rgba(0, 0, 255, 0.1); 
+  border-color:  var(--color-primary); 
+}
+
+.nav-toggle:focus-visible {
+  outline: 2px solid  var(--color-primary); 
+}
+
+.navigator.menu-open .sidebar {
+  width: 250px;
+}
+
 .navigator.menu-open .sidebar:hover {
   width: 250px;
 }
@@ -250,6 +307,10 @@ body, html {
 }
 
 .circle-link:focus:before {
+  transform: scale(1);
+}
+
+.circle-link.menu-open::before {
   transform: scale(1);
 }
 
