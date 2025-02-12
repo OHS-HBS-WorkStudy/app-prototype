@@ -71,7 +71,7 @@ export default function AccountPage() {
       function getTopReplies(){
         let data = JSON.parse(sessionStorage.getItem("topReplies"));
 
-        if(data.length > 0){
+        if(data?.length > 0){
           let replies = [];
 
           for(let i = 0; i < data.length; i++){
