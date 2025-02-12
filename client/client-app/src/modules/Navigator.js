@@ -4,82 +4,100 @@ import SearchBar from './SearchBar.js';
 import '../App.css';
 
 export default function Navigator() {
-    const changeScreen = useContext(ScreenStateContext);
-    const timeoutRef = useRef(null); 
+  const changeScreen = useContext(ScreenStateContext);
+  const timeoutRef = useRef(null); 
 
-    const [isSearchBar, setSearchBar] = useState(window.innerWidth <= 600);
+  const [isSearchBar, setSearchBar] = useState(window.innerWidth <= 600);
 
-    useEffect(() => {
-        const handleResize = () => {
-            const screenCheck = window.innerWidth <= 600;
-            if (screenCheck !== isSearchBar) {
-                setSearchBar(screenCheck);  
-            }
-        };
+  const [isExpanded, setIsExpanded] = useState(() => {
+    return localStorage.getItem('isExpanded') === 'true';
+  });
 
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, [isSearchBar]);  
+  const switchToggle = () => {
+    setIsExpanded(prev => {
+      const state = !prev;
+      localStorage.setItem('isExpanded', state);
+      return state;
+    });
+  };
 
-    function SignUp() {
-        changeScreen(1);
+  useEffect(() => {
+    const handleResize = () => {
+      const screenCheck = window.innerWidth <= 600;
+      if (screenCheck !== isSearchBar) {
+        setSearchBar(screenCheck);  
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [isSearchBar]);  
+
+  function SignUp() {
+    changeScreen(1);
+  }
+
+  function Login() {
+    changeScreen(2);
+  }
+
+  function NewThread() {
+    changeScreen(4);
+  }
+
+  function AccountPage() {
+    changeScreen(5);
+  }
+
+  function HomePage() {
+    sessionStorage.removeItem("search_tag");
+    changeScreen(0);
+    window.location.reload();
+  }
+
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem('dark-mode') === 'enabled';
+  });
+
+  useEffect(() => {
+    document.body.classList.toggle('dark', darkMode);
+    localStorage.setItem('dark-mode', darkMode ? 'enabled' : 'disabled');
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode((prevMode) => !prevMode);
+  };
+
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    timeoutRef.current = setTimeout(() => setIsHovered(true), 300);
+  }; 
+
+  const handleMouseLeave = () => {
+    clearTimeout(timeoutRef.current); 
+    if (isHovered) {
+      setIsHovered(false);
     }
+  }; 
 
-    function Login() {
-        changeScreen(2);
-    }
-
-    function NewThread() {
-        changeScreen(4);
-    }
-
-    function AccountPage() {
-        changeScreen(5);
-    }
-
-    function HomePage() {
-        sessionStorage.removeItem("search_tag");
-        changeScreen(0);
-        window.location.reload();
-    }
-
-    const [darkMode, setDarkMode] = useState(() => {
-        return localStorage.getItem('dark-mode') === 'enabled';
-      });
-
-      useEffect(() => {
-        document.body.classList.toggle('dark', darkMode);
-        localStorage.setItem('dark-mode', darkMode ? 'enabled' : 'disabled');
-      }, [darkMode]);
-    
-
-      const toggleDarkMode = () => {
-        setDarkMode((prevMode) => !prevMode);
-      };
-
-      const [isHovered, setIsHovered] = useState(false);
-
-      const handleMouseEnter = () => {
-        timeoutRef.current = setTimeout(() => setIsHovered(true), 300);
-      }; 
-      const handleMouseLeave = () => {
-        clearTimeout(timeoutRef.current); 
-        if (isHovered) {
-          setIsHovered(false);
-        }
-      }; 
 
     return (
         <div>
             <div className="top-nav">
+              <div className="top-nav-content">
+            <button className="nav-toggle" onClick={switchToggle}>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+            </button>
                 <h1 className="title">
             <div id="hov" onClick={HomePage} isHovered={isHovered}>Anonymous Academy</div>
             </h1>
             <SearchBar />
             </div>
+            </div>
 
         <div        
-        className={`navigator ${isHovered ? 'menu-open' : ''}`} 
+        className={`navigator ${isHovered || isExpanded ? 'menu-open' : ''}`} 
         onMouseEnter={handleMouseEnter} 
         onMouseLeave={handleMouseLeave}
       >
@@ -100,7 +118,7 @@ export default function Navigator() {
                                 </svg></i>
                
 
-                                {isHovered && (<h1>Sign-Up</h1>)}
+                                {(isHovered || isExpanded) && (<h1>Sign-Up</h1>)}
                             </button>
                             </div>
 
@@ -111,7 +129,7 @@ export default function Navigator() {
                                     <path d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z"/>
                                 </svg></i>
                                 
-                                {isHovered && (<h1>Login-In</h1>)}
+                                {(isHovered || isExpanded) && (<h1>Login-In</h1>)}
                               </button>
                               </div>
 
@@ -121,7 +139,7 @@ export default function Navigator() {
                 <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/>
               </svg></i>
 
-                                {isHovered && (<h1>Home</h1>)}
+                                {(isHovered || isExpanded) && (<h1>Home</h1>)}
                             </button>
                             </div>
 
@@ -132,7 +150,7 @@ export default function Navigator() {
                 <path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/>
               </svg></i>
                                 
-                                {isHovered && (<h1>Ask a Question!</h1>)}
+                                {(isHovered || isExpanded) && (<h1>Ask a Question!</h1>)}
                               </button>
                               </div>
 
@@ -144,7 +162,7 @@ export default function Navigator() {
                                   <path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z"/>
                                 </svg>
                                 
-                                {isHovered && (<h1>Account</h1>)}
+                                {(isHovered || isExpanded) && (<h1>Account</h1>)}
                               </button>
                               </div>
 
