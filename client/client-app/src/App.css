@@ -53,6 +53,8 @@
   --color-border: hsl(0, 0%, 85%); /* Light gray for separation */
   --color-shadow: hsla(0, 0%, 0%, 0.1); /* Soft black shadow for depth */
   --color-text-tertiary: black; /* Black for text on light backgrounds */
+  --color-text-white: white; /* White for text on dark backgrounds */
+  --color-text-black: #333; 
 
 --clr-primary-a0: #cca633;
 --clr-primary-a10: #d3af4c;
@@ -94,7 +96,8 @@
   --color-text-primary: hsl(0, 0%, 92%); /* Soft white for readability */
   --color-text-secondary: hsl(0, 0%, 70%); /* Light gray for secondary text */
   --color-text-tertiary: hsl(0, 0%, 100%); /* White  */
-
+  --color-text-white: white; /* White for text on dark backgrounds */
+  --color-text-black: #333; 
   --color-input-background: #3f3f3f;
 
   /** Dark theme primary colors */
@@ -550,7 +553,6 @@ body, html {
   align-content: center;
   width: 100vw;
   height: 100vh;
-  border: 1px solid yellow;
 }
 
 .center h3 {
@@ -1569,6 +1571,8 @@ body, html {
 
 .col-row.bottom {
   display: flex;
+  padding: 0;
+  margin: 0;
 }
 
 
@@ -1579,6 +1583,7 @@ body, html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(135deg, var(--clr-surface-a30), var(--clr-surface-a50));
 }
 
 
@@ -1610,6 +1615,12 @@ body, html {
 }
 
 .col-row.top.row1:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.col-row.bottom:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   transform: translateY(-5px);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -1714,37 +1725,43 @@ h1.fire {
 .threadnav-space {
   margin-top: 60px;
 }
+
+body {
+  background-color: var(--clr-surface-a10);
+}
+
 .thread {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   width: 100vw; 
-  height: max-content;
-
-  
+  height: fit-content;
   background-color: var(--clr-surface-a10);
   transition: height 0.3s ease;
   min-width: 300px; 
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+
 
 }
 
-
-.threadpage{
+.threadpage {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: max-content;
-  padding-right: 40px;
+  height: 100%; 
 
+
+  padding-right: 40px;
   background-color: var(--clr-surface-a10);
 }
 
 #thread-content {
-margin-left: 40px;
-width: 100%;
-padding-right: 30px;
-
-
+  margin-left: 40px;
+  width: 100%;
+  padding-right: 30px;
+  flex-grow: 1; 
 }
 
 .thread-top {
@@ -1753,7 +1770,7 @@ flex-direction: column;
 justify-content: start;
 align-items: start;
 width: 97%;
-border-bottom: 1px solid gray;
+border-bottom: 1px solid var(--color-text-white); 
 margin-left: 40px;
 
 }
@@ -1761,21 +1778,29 @@ margin-left: 40px;
 .submitted-content-title {
 font-size: 2em;
 line-height: 1.05;
-color: var(--color-text-primary);
+color: var(--color-text-white);
 margin-bottom: 12px;
 font-weight: bold;
 text-align: left;
 word-break: break-word;
 white-space: normal;
-border-bottom: 2px solid #ddd; 
+
 padding: 20px;
 padding-bottom: 10px; 
-width: 97%;
+width: 100%;
+}
+
+.thread .submitted-content-title {
+  padding-left: 0;
 }
 
 .thread-top-stats{
 display: inline-flex;
 gap: 30px;
+}
+
+.threadpage h2 {
+  color: var(--color-text-white) !important;
 }
 
 
@@ -1789,7 +1814,7 @@ margin-left: 40px;
 
 .submitted-content-desc {
 margin-left: 30px;
-color: var(--color-text-primary);
+color: var(--color-text-white);
 font-size: 1rem;
 line-height: 1.6;
 margin-top: 12px;
@@ -1806,9 +1831,11 @@ gap: 10px;
 height: fit-content;
 border-radius: 12px;
 margin-top: 20px;
-
-animation: fadeIn 1.5s ease-out;
 transition: top 0.3s ease;
+}
+
+.thread.play .vote-box {
+  animation: fadeIn 1.5s ease-out;
 }
 
 
@@ -1821,6 +1848,7 @@ height: 40px;
 display: flex;
 align-items: center;
 justify-content: center;
+border: 1px solid black;
 border-radius: 50%;
 transition: transform 0.3s ease, background 0.3s ease;
 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), inset 0 -1px 3px rgba(255, 255, 255, 0.4);
@@ -1833,16 +1861,16 @@ fill: white;
 
 .vote-box .up-vote:hover,
 .vote-box .down-vote:hover {
-background: linear-gradient(145deg, var(--color-primary-accent), var(--color-background));
-transform: scale(1.15);
+background: linear-gradient(145deg, var(--clr-surface-a0), var(--color-background));
+transform: scale(1.05);
 }
 
 .vote-box .vote-number {
 font-size: 1rem;
 font-weight: bold;
-border: 1px solid green;
+
 text-align: center;
-color: var(--color-text-primary);
+color: var(--color-text-white);
 text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
@@ -1888,13 +1916,14 @@ text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 
 .reply-section {
   width: 97%;
-
   margin-left: 40px;
-
   display: flex;
   flex-direction: column;
   align-items: flex-start; 
   box-sizing: border-box;
+  padding: 5px;
+  box-shadow: 0;
+  
 }
 
 .thread-top.reply {
@@ -1907,10 +1936,11 @@ text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   flex-direction: column;
   background-color: var(--color-background);
   width: 100%;
-  min-height: 100vh;
+  height: fit-content;
   align-items: center;
   justify-content: flex-start;
   color: #fff;
+
 
   box-sizing: border-box;
   position: relative;
@@ -1929,10 +1959,9 @@ text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   max-width: 1200px;
   width: 100%;
   margin-top: 10px;
-
 }
 
-.reply-section {
+.thread.play .reply-section {
   animation: downUp 1.5s;
 }
 
@@ -2027,7 +2056,7 @@ text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
   overflow: hidden; 
   box-sizing: border-box;
 }
@@ -2039,6 +2068,9 @@ text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 
  
 }
+
+
+
 
 
 .reply-container .ql-formats button {
@@ -2077,31 +2109,27 @@ text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   resize: vertical;
   border: 1.1px dashed #e0e0e062 !important;
   border-radius: 8px !important; 
-  background-color: #3f3f3f !important;
+  background-color: var(--color-input-background) !important;
 
 }
 
 
-.reply-container .ql-editor:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 5px var(--color-primary);
-}
 
-/* 
+
 .Replylist {
   width: 97%;
-
-  margin-left: 40px;
-
+  margin-left: -15px;
   display: flex;
   flex-direction: column;
   align-items: flex-start; 
   box-sizing: border-box;
-} */
+  padding-left: 0;
+}
 
 .ReplylistTop {
   display: flex;
   margin-left: 65px;
+  padding-bottom: 20px;
 }
 
 @media (max-width: 768px) {
@@ -2119,20 +2147,20 @@ text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 
-.btn-send {
+.reply-container .btn-send {
   padding: 10px 20px;
 
-  background-color: var(--color-primary);
-  color: #fff;
+  background-color: var(--clr-primary-a30) !important;
+  color: #fff !important;
   font-size: 1rem;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.btn-send:hover {
-  background-color: var(--color-text-primary);
-  transform: translateY(-2px);
+.reply-container .btn-send:hover {
+
+  transform: translateY(-5px);
 }
 
 .btn-send:active {
@@ -2223,18 +2251,18 @@ text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   margin-left: 160px;
 }
 
-#thread-content:hover {
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-}
 
 
 .submitted-content-title {
-  animation: fadeIn 1s ease-out;
   border-bottom: black;
 }
 
-.submitted-content-desc {
+.thread.play .submitted-content-title,
+.thread.play .submitted-content-desc {
   animation: fadeIn 1.5s ease-out;
+}
+
+.submitted-content-desc {
   white-space: wrap;
 }
 
@@ -2629,7 +2657,7 @@ label h1 {
 }
 
 .account-page h2 {
-  color: var(--color-text-tertiary);
+  color: var(--color-background);
 }
 
 .account-top { 
@@ -2638,7 +2666,8 @@ label h1 {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  border-bottom: 1px solid var(--color-text-tertiary);
+  color: var(--clr-primary-a10);
+  border-bottom: 1px solid var(--clr-primary-a10);
 }
 .account-content {  
   grid-area: content;
@@ -2666,7 +2695,7 @@ label h1 {
 .my-stats,
 .my-user-stats{
   background-color: var(--clr-primary-a10);
-  color: var(--color-text-tertiary);
+  color: var(--color-background);
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);

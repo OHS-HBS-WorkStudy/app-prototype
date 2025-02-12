@@ -181,11 +181,11 @@ export default function ThreadList() {
 
                         <div className="container2">
                         <div className="grid-container">
-{currentItems.map((value, question) => 
+                            {currentItems.map((value, question) => 
 
-    <ThreadButton value={value} />
-    
-)}
+                                <ThreadButton value={value} />
+                                
+                            )}
 
 
 </div>

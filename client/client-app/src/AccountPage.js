@@ -147,7 +147,7 @@ export default function AccountPage() {
 
       <div className="account-page">
       <div className="account-top">
-        <h1>{nameFetch()}</h1>
+        <h1 className="userName">{nameFetch()}</h1>
         <div className="account-pages">
           <h3 
             className={activeSection === 'activity' ? 'active' : ''} 
