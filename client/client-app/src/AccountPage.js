@@ -70,22 +70,26 @@ export default function AccountPage() {
 
       function getTopReplies(){
         let data = JSON.parse(sessionStorage.getItem("topReplies"));
+        
+        try{
+          if(data.length > 0){
+            let replies = [];
 
-        if(data.length > 0){
-          let replies = [];
+            for(let i = 0; i < data.length; i++){
+              replies.push(data[i][0]);
+            }
 
-          for(let i = 0; i < data.length; i++){
-            replies.push(data[i][0]);
+            return(
+              <div>
+                <h2>{replies[0]}</h2>
+                <h2>{replies[1]}</h2>
+                <h2>{replies[2]}</h2>
+              </div>
+            );
+          }else {
+            return "No Replies";
           }
-
-          return(
-            <div>
-              <h2>{replies[0]}</h2>
-              <h2>{replies[1]}</h2>
-              <h2>{replies[2]}</h2>
-            </div>
-          );
-        }else {
+        } catch(err) {
           return "No Replies";
         }
       }

@@ -33,6 +33,7 @@ def thread_reply_count(thread_id):
         values = cursor.fetchall()
         conn.commit()
         conn.close()
+        print(len(values))
         return len(values)
     except:
         return 0
