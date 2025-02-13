@@ -61,6 +61,57 @@ export default function ThreadFilter({data, searchButton, totalPages, index}) {
       window.location.reload();
     }
 
+    function setPinned() {
+      if(filterOpen === true) {
+        let data = sessionStorage.getItem("contentType"); 
+
+        if(data === "likes") {
+          document.getElementById("sortLikes").checked = true;
+          //document.getElementsByName("sortBy")[3].checked = true;
+        }else if(data === "views") {
+          document.getElementById("sortViews").checked = true;
+          //document.getElementsByName("sortBy")[1].checked = true;
+        }else if(data === "replies") {
+          document.getElementById("sortComments").checked = true;
+          //document.getElementsByName("sortBy")[2].checked = true;
+        }
+      }
+    }
+
+    function setSizePinned() {
+      if(filterOpen === true) {
+        let data = sessionStorage.getItem("size"); 
+
+        if(data === "10") {
+          document.getElementById("thread10").checked = true;
+          //document.getElementsByName("sortBy")[3].checked = true;
+        }else if(data === "25") {
+          document.getElementById("thread25").checked = true;
+          //document.getElementsByName("sortBy")[1].checked = true;
+        }else if(data === "50") {
+          document.getElementById("thread50").checked = true;
+          //document.getElementsByName("sortBy")[2].checked = true;
+        }else if(data === "100") {
+          document.getElementById("thread100").checked = true;
+          //document.getElementsByName("sortBy")[2].checked = true;
+        }
+      }
+    }
+
+    function setAgePinned() {
+      if(filterOpen === true) {
+        let data = sessionStorage.getItem("ageType"); 
+
+        if(data === "newest") {
+          document.getElementById("newest").checked = true;
+          //document.getElementsByName("sortBy")[3].checked = true;
+        }else if(data === "oldest") {
+          document.getElementById("oldest").checked = true;
+          //document.getElementsByName("sortBy")[1].checked = true;
+        }
+      }
+    }
+
 
     const [currentPage, setCurrentPage] = useState(index);
     const itemsPerPage = 1; 
@@ -311,6 +362,8 @@ radioButtons.forEach(button => {
                     <input type="radio" id="oldest" name="date" value="oldest" onClick={setOldest} />
                     <label htmlFor="oldest">Oldest</label>
 
+                    {setAgePinned()}
+
                     <input type="radio" id="trending" name="date" value="trending" />
                     <label htmlFor="trending">Trending</label>
 
@@ -337,6 +390,8 @@ radioButtons.forEach(button => {
 
                     <input type="radio" id="thread100" name="listSize" value="100" onClick={setHundred}/>
                     <label htmlFor="thread100">100</label>
+
+                    {setSizePinned()}
                   </div>
 
                   </div>
@@ -378,6 +433,8 @@ radioButtons.forEach(button => {
 
                     <input type="radio" id="sortLikes" name="sortBy" value="likes" onClick={setMost}/>
                     <label htmlFor="sortLikes">Most Likes</label>
+
+                    {setPinned()}
                     </div>
                   </div>
                   </div>
