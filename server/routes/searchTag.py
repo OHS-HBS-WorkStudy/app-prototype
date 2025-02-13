@@ -14,6 +14,7 @@ class Tag(BaseModel):
 
 def sql_searchTag(data):
     conn = sqlite3.connect('app.db')
+    print("hello")
     cursor = conn.cursor()
 
     cursor.execute(f"SELECT * FROM tags WHERE tag_name='{data}'")
