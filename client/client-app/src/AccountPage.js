@@ -75,6 +75,7 @@ export default function AccountPage() {
           if(data.length > 0){
             let replies = [];
 
+
             for(let i = 0; i < data.length; i++){
               replies.push(data[i][0]);
             }
