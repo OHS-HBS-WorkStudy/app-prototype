@@ -156,55 +156,32 @@ export default function ThreadList() {
         if(listActive === true) {
             return(
                 <>
-                <div className="layout-wrapper">
-                <div className="nav-space"></div>
-                <div className="sidebar-space"></div>
-                <div className="layout-content">
-                    <div className="Home">
+                    <div className="layout-wrapper">
+                        <div className="nav-space"></div>
+                        <div className="sidebar-space"></div>
+                        <div className="layout-content">
+                            <div className="Home">
 
-                    <div className="container1">
-                        <BentoBox />
+                            <div className="container1">
+                                <BentoBox />
 
-                        
-                
-                            
-{/* 
-                        <div className="leftextra">
-                            <h1>Thread Created</h1>
-                            <div className="leftextracontent">
-                                    <p>No threads viewed yet</p>
+                                <ThreadFilter index={index} totalPages={totalPages}/>
+
+
+                                <div className="container2">
+                                    <div className="grid-container">
+                                        {currentItems.map((value, question) => 
+
+                                            <ThreadButton value={value} />
+                                            
+                                        )}
+                                    </div>
+                                </div>
                             </div>
-                        </div> */}
-
-                        <ThreadFilter index={index} totalPages={totalPages}/>
-
-
-                        <div className="container2">
-                        <div className="grid-container">
-                            {currentItems.map((value, question) => 
-
-                                <ThreadButton value={value} />
-                                
-                            )}
-
-
-</div>
-
-    </div>
-
                         </div>
-                        </div>
-
-
-
-                        
-    
-                    
-                
-            </div>
-            </div>
-
-</>
+                    </div>
+                </div>
+            </>
                 
             ) 
         }else {

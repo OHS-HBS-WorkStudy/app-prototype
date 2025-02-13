@@ -177,7 +177,6 @@ body, html {
   padding: 10px 20px;
   z-index: 1000;
   box-sizing: border-box;
-  border: 1px solid black;
 }
 
 .nav-space {
@@ -199,17 +198,17 @@ body, html {
   overflow: hidden;
   transition: width 0.3s ease-in-out;
   align-items: center;
-
+  white-space: nowrap
 }
 
 .top-nav-content {
   display: flex;
-  margin-left: -15px;
+  margin-left: -10px;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   width: 100%;
-  border: 1px solid yellow;
-  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: nowrap;
 }
 
 .nav-toggle {
@@ -335,20 +334,14 @@ body, html {
 
 }
 
-.sidebar:hover .circle-link {
+.sidebar:hover .circle-link,
+.navigator.menu-open .circle-link {
   padding-left: 20px; 
 }
 
-.sidebar:hover .circle-link svg {
+.sidebar:hover .circle-link svg,
+.navigator.menu-open .circle-link svg {
   margin-right: 10px; 
-}
-
-.sidebar:not(:hover) .circle-link {
-  padding-left: 10px; 
-}
-
-.sidebar:not(:hover) .circle-link svg {
-  margin-right: 0; 
 }
 
 .circle-link:hover {
@@ -370,7 +363,6 @@ body, html {
 }
 
 .navigator.menu-open .circle-link svg {
-  fill: var(--color-accent);
   transform: scale(1.1);
 }
 
@@ -455,8 +447,10 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  margin: 0 auto;
+  width: 50vw;
+
+  
+  border: 1px solid black;
 }
 
 .search-box {
@@ -464,7 +458,7 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60%;
+  width: 100%;
   border-radius: 25px;
  
   overflow: hidden;
@@ -2699,6 +2693,43 @@ label h1 {
 
 /* Account Page */
 
+
+.overlay {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  backdrop-filter: blur(10px); 
+}
+
+.box-holder {
+  display: flex;
+}
+
+.overlay-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-background);
+  height: 30vh;
+  width: 30vw;
+  border-radius: 10px;
+  margin: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.box h2 {
+  color: white !important;
+}
+
+
+
 .account-page {
   display: grid;
   grid-template-columns: 1fr;
@@ -2744,6 +2775,8 @@ label h1 {
   gap: 10px;
   flex-direction: row;
 }
+
+
 
 .my-trending,
 .my-trending-comments,
@@ -2877,10 +2910,16 @@ input:focus + .slider {
 }
 
 .user-stats {
-  border: 1px solid var(--color-text-tertiary);
+  border: 1px solid var(--color-background);
   padding: 10px;
   text-align: center;
 }
+
+.user-stats h3{
+  font-weight: bold;
+  color: var(--color-background);
+}
+
 
 @media (max-width: 768px) {
  
@@ -2933,15 +2972,17 @@ input:focus + .slider {
   cursor: pointer; 
   padding: 5px 10px;
   border-radius: 5px;
+  color: var(--clr-primary-a10);
   transition: background-color 0.3s ease; 
 }
 
 .account-pages h3:hover {
-  background-color: #eee; 
+  background-color: var(--clr-primary-a50); 
 }
 
 .account-pages h3.active {
-  background-color: #ddd; 
+  background-color: var(--clr-primary-a10);
+  color: var(--color-background);
   font-weight: bold;
 }
 

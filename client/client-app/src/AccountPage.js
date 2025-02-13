@@ -102,7 +102,7 @@ export default function AccountPage() {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({user_id: data.uuid})
+          body: JSON.stringify({user_id: data?.uuid})
         })
         .then((response) => response.json())
         .then((json) => toReplies(json))
@@ -147,157 +147,150 @@ export default function AccountPage() {
 
         }
       };
+
+
     
 
     return(
       <div>
-        <Navigator />
+      <Navigator />
 
       <div className="account-page">
-      <div className="account-top">
+        <div className="account-top">
         <h1 className="userName">{nameFetch()}</h1>
         <div className="account-pages">
           <h3 
-            className={activeSection === 'activity' ? 'active' : ''} 
-            onClick={() => handleSectionClick('activity')}
+          className={activeSection === 'activity' ? 'active' : ''} 
+          onClick={() => handleSectionClick('activity')}
           >
-            Activity
+          Activity
           </h3>
           <h3 
-            className={activeSection === 'stats' ? 'active' : ''}
-            onClick={() => handleSectionClick('stats')}
+          className={activeSection === 'stats' ? 'active' : ''}
+          onClick={() => handleSectionClick('stats')}
           >
-            Stats
+          Stats
           </h3>
         </div>
-      </div>
+        </div>
 
-      {activeSection === 'activity' && ( 
-        <div className="account-content">
-          <div className="my-trending">
-        <h2>My Trending Threads</h2>
-        <div className="recent-threads">
-          <ul>
-            {/* {recentThreads.map((thread, index) => (
-              <li key={index}>
-                <a href={thread.link}>{thread.title}</a>
-              </li>
-            ))} */}
-          </ul>
-          <div>{getTopThreads()}</div>
+        {data === null && (
+        <div className="overlay">
+          <div className="box-holder">
+            <div className="overlay-box">
+              <div className="box-conten">
+                <div className="box-top">
+                  <h2>Please log in to access your account</h2>
+                </div>
+              <div className="box-bottom">
+                  <p>You need to log in to access this page. Please <div className="underline">log in</div> to continue.</p>
+              </div>
+             </div>
+            </div>
           </div>
         </div>
-        <div className='my-trending-comments'> 
-        <div className="latest-posts">
-          <h2>My Trending Comments</h2>
-          <ul>
-            {/* {latestPosts.map((post, index) => (
+        )}
+
+        {data !== null && activeSection === 'activity' && ( 
+        <div className="account-content">
+          <div className="my-trending">
+          <h2>My Trending Threads</h2>
+          <div className="recent-threads">
+            <ul>
+            {/* {recentThreads.map((thread, index) => (
               <li key={index}>
-                <a href={post.link}>{post.content}</a>
+              <a href={thread.link}>{thread.title}</a>
               </li>
             ))} */}
-          </ul>
-          <div>{getTopReplies()}</div>
-        </div>
-        </div>
-        <div>
-        <div className="my-recent-tags">
-        <h2>Recent Tags</h2>
-        <div className="recent-tags">
-        <ul>
-            {/* {recentTags.map((tag, index) => (
+            </ul>
+            <div>{getTopThreads()}</div>
+          </div>
+          </div>
+          <div className='my-trending-comments'> 
+          <div className="latest-posts">
+            <h2>My Trending Comments</h2>
+            <ul>
+            {/* {latestPosts.map((post, index) => (
+              <li key={index}>
+              <a href={post.link}>{post.content}</a>
+              </li>
+            ))} */}
+            </ul>
+            <div>{getTopReplies()}</div>
+          </div>
+          </div>
+          <div>
+          <div className="my-recent-tags">
+            <h2>Recent Tags</h2>
+            <div className="recent-tags">
+            <ul>
+              {/* {recentTags.map((tag, index) => (
               <li key={index}>
                 <a href={tag.link}>{tag.title}</a>
               </li>
-            ))} */}
-          </ul>
+              ))} */}
+            </ul>
+            </div>
+          </div>
+          </div>
         </div>
-        </div>
-        </div>
-        </div>
-      )}
+        )}
 
-      {activeSection === 'stats' && ( 
+        {data !== null && activeSection === 'stats' && ( 
         <div className="account-content">
-
-        <div className="account-info">
-        <h2>Account Info</h2>
-        <div className="user-details">
-          <h4>Joined on {timeConverter(data.timestamp)}</h4>
-          <h4>{data.type}</h4>
-          <LogOut />
-        </div>
-      </div>
-      
-      <div className="achievements">
-        <h2>Achievements</h2>
-        <div className="achievement-list">
-          {/* {achievements.map((achievement, index) => (
+          <div className="account-info">
+          <h2>Account Info</h2>
+          <div className="user-details">
+            <h4>Joined on {timeConverter(data.timestamp)}</h4>
+            <h4>{data.type}</h4>
+            <LogOut />
+          </div>
+          </div>
+          
+          <div className="achievements">
+          <h2>Achievements</h2>
+          <div className="achievement-list">
+            {/* {achievements.map((achievement, index) => (
             <div key={index} className="achievement">
               <span className="achievement-icon">{achievement.icon}</span>
               <p>{achievement.title}</p>
             </div>
-          ))} */}
-        </div>
-      </div>
+            ))} */}
+          </div>
+          </div>
 
-      <div className="my-notifications">
-        <h2>My Notifications</h2>
-        {/* <ul>
-          {notifications.map((notification, index) => (
+          <div className="my-notifications">
+          <h2>My Notifications</h2>
+          {/* <ul>
+            {notifications.map((notification, index) => (
             <div key={index} className="TBD">
-
             </div>
-          ))}
-        </ul> */}
-      </div>
+            ))}
+          </ul> */}
+          </div>
 
-
-        <div className="site-customizations">
-        <h2>Theme Switch</h2>
-        <div className="theme-switch">
-          <label className="switch">
+          <div className="site-customizations">
+          <h2>Theme Switch</h2>
+          <div className="theme-switch">
+            <label className="switch">
             <input type="checkbox" checked={darkMode} onChange={toggleDarkMode} />
             <span className="slider round"></span>
-          </label>
-        </div>
-        
-        </div>
+            </label>
+          </div>
+          </div>
 
-       
-
-
-
-      <div class="my-user-stats">
+          <div className="my-user-stats">
           <h2>User Stats</h2>
-  <div class="user-stats">
-    Answers
-    <div class="number">{data.replies}</div>
-  </div>
-  <div class="user-stats">
-    Questions
-    <div class="number">{data.threads}</div>
-  </div>
-  <div class="user-stats">
-    User Score
-    <div class="number">{Math.floor(data.score*100)}</div>
-  </div>
-  <div class="user-stats">
-    Views
-    <div class="number">{data.views}</div>
-  </div>
-</div>
 
-    
+            <div className="user-stats"><h3>Answers</h3><div className="number">{data.replies}</div></div>
+            <div className="user-stats"><h3>Questions</h3><div className="number">{data.threads}</div></div>
+            <div className="user-stats"><h3>User Score</h3><div className="number">{Math.floor(data.score * 100)}</div></div>
+            <div className="user-stats"><h3>Views</h3><div className="number">{data.views}</div></div>
+
+          </div>
         </div>
-      )}
-
-
-      
-      
-        
-    
-    </div>
-    </div>
+        )}
+      </div>
+      </div>
     );
 }
