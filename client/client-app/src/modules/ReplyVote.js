@@ -1,10 +1,9 @@
 import { useState } from "react";
 
-export default function ReplyVote({id}) {
-    const [score, changeScore] = useState(Number(sessionStorage.getItem("relies_score")));
+export default function ReplyVote({id, r_score}) {
+    const [score, changeScore] = useState(r_score);
 
-
-
+    console.log(score, r_score);
 
 
     let val = Number(sessionStorage.getItem("reply_score"));
