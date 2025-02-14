@@ -5,7 +5,7 @@ import ThreadReply from "./modules/ThreadReply.js";
 import ReplyList from "./modules/ReplyList.js";
 import ThreadVote from "./modules/ThreadVote.js";
 
-import profilePicture from './img/rriddler.png';
+
 
 import DOMPurify from "dompurify";
 
