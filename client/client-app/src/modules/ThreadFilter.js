@@ -14,7 +14,26 @@ export default function ThreadFilter({data, searchButton, totalPages, index}) {
 
     const [list, giveList] = useState([]);
 
+    
+    function setMath() {
+      sessionStorage.setItem("search_tag", "#math");
+      window.location.reload();
+    }
 
+    function setEnglish() {
+      sessionStorage.setItem("search_tag", "#english");
+      window.location.reload();
+    }
+
+    function setScience() {
+      sessionStorage.setItem("search_tag", "#science");
+      window.location.reload();
+    }
+
+    function setSocialStudies() {
+      sessionStorage.setItem("search_tag", "#socialstudies");
+      window.location.reload();
+    }
 
     function setNewest() {
       sessionStorage.setItem("ageType", "newest");
@@ -108,6 +127,26 @@ export default function ThreadFilter({data, searchButton, totalPages, index}) {
         }else if(data === "oldest") {
           document.getElementById("oldest").checked = true;
           //document.getElementsByName("sortBy")[1].checked = true;
+        }
+      }
+    }
+
+    function setSubjectPinned() {
+      if(filterOpen === true) {
+        let data = sessionStorage.getItem("search_tag"); 
+
+        if(data === "#math") {
+          document.getElementById("math").checked = true;
+          //document.getElementsByName("sortBy")[3].checked = true;
+        }else if(data === "#english") {
+          document.getElementById("english").checked = true;
+          //document.getElementsByName("sortBy")[1].checked = true;
+        }else if(data === "#science") {
+          document.getElementById("science").checked = true;
+          //document.getElementsByName("sortBy")[2].checked = true;
+        }else if(data === "#socialstudies") {
+          document.getElementById("socialstudies").checked = true;
+          //document.getElementsByName("sortBy")[2].checked = true;
         }
       }
     }
@@ -314,17 +353,19 @@ radioButtons.forEach(button => {
 
                   <div className="left">
                   <h3>Tag Filter</h3>
-                    <input type="radio" id="math" name="category" value="math" />
+                    <input type="radio" id="math" name="category" value="math" onClick={setMath} />
                     <label htmlFor="math">#Math</label>
 
-                    <input type="radio" id="english" name="category" value="english" />
+                    <input type="radio" id="english" name="category" value="english" onClick={setEnglish}/>
                     <label htmlFor="english">#English</label>
 
-                    <input type="radio" id="science" name="category" value="science" />
+                    <input type="radio" id="science" name="category" value="science" onClick={setScience}/>
                     <label htmlFor="science">#Science</label>
 
-                    <input type="radio" id="socialstudies" name="category" value="socialstudies" />
+                    <input type="radio" id="socialstudies" name="category" value="socialstudies" onClick={setSocialStudies}/>
                     <label htmlFor="socialstudies">#Social Studies</label>
+
+                    {setSubjectPinned()}
 
                     <label htmlFor="tagsInput" style={{ display: "none" }}>
                     Tags:
