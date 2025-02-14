@@ -122,6 +122,8 @@ export default function Navigator() {
                             </button>
                             </div>
 
+                            
+
                             <div className="circle-link">
 
                             <button className="nav-btn" onClick={Login}>
