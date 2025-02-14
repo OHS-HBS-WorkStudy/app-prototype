@@ -35,13 +35,15 @@ def sql_searchTag(data):
         print(values4)
 
         score = sql_scoreVotes(values4[2])
+        tag_list = getTagList(values4[2])
 
         values5 = {
             "name": values4[0],
             "id": values4[2],
             "content": values4[1],
             "timestamp": values4[4],
-            "score": score
+            "score": score,
+            "tags": tag_list
         }
 
         values3.append(values5)
@@ -60,3 +62,28 @@ def sql_searchTag(data):
 def searchTag(tag: Tag):
     data = sql_searchTag(tag.tag)
     return data
+
+def getTagList(id):
+    try:
+        conn = sqlite3.connect('app.db')
+        cursor = conn.cursor()
+
+        cursor.execute(f"SELECT * FROM tags WHERE thread_id='{id}'")
+
+        values = cursor.fetchall()
+
+        print(values)
+
+        values2 = []
+
+        if len(values) > 0:
+            for x in range(len(values)):
+                values2.append(values[x][0])
+        else:
+            values2.append("#No tags")
+
+        print(values2) 
+
+        return values2
+    except:
+        return "#No tags"
