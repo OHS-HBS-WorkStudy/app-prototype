@@ -2,6 +2,7 @@ import { useState, createContext, useContext } from 'react';
 
 import {ScreenStateContext} from './App.js';
 import './App.css';
+import './CSS/HomePage.css'
 import Navigator from './modules/Navigator.js';
 import ThreadList from './modules/ThreadList.js';
 

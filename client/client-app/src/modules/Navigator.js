@@ -3,11 +3,11 @@ import { ScreenStateContext } from '../App.js';
 import SearchBar from './SearchBar.js';
 import '../App.css';
 
+
 export default function Navigator() {
   const changeScreen = useContext(ScreenStateContext);
   const timeoutRef = useRef(null); 
 
-  const [isSearchBar, setSearchBar] = useState(window.innerWidth <= 600);
 
   const [isExpanded, setIsExpanded] = useState(() => {
     return localStorage.getItem('isExpanded') === 'true';
@@ -21,17 +21,6 @@ export default function Navigator() {
     });
   };
 
-  useEffect(() => {
-    const handleResize = () => {
-      const screenCheck = window.innerWidth <= 600;
-      if (screenCheck !== isSearchBar) {
-        setSearchBar(screenCheck);  
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [isSearchBar]);  
 
   function SignUp() {
     changeScreen(1);

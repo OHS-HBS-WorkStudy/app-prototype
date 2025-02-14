@@ -1,5 +1,6 @@
 import Navigator from "./modules/Navigator.js";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { ScreenStateContext } from './App.js';
 
 import LogOut from "./modules/Logout.js";
 
@@ -7,6 +8,12 @@ export default function AccountPage() {
     let data = JSON.parse(sessionStorage.getItem("user"));
     window.scrollTo(0, 0);
 
+    const changeScreen = useContext(ScreenStateContext);
+
+
+    function Login() {
+      changeScreen(2);
+    }
 
     fetchTopThreads();
 
@@ -178,12 +185,12 @@ export default function AccountPage() {
         <div className="overlay">
           <div className="box-holder">
             <div className="overlay-box">
-              <div className="box-conten">
+              <div className="box-content">
                 <div className="box-top">
                   <h2>Please log in to access your account</h2>
                 </div>
               <div className="box-bottom">
-                  <p>You need to log in to access this page. Please <div className="underline">log in</div> to continue.</p>
+                  <p>You need to log in to access this page. Please <div className="underline" onClick={Login}>log in</div> to continue.</p>
               </div>
              </div>
             </div>

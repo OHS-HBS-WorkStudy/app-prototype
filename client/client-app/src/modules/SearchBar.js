@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from 'react';
 import {ScreenContext, ScreenStateContext} from '../App.js';
 import '../App.css';
 
+
 export default function SearchBar() {
     const screen = useContext(ScreenContext);
     const [searchbarValue, setSearchbarValue] = useState("");
@@ -46,7 +47,7 @@ export default function SearchBar() {
     if(screen === 0 || screen === 3) {
         return (
             <div className="searchbar open">
-                <div className="box">
+                <div className="search-box">
                     <div className="search-box open">
                     <label className="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">

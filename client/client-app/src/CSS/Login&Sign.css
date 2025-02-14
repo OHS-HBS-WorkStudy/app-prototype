@@ -1,0 +1,334 @@
+/* 
+    This CSS file styles the login and sign-up components of a web application. 
+    It includes styles for layout, animations, and responsive design.
+
+    General Functionality:
+    - .split: Defines a flex container with centered content and transition effects.
+    - .split.left and .split.right: Apply different background gradients and animations for sliding in from left and right.
+    - .split::before and .split::after: Create pseudo-elements for additional styling.
+    - @keyframes slideInL and slideInR: Define animations for sliding in from left and right.
+    - .center: Centers text content with fade-in animation.
+    - .account .center: Styles the account center section to be a flex container.
+    - .input-container: Styles input containers with background color, padding, and hover effects.
+    - .input-container input[type="text"]: Styles text inputs with padding, background color, and focus effects.
+    - .btn-send: Styles the send button with background color, padding, and hover/active effects.
+    - .btn-container: Styles the button container with padding and flex layout.
+    - .btn: Styles buttons with padding, background color, and hover/active effects.
+    - @media (max-width: 640px): Defines responsive styles for smaller screens, adjusting layout and scaling elements.
+*/
+
+.split {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 10px 0; 
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+  }
+  
+  .split.left {
+    background: linear-gradient(
+      135deg, 
+      var(--color-primary-accent), 
+      var(--color-secondary-accent)
+    );
+    color: var(--color-text-primary);
+    animation: slideInL 1s ease-out forwards;
+  }
+  
+  
+  .split.right {
+    background: linear-gradient(
+      45deg, 
+      var(--color-primary), 
+      var(--color-secondary-accent), 
+      var(--color-accent)
+    );
+    color: var(--color-text-secondary);
+    animation: slideInR 1s ease-out forwards;
+  }
+  
+  
+  .split::before,
+  .split::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 10px; 
+    
+    background-color: inherit; 
+  }
+  
+  .split.left::before {
+    left: -10px; 
+  }
+  
+  .split.left::after {
+    right: -10px; 
+  }
+  
+  .split.right::before {
+    left: -10px; 
+  }
+  
+  .split.right::after {
+    right: -10px; 
+  }
+  
+  @keyframes slideInL {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInR {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  .center {
+    text-align: center;
+    max-width: 80%;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards 0.5s;
+  }
+  
+  .account .center {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  .center h3 {
+    color: var(--color-text-tertiary);
+    font-size: 30px;
+    transform: translateY(-5%);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .input-container {
+    background-color: var(--color-secondary);
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    text-align: left;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  .input-container:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .input-container h3 {
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+  
+  .input-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--color-text-tertiary);
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+  
+  .input-container input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--color-tex);
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards 0.5s;
+  }
+  
+  .input-container input[type="text"]::placeholder {
+    color: var(--color-text-secondary);
+  }
+  
+  .input-container input[type="text"]:focus {
+    background-color: var(--color-accent);
+  }
+  
+  .input:invalid {
+    border: red;
+  }
+  
+  .btn-send {
+    width: 100%;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards 1s;
+  }
+  
+  .btn-send:hover {
+    background: var(--color-text-tertiary);
+    color: var(--color-accent);
+    transition: background 0.5s ease, color 0.5s ease;
+  }
+  
+  .btn-send:active {
+    transform: scale(0.98);
+  }
+  
+  .btn-container {
+    width: 100%;
+    min-width: 20vw;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .btn-container h1 {
+    color: var(--color-text-tertiary);
+    font-size: 30px;
+    transform: translateY(-5%);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+  }
+  
+  .btn-container h2 {
+    color: var(--color-text-primary);
+    font-size: 25x;
+    transform: translateY(-5%);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+  }
+  
+  .btn {
+    padding: 12px 24px;
+    border: none;
+    background-color: var(--color-secondary);
+    border-radius: 8px;
+    height: 35px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+  }
+  
+  .btn:hover {
+    background-color: var(--color-text-tertiary);
+    transform: translateY(-5px);
+  }
+  
+  .btn:hover span {
+    color: var(--color-secondary);
+  }
+  
+  .btn:active {
+    transform: translateY(-2px);
+  }
+  
+  
+  @media (max-width: 640px) {
+    .container {
+      display: flex;
+      flex-direction: row; 
+      flex-wrap: wrap;
+      width: 100%; 
+      min-width: 392px; 
+      overflow: scroll;
+    }
+  
+    .split {
+      flex: 1 1 100%; 
+      width: 50%; 
+      margin: 0; 
+      box-sizing: border-box;
+      position: relative;
+    }
+  
+    .split.left {
+      margin-left: 60px;
+    }
+  
+    .split.right {
+      margin-left: 60px;
+    }
+  
+    .split::before,
+    .split::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 10px; 
+      background-color: inherit; 
+    }
+  
+    .split.left::before {
+      left: -10px; 
+    }
+  
+    .split.left::after {
+      right: -10px; 
+    }
+  
+    .split.right::before {
+      left: -10px; 
+    }
+  
+    .split.right::after {
+      right: -10px; 
+    }
+  
+    .split.left::before,
+    .split.right::before,
+    .split.left::after,
+    .split.right::after {
+      display: block;
+    }
+  
+    .split.left::before,
+    .split.right::before {
+      left: -10px; 
+      width: 10px;
+    }
+  
+    .split.left::after,
+    .split.right::after {
+      right: -10px; 
+      width: 10px;
+    }
+  
+    .Signup .input-container {
+      transform: scale(0.85);
+    
+      border: 1px solid gray;
+    }
+  }
+  
+  
+  
