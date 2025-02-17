@@ -53,12 +53,19 @@
   /* Underline text with pointer cursor */
   text-decoration: underline;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .box-bottom {
   /* Flex container for the bottom section of the box */
   display: flex;
   white-space: nowrap !important;
+}
+
+.box-bottom .text {
+  display: inline-flex;
+
+  gap: 5px;
 }
 
 .box h2 {
