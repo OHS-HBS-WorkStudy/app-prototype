@@ -62,9 +62,9 @@ export default function AccountPage() {
 
             return(
               <div>
-                <h2>{threads[0]}</h2>
-                <h2>{threads[1]}</h2>
-                <h2>{threads[2]}</h2>
+                {threads.slice(0, 3).map((thread, index) => (
+                  <h3 key={index}>{thread}</h3>
+                ))}
               </div>
             );
           }else {
@@ -86,14 +86,14 @@ export default function AccountPage() {
             for(let i = 0; i < data.length; i++){
               replies.push(data[i][0]);
             }
-
             return(
               <div>
-                <h2>{replies[0]}</h2>
-                <h2>{replies[1]}</h2>
-                <h2>{replies[2]}</h2>
+                {replies.slice(0, 3).map((reply, index) => (
+                  <h3 key={index}>{reply}</h3>
+                ))}
               </div>
             );
+
           }else {
             return "No Replies";
           }
@@ -199,6 +199,7 @@ export default function AccountPage() {
         )}
 
         {data !== null && activeSection === 'activity' && ( 
+          <div className="activity">
         <div className="account-content">
           <div className="my-trending">
           <h2>My Trending Threads</h2>
@@ -241,9 +242,11 @@ export default function AccountPage() {
           </div>
           </div>
         </div>
+        </div>
         )}
 
         {data !== null && activeSection === 'stats' && ( 
+          <div className="stats">
         <div className="account-content">
           <div className="account-info">
           <h2>Account Info</h2>
@@ -295,6 +298,7 @@ export default function AccountPage() {
             <div className="user-stats"><h3>Views</h3><div className="number">{data.views}</div></div>
 
           </div>
+        </div>
         </div>
         )}
       </div>

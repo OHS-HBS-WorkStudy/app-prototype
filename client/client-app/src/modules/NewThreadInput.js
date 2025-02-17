@@ -8,11 +8,6 @@ import DOMPurify from 'dompurify';
 import AddTags from "./AddTags.js";
 import TagList from "./TagList.js";
 
-
-
-
-
-
 export default function NewThreadInput({value}) {
     const[ThreadTitle, setThreadTitle] = useState("");
     const [ThreadContents, setThreadContents] = useState("");
@@ -118,12 +113,7 @@ export default function NewThreadInput({value}) {
 
         switchScreen(3);
     }
-
-    function toHome() {
-        //changeScreen(0);
-      }
-    
-    
+        
     const getPlainText = (htmlContent) => {
       const tempDiv = document.createElement("div");
       tempDiv.innerHTML = htmlContent;
@@ -134,28 +124,26 @@ export default function NewThreadInput({value}) {
       const plainText = getPlainText(value);
     
       if (plainText.length <= maxLength) {
-        setValue(value);
+      setValue(value);
       } else {  
-        const quillText = quillRef.current.getEditor().getContents();
-        const cutQuillText = quillText.slice(0, maxLength);
-        setValue(cutQuillText);
+      const quillText = quillRef.current.getEditor().getContents();
+      const cutQuillText = quillText.slice(0, maxLength);
+      setValue(cutQuillText);
     
-    
-        const editor = quillRef.current.getEditor();
-        editor.setContents(cutQuillText); 
-        editor.setSelection(maxLength); 
+      const editor = quillRef.current.getEditor();
+      editor.setContents(cutQuillText); 
+      editor.setSelection(maxLength); 
       }
     };
     
-    
-      const handleChange = (value, setValue, maxLength) => {
-        const plainText = getPlainText(value);
-        if (plainText.length <= maxLength) {
-          setValue(value); 
-        } else {
-          setValue(value.substring(0, maxLength)); 
-        }
-      };
+    const handleChange = (value, setValue, maxLength) => {
+      const plainText = getPlainText(value);
+      if (plainText.length <= maxLength) {
+      setValue(value); 
+      } else {
+      setValue(value.substring(0, maxLength)); 
+      }
+    };
 
       const editorStyle = {
         width: "100%",
@@ -179,7 +167,6 @@ export default function NewThreadInput({value}) {
 
   return (
     <div>
-   
       <div className="NewThread">
         <div className="center">
 

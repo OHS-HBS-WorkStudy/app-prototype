@@ -211,14 +211,14 @@ function ThreadButton({value}) {
         var a = new Date(UNIX_timestamp * 1000);
         var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
         var year = a.getFullYear();
-        var month = months[a.getMonth()];
+        var month = months[a.getMonth()]; 
         var date = a.getDate();
         var hour = a.getHours();
         var min = a.getMinutes();
         var sec = a.getSeconds();
         var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
         return time;
-      }
+    }
 
     function toThreadPage(json, data) {
         console.log(json);
@@ -228,6 +228,7 @@ function ThreadButton({value}) {
 
         switchScreen(3);
     }
+
     function getThreadData() {
         fetch("http://127.0.0.1:8000/retrieveThread", {
             method: "POST",
@@ -245,7 +246,7 @@ function ThreadButton({value}) {
         const div = document.createElement('div');
         div.innerHTML = html;
         return div.textContent || div.innerText || '';
-      };
+    };
 
     const sanitizedName = DOMPurify.sanitize(value.name);
     const sanitizedContents = DOMPurify.sanitize(value.content);
@@ -264,7 +265,7 @@ function ThreadButton({value}) {
         const threadTag = value.tags;
         return threadTag.map((element) => {
             return(
-                <div key={element}>
+                <div key={element}  className="grid-item-tags">
                     <p>{element}</p>
                 </div>
             );
@@ -272,24 +273,23 @@ function ThreadButton({value}) {
     }
 
     return(
-            <div className="grid-item" onClick={getThreadData} >
-              <div className="left-info">
+        <div className="grid-item" onClick={getThreadData} >
+            <div className="left-info">
                 <div className="vote-counter"><p>{value.score}</p></div>
                 <div className="date-display"><p>{date}</p></div>
-                </div>
-                    <div className="grid-item-content"> 
-                        <div className="grid-item-title">
-                            {stripHTML(sanitizedName)}
-                        </div>
-                        <div className="grid-item-desc">
-                            {stripHTML(sanitizedContents)}
-                        </div>
-                        <div className="grid-item-tags-container ">
-                            <div className="grid-item-tags">
-                                {threadGetTag()}
-                            </div>
-                        </div>
-                    </div>
             </div>
+            <div className="grid-item-content"> 
+                <div className="grid-item-title">
+                    {stripHTML(sanitizedName)}
+                </div>
+                <div className="grid-item-desc">
+                    {stripHTML(sanitizedContents)}
+                </div>
+                <div className="grid-item-tags-container">
+
+                        {threadGetTag()}
+                </div>
+            </div>
+        </div>
     );
 }

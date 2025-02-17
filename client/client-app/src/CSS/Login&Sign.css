@@ -51,6 +51,13 @@
     animation: slideInR 1s ease-out forwards;
   }
   
+.Sign .split.right {
+    animation: slideInL 1s ease-out forwards;
+  }
+
+  .Sign .split.left {
+    animation: slideInR 1s ease-out forwards;
+  }
   
   .split::before,
   .split::after {

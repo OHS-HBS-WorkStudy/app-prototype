@@ -238,3 +238,13 @@ body {
   border: none;
   cursor: pointer;
 }
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text {
+  display: inline-flex;
+
+  gap: 5px;
+}

@@ -66,7 +66,7 @@ export default function AddTags({tagContent}) {
             
             <div className="fill">
               <div className="input-container text-box ql-container">
-              <h4>Press Enter To Submit</h4>
+              <h4 className='text'>Press <div className='text-bold'>Enter</div> To Submit</h4>
               <p>Make sure to make them accurate and clear as possible</p>
           
            
