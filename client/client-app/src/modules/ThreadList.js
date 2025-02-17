@@ -5,6 +5,7 @@ import BentoBox from "./BentoBox.js";
 import ThreadFilter from "./ThreadFilter.js";
 
 
+
 export default function ThreadList() {
     const [listActive, activateList] = useState(false);
 
@@ -225,10 +226,7 @@ function ThreadButton({value}) {
         console.log(data);
         sessionStorage.setItem("thread_score", data.score);
 
-
-
         switchScreen(3);
-
     }
     function getThreadData() {
         fetch("http://127.0.0.1:8000/retrieveThread", {
@@ -241,10 +239,6 @@ function ThreadButton({value}) {
         })
         .then((response) => response.json())
         .then((json) => toThreadPage(json, value));
-
-
-
-        
     }
 
     const stripHTML = (html) => {
@@ -259,16 +253,25 @@ function ThreadButton({value}) {
     console.log(date);
 
     try {
-    const item = JSON.parse(sessionStorage.getItem(value));
-    const getTag = item ? item.tags : "#No Tags";
-    console.log(getTag);
+        const item = JSON.parse(sessionStorage.getItem(value));
+        const getTag = item ? item.tags : "#No Tags";
+        console.log(getTag);
     } catch(err) {
         console.log("err");
     }
 
-    return(
+    function threadGetTag() {
+        const threadTag = value.tags;
+        return threadTag.map((element) => {
+            return(
+                <div key={element}>
+                    <p>{element}</p>
+                </div>
+            );
+        });
+    }
 
-          
+    return(
             <div className="grid-item" onClick={getThreadData} >
               <div className="left-info">
                 <div className="vote-counter"><p>{value.score}</p></div>
@@ -283,11 +286,10 @@ function ThreadButton({value}) {
                         </div>
                         <div className="grid-item-tags-container ">
                             <div className="grid-item-tags">
-                                <p>{value.tags}</p>
+                                {threadGetTag()}
                             </div>
                         </div>
                     </div>
             </div>
-
-    )
+    );
 }
