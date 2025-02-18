@@ -230,7 +230,7 @@ function ThreadButton({value}) {
     }
 
     function getThreadData() {
-        fetch("http://127.0.0.1:8000/retrieveThread", {
+        fetch(sessionStorage.getItem("server_address")+"/retrieveThread", {
             method: "POST",
             body: JSON.stringify(value),
             headers: {

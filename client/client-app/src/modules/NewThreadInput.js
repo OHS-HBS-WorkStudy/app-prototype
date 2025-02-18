@@ -167,6 +167,8 @@ export default function NewThreadInput({value}) {
 
   return (
     <div>
+
+      
       <div className="NewThread">
         <div className="center">
 
