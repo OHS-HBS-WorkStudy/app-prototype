@@ -1,292 +1,322 @@
-/* 
-    This CSS file styles the navigation components of a web application, including:
-    - The main navigator container with transition effects.
-    - A fixed top navigation bar with a gradient background.
-    - A fixed sidebar with transition effects for width changes.
-    - Navigation toggle button with various states (hover, focus, active).
-    - Menu items and circle links with hover and focus effects.
-    - Keyframe animations for specific icons (gear, home, pencil).
-    - Responsive adjustments for when the menu is open.
-*/
+/* Existing CSS code */
+
+/* Add media query for mobile styling */
+@media only screen and (max-width: 600px) {
+  .sidebar {
+    width: 45px !important;
+    padding: 10px !important;
+  }
+
+  .navigator.menu-open .sidebar {
+    width: 200px!important;
+  }
+
+  .navigator.menu-open {
+    margin-left: 200px !important;
+  }
+
+  .circle-link {
+    padding-left: 10px !important;
+  }
+
+  .navigator.menu-open .circle-link {
+    padding-left: 15px !important;
+  }
+
+  .navigator.menu-open .circle-link svg {
+    margin-right: 5px !important;
+  }
+
+  .nav-toggle {
+ 
+    margin-left: -6px !important;
+  }
+
+
+  .navigator.menu-open .sidebar:hover {
+    width: 0px !important;
+  }
+
+  .circle-link:hover,
+  .circle-link:hover svg,
+  .circle-link:hover .icon-gear,
+  .circle-link:hover .icon-home,
+  .circle-link:hover .icon-pencil {
+    animation: none !important;
+    transform: none !important;
+    background-color: inherit !important;
+  }  
+}
 
 .navigator {
-    display: flex;
-    transition: margin-left 0.3s ease-in-out;
-  }
-  .top-nav {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    top: 0;
-    left: 0;
-    height: 60px;
-    width: 100%;
-    max-width: 100%;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-    padding: 10px 20px;
-    z-index: 1000;
-    box-sizing: border-box;
-  }
-  
-  .nav-space {
-    margin-bottom: 60px;
-  }
-  
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 60px;
-    height: 100%;
-    background-color: var(--color-secondary);
-    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.15);
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    padding: 20px 0;
-    overflow: hidden;
-    transition: width 0.3s ease-in-out;
-    align-items: center;
-    white-space: nowrap
-  }
-  
-  .top-nav-content {
-    display: flex;
-    margin-left: -10px;
-    align-items: center;
-    justify-content: left;
-    width: 100%;
-    gap: 30px;
-    flex-wrap: nowrap;
-  }
-  
-  .nav-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: fit-content;
-    width: fit-content;
-   padding: 5px;
-    background-color: var(--color-secondary-accent);
-    color: var(--color-text-primary);  
-    font-size: 1rem;
-    font-weight: bold;
-    border: 2px solid transparent;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-  }
-  
-  .nav-toggle svg {
-    transform: scale(1.1);
-    fill: var(--color-text-primary);
-  }
-  
-  .nav-toggle:focus {
-    outline: none;  
-    border-color: var(--color-primary);  
-  }
-  
-  .nav-toggle:active {
-    background-color:  var(--color-primary);  
-    color: white; 
-    border-color:  var(--color-primary);  
-  }
-  
-  
-  .nav-toggle:hover {
-    background-color: rgba(0, 0, 255, 0.1); 
-    border-color:  var(--color-primary); 
-  }
-  
-  .nav-toggle:focus-visible {
-    outline: 2px solid  var(--color-primary); 
-  }
-  
-  .navigator.menu-open .sidebar {
-    width: 250px;
-  }
-  
-  .navigator.menu-open .sidebar:hover {
-    width: 250px;
-  }
-  
-  .menu-items {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 75px;
-  }
-  
-  .navigator.menu-open .menu-items {
-    justify-content: flex-start; 
-    align-items: flex-start; 
-  }
-  
-  .circle-link {
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    padding: 10px;
-    cursor: pointer;
-    text-decoration: none;
-    color: #5f6368;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 100%;
-    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, padding-left 0.3s ease-in-out;
-  
-  }
-  
-  .circle-link:focus {
-    background-color: red;
-  }
-  
-  .circle-link::before {
-    position: absolute;
-    content: "";
-    inset: 4px;
-    border-radius: 50%;
-    border: 2px solid red;
-    transform: scale(0);
-    transition: 0.3s;
-  }
-  
-  .circle-link:focus:before {
-    transform: scale(1);
-  }
-  
-  .circle-link.menu-open::before {
-    transform: scale(1);
-  }
-  
-  .circle-link svg {
-    flex-shrink: 0;
-    width: 24px;
-    height: 24px;
-    fill: var(--clr-primary-a50);
-    margin: 0 auto;
-    transition: margin-right 0.3s ease-in-out, transform 0.3s ease-in-out;
-    transform: scale(1.1);
-  
-    
-  }
-  
-  .circle-link span  {
-    font-size: 16px;
-    color: #333;
-    transition: margin-left 0.3s ease-in-out;
-    margin-left: 0.1;
-    white-space: nowrap;
-  
-  }
-  
-  .sidebar:hover .circle-link,
-  .navigator.menu-open .circle-link {
-    padding-left: 20px; 
-  }
-  
-  .sidebar:hover .circle-link svg,
-  .navigator.menu-open .circle-link svg {
-    margin-right: 10px; 
-  }
-  
-  .circle-link:hover {
-    background-color: #3e4b55; 
-    transform: scale(1.1); 
-  }
-  
-  .circle-link:hover svg {
-    fill: var(--clr-primary-a50);
-  }
-  
-  .navigator.menu-open .circle-link {
-    display: inline-flex;
-    align-items: flex-start; 
-    justify-content: flex-start;
-    
-    padding: 8px 15px;
-    margin: auto;
-  }
-  
-  .navigator.menu-open .circle-link svg {
-    transform: scale(1.1);
-  }
-  
-  .nav-btn {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    cursor: pointer;
-    background-color: transparent;
-    border-style: none;
-  }
-  
-  .navigator.menu-open {
-    margin-left: 250px;
-  }
-  
-  
-  
-  
-  
-  .circle-link.icon-gear,
-  .circle-link.icon-home,
-  .circle-link.icon-pencil {
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .circle-link:hover .icon-gear {
-    animation: spin 1.7s ease-in-out forwards;
-  }
-  
-  .circle-link:hover .icon-home {
-    animation: scale 1.7s ease-in-out;
-  }
-  
-  .circle-link:hover .icon-pencil {
-    animation: drawing 1.7s ease-in-out forwards; 
-  }
-  
-  @keyframes drawing {
-    0% {
-      transform: rotate(0deg); 
-    }
-    25% {
-      transform: rotate(-20deg); 
-    }
-    50% {
-      transform: rotate(0deg) translateY(5px); 
-    }
-    75% {
-      transform: rotate(-20deg) translateY(0px); 
-    }
-    100% {
-      transform: rotate(0deg); 
-    }
-  }
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  @keyframes scale {
-    0% {
-      transform: scale(1); 
-    }
-    50% {
-      transform: scale(1.25); 
-    }
-    100% {
-      transform: scale(1.1);
-    }
-  }
+  display: flex;
+  transition: margin-left 0.3s ease-in-out;
+}
 
+.top-nav {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+  max-width: 100%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  padding: 10px 20px;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.nav-space {
+  margin-bottom: 60px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 100%;
+  background-color: var(--color-secondary);
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  overflow: hidden;
+  transition: width 0.3s ease-in-out;
+  align-items: center;
+  white-space: nowrap
+}
+
+.top-nav-content {
+  display: flex;
+  margin-left: -10px;
+  align-items: center;
+  justify-content: left;
+  width: 100%;
+  gap: 30px;
+  flex-wrap: nowrap;
+}
+
+.nav-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  width: fit-content;
+  padding: 5px;
+  background-color: var(--color-secondary-accent);
+  color: var(--color-text-primary);  
+  font-size: 1rem;
+  font-weight: bold;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-toggle svg {
+  transform: scale(1.1);
+  fill: var(--color-text-primary);
+}
+
+.nav-toggle:focus {
+  outline: none;  
+  border-color: var(--color-primary);  
+}
+
+.nav-toggle:active {
+  background-color:  var(--color-primary);  
+  color: white; 
+  border-color:  var(--color-primary);  
+}
+
+.nav-toggle:hover {
+  background-color: rgba(0, 0, 255, 0.1); 
+  border-color:  var(--color-primary); 
+}
+
+.nav-toggle:focus-visible {
+  outline: 2px solid  var(--color-primary); 
+}
+
+.navigator.menu-open .sidebar {
+  width: 250px;
+}
+
+.navigator.menu-open .sidebar:hover {
+  width: 250px;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 75px;
+}
+
+.navigator.menu-open .menu-items {
+  justify-content: flex-start; 
+  align-items: flex-start; 
+}
+
+.circle-link {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  padding: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #5f6368;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, padding-left 0.3s ease-in-out;
+}
+
+.circle-link:focus {
+  background-color: red;
+}
+
+.circle-link::before {
+  position: absolute;
+  content: "";
+  inset: 4px;
+  border-radius: 50%;
+  border: 2px solid red;
+  transform: scale(0);
+  transition: 0.3s;
+}
+
+.circle-link:focus:before {
+  transform: scale(1);
+}
+
+.circle-link.menu-open::before {
+  transform: scale(1);
+}
+
+.circle-link svg {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  fill: var(--clr-primary-a50);
+  margin: 0 auto;
+  transition: margin-right 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transform: scale(1.1);
+}
+
+.circle-link span  {
+  font-size: 16px;
+  color: #333;
+  transition: margin-left 0.3s ease-in-out;
+  margin-left: 0.1;
+  white-space: nowrap;
+}
+
+.sidebar:hover .circle-link,
+.navigator.menu-open .circle-link {
+  padding-left: 20px; 
+}
+
+.sidebar:hover .circle-link svg,
+.navigator.menu-open .circle-link svg {
+  margin-right: 10px; 
+}
+
+.circle-link:hover {
+  background-color: #3e4b55; 
+  transform: scale(1.1); 
+}
+
+.circle-link:hover svg {
+  fill: var(--clr-primary-a50);
+}
+
+.navigator.menu-open .circle-link {
+  display: inline-flex;
+  align-items: flex-start; 
+  justify-content: flex-start;
+  
+  padding: 8px 15px;
+  margin: auto;
+}
+
+.navigator.menu-open .circle-link svg {
+  transform: scale(1.1);
+}
+
+.nav-btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+  background-color: transparent;
+  border-style: none;
+}
+
+.navigator.menu-open {
+  margin-left: 250px;
+}
+
+.circle-link.icon-gear,
+.circle-link.icon-home,
+.circle-link.icon-pencil {
+  transition: transform 0.3s ease-in-out;
+}
+
+.circle-link:hover .icon-gear {
+  animation: spin 1.7s ease-in-out forwards;
+}
+
+.circle-link:hover .icon-home {
+  animation: scale 1.7s ease-in-out;
+}
+
+.circle-link:hover .icon-pencil {
+  animation: drawing 1.7s ease-in-out forwards; 
+}
+
+@keyframes drawing {
+  0% {
+    transform: rotate(0deg); 
+  }
+  25% {
+    transform: rotate(-20deg); 
+  }
+  50% {
+    transform: rotate(0deg) translateY(5px); 
+  }
+  75% {
+    transform: rotate(-20deg) translateY(0px); 
+  }
+  100% {
+    transform: rotate(0deg); 
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1); 
+  }
+  50% {
+    transform: scale(1.25); 
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}

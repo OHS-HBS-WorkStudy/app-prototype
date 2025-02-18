@@ -28,7 +28,7 @@ export default function NewThread() {
                         <h2>Please log in to access your account</h2>
                         </div>
                     <div className="box-bottom">
-                        <p>You need to log in to access this page. Please <div className="underline" onClick={Login}>log in</div> to continue.</p>
+                        <p className="text">You need to log in to access this page. Please <div className="underline" onClick={Login}>log in</div> to continue.</p>
                     </div>
                     </div>
                     </div>

@@ -37,6 +37,11 @@
   color: var(--color-text-tertiary) !important;
 }
 
+.userName {
+  font-weight: bolder !important;
+  font-size: 35px;
+}
+
 .box-top {
   /* Margin for the top section of the box */
   margin-bottom: 30px;
@@ -88,7 +93,24 @@
   margin-top: 55px;
   padding: 20px;
   color: var(--color-text-tertiary);
+  background-color: var(--color-primary);
 }
+
+
+
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 
 .account-page:root {
   /* Background color for the root of the account page */
@@ -139,6 +161,13 @@
   display: inline-flex;
   gap: 10px;
   flex-direction: row;
+}
+
+.activity h2,
+.stats h2 {
+  padding-bottom: 2px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--color-background);
 }
 
 .my-trending,
@@ -220,7 +249,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--color-background);
+  background-color:  var(--color-primary);
   -webkit-transition: 0.4s;
   transition: 0.4s;
   border-radius: 34px;
@@ -242,7 +271,7 @@
 
 input:checked + .slider {
   /* Styles for the slider when checked */
-  background-color: var(--color-background);
+  background-color: var(--color-primary);
 }
 
 input:checked + .slider:before {
@@ -286,7 +315,7 @@ input:focus + .slider {
 
 .user-stats {
   /* Styles for individual user stats */
-  border: 1px solid var(--color-background);
+  border: 1px solid var(--color-background) !important;
   padding: 10px;
   text-align: center;
 }
@@ -299,6 +328,9 @@ input:focus + .slider {
 
 @media (max-width: 768px) {
   /* Responsive styles for smaller screens */
+  .account-page {
+    margin-left: 40px !important;
+  }
   .account-content {
     display: block;
     padding-top: 0;
@@ -411,4 +443,46 @@ a:hover {
 .achievement-icon {
   /* Margin for achievement icons */
   margin-right: 10px;
+}
+
+
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: var(--color-secondary-accent);
+  color: var(--color-text-white);  
+  font-size: 1rem;
+  font-weight: bold;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.login-button svg {
+  margin-right: 8px; 
+  fill: currentColor; 
+}
+
+.login-button:focus {
+  outline: none;  
+  border-color: var(--color-primary);  
+}
+
+.login-button:active {
+  background-color:  var(--color-primary);  
+  color: white; 
+  border-color:  var(--color-primary);  
+}
+
+.login-button:hover {
+  background-color: rgba(0, 0, 255, 0.1); 
+  border-color:  var(--color-primary); 
+}
+
+.login-button:focus-visible {
+  outline: 2px solid  var(--color-primary); 
 }
