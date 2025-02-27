@@ -17,6 +17,12 @@
   min-width: 300px;
 }
 
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
 /* Custom scrollbar styles */
 .NewThread::-webkit-scrollbar {
   width: 8px;
@@ -318,6 +324,8 @@ label h1 {
   .NewThread {
     padding-bottom: 0;
     margin-top: -35px;
+    margin-left: 40px !important;
+    margin-top: 20px !important;
   }
   .NewThread .center {
     padding: 16px;
@@ -337,9 +345,7 @@ label h1 {
 /* Responsive styles for screens smaller than 640px */
 @media (max-width: 640px) {
   .NewThread .center {
-    border-radius: 0;
-    box-shadow: none;
-    padding: 16px;
+    height: fit-content !important;
   }
   .NewThread .text-box .ql-editor {
     min-height: calc(100vh - 500px);
