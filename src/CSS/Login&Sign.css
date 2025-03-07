@@ -1,0 +1,541 @@
+/* 
+    This CSS file styles the login and sign-up components of a web application. 
+    It includes styles for layout, animations, and responsive design.
+
+    General Functionality:
+    - .split: Defines a flex container with centered content and transition effects.
+    - .split.left and .split.right: Apply different background gradients and animations for sliding in from left and right.
+    - .split::before and .split::after: Create pseudo-elements for additional styling.
+    - @keyframes slideInL and slideInR: Define animations for sliding in from left and right.
+    - .center: Centers text content with fade-in animation.
+    - .account .center: Styles the account center section to be a flex container.
+    - .input-container: Styles input containers with background color, padding, and hover effects.
+    - .input-container input[type="text"]: Styles text inputs with padding, background color, and focus effects.
+    - .btn-send: Styles the send button with background color, padding, and hover/active effects.
+    - .btn-container: Styles the button container with padding and flex layout.
+    - .btn: Styles buttons with padding, background color, and hover/active effects.
+    - @media (max-width: 640px): Defines responsive styles for smaller screens, adjusting layout and scaling elements.
+*/
+
+.split {
+  flex: 1;  /* Allow it to take up the available space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  min-height: 100vh; /* Ensures full height */
+  overflow: hidden;
+}
+
+.split.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+
+  background-color: var(--alt-background-color);
+  width: 100%;
+  height: 100vh; 
+}
+
+
+.split.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, #7E4B8D, #6C3D8D, #D19FE6, #B89CC6);
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  transition: background-position 0.3s ease;
+}
+
+
+
+
+
+.split.right:hover {
+  background-position: 100% 100%;
+}
+
+.split.right .content {
+  z-index: 1;
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  padding: 20px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.split.right .content img {
+  margin-top: 60px;
+  margin-left: 30px;
+  width: 80%; 
+  height: auto;  
+  object-fit: contain; 
+}
+
+
+.Sign .center {
+  margin-top: 30px;
+
+
+}
+
+
+  
+  
+  
+.Sign .split.right {
+    animation: slideInL 1s ease-out forwards;
+  }
+
+  .Sign .split.left {
+    animation: slideInR 1s ease-out forwards;
+  }
+  
+  .split::before,
+  .split::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 10px; 
+    
+    background-color: inherit; 
+  }
+  
+  .split.left::before {
+    left: -10px; 
+  }
+  
+  .split.left::after {
+    right: -10px; 
+  }
+  
+  .split.right::before {
+    left: -10px; 
+  }
+  
+  .split.right::after {
+    right: -10px; 
+  }
+  
+  @keyframes slideInL {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInR {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  .center {
+    display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  }
+  
+  .account .center {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  .center h3 {
+    color: var(--color-text-tertiary);
+    font-size: 30px;
+    transform: translateY(-5%);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+
+  
+  .input-container {
+    background-color: var(--color-secondary);
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    min-width: 300px;
+    text-align: left;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  .input-container:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .input-container h3 {
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+  
+  .input-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--color-text-tertiary);
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+  
+  .input-container input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--color-tex);
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards 0.5s;
+    min-width: 200px; /* Add this line to set a minimum width */
+  }
+  
+  .input-container input[type="text"]::placeholder {
+    color: var(--color-text-secondary);
+  }
+  
+  .input-container input[type="text"]:focus {
+    background-color: var(--color-accent);
+  }
+  
+  .input:invalid {
+    border: red;
+  }
+  
+  .btn-send {
+    width: 100%;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards 1s;
+  }
+  
+  .btn-send:hover {
+    background: var(--color-text-tertiary);
+    color: var(--color-accent);
+    transition: background 0.5s ease, color 0.5s ease;
+  }
+  
+  .btn-send:active {
+    transform: scale(0.98);
+  }
+  
+  .btn-container {
+    width: 100%;
+    min-width: 20vw;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .btn-container h1 {
+    color: var(--color-text-tertiary);
+    font-size: 30px;
+    transform: translateY(-5%);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+  }
+  
+  .btn-container h2 {
+    color: var(--color-text-primary);
+    font-size: 25x;
+    transform: translateY(-5%);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+  }
+  
+  .btn {
+    padding: 12px 24px;
+    border: none;
+    background-color: var(--color-secondary);
+    border-radius: 8px;
+    height: 35px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+  }
+  
+  .btn:hover {
+    background-color: var(--color-text-tertiary);
+    transform: translateY(-5px);
+  }
+  
+  .btn:hover span {
+    color: var(--color-secondary);
+  }
+  
+  .btn:active {
+    transform: translateY(-2px);
+  }
+  
+  
+  @media (max-width: 640px) {
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: auto;
+      overflow-x: hidden;
+      margin-left: 30px;
+      gap: 0 !important;
+    }
+  
+    .split {
+      width: 100%;
+      margin: 10px 0;
+
+  
+    }
+  
+
+    .split.right {
+      display: none;
+    }
+    .split.left{
+      width: 100%;
+      animation: none !important; 
+      padding: 60px;
+    }
+  
+    .center {
+      max-width: 90%;
+    }
+  
+    .input-container {
+      width: 90%;
+      max-width: 100%;
+    }
+  
+    .btn-container {
+      width: 90%;
+      min-width: unset;
+      padding: 10px;
+    }
+  }
+  
+
+  /* .screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f7f7;
+    margin-top: 100px;
+    padding: 20px;
+    border: 1px solid yellow;
+  } 
+   */
+   .page-title h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--color-text-white) !important;
+  }
+  
+  .inputbox input {
+    margin-bottom: 15px;
+    padding: 12px 20px;
+    height: 2.9em;
+    width: 350px;
+    background-color: var(--color-input-background);
+    border-radius: 25px;
+    border: 1px solid var(--color-border);
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    transition: all 0.3s ease;
+    color: var(--color-text-primary);
+  }
+  
+  .inputbox input::placeholder {
+    color: var(--color-text-secondary);
+    font-size: 14px;
+    font-style: italic;
+  }
+  
+  .inputbox input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 5px var(--color-primary-accent);
+  }
+  
+  .buttonn {
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+    width: 350px;
+    background: var(--color-primary);
+    color: var(--color-text-white);
+    height: 2.9em;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .buttonn:hover {
+    background-color: var(--color-primary-accent);
+  }
+  
+  .login-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .login-text {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+  }
+  
+  .smalltext {
+    color: var(--color-secondary);
+    font-weight: bold;
+    font-size: 13px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .smalltext:hover {
+    text-decoration: underline;
+  }
+  
+  .border-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 350px;
+    height: 25px;
+    border-top: 1px solid var(--color-border);
+    margin-top: 30px;
+  }
+  
+  .border-line span {
+    background-color: var(--alt-background-color);
+    color: var(--color-text-secondary);
+    padding: 0 10px;
+    position: absolute;
+    font-size: 13px;
+    top: -10px;
+    z-index: 10;
+  }
+  
+  .button-group-container {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    max-width: 350px;
+    padding: 0px;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: var(--color-input-background);
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    gap: 5px;
+    position: relative;
+  }
+  
+  .button-group-btn {
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 15px;
+    background-color: var(--color-input-background);
+    color: var(--color-text-primary);
+    height: 2.3em;
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+    padding: 0px 10px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button-group-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 33.33%;
+    height: 100%;
+    background-color: var(--color-primary);
+    z-index: -1;
+  }
+  
+  .button-group-btn.active {
+    color: var(--color-text-white);
+    background-color: var(--color-primary);
+  }
+  
+  .button-group-btn.active:hover {
+    background-color: var(--color-primary-accent);
+    transform: none;
+  }
+  
+  /* Hover effect */
+  .button-group-btn:hover {
+    background-color: var(--color-border);
+  }
+  
+  button.toggle-password {
+    position: absolute;
+    margin-left: -65px;
+    margin-top: 2.25px;
+    background-color: transparent;
+    border: none;
+    color: var(--color-secondary);
+    font-size: 14px;
+    cursor: pointer;
+    padding: 12px 20px;
+    height: 3em;
+    transition: color 0.3s ease;
+  }
+  
+  button.toggle-password:hover {
+    color: var(--color-secondary-accent);
+  }
+  
