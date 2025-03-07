@@ -62,9 +62,10 @@ export default function AddTags({tagContent}) {
 
     return(
         <div>
-           <label htmlFor="questionDesc" className="threadDir"><h1>Tags (Optional)</h1></label>
+           
             
-            <div className="fill">
+            <div className="fill"><label htmlFor="questionDesc" className="threadDir"><h1>Tags (Optional)</h1></label></div>
+
               <div className="input-container text-box ql-container">
               <h4 className='text'>Press <div className='text-bold'>Enter</div> To Submit</h4>
               <p>Make sure to make them accurate and clear as possible</p>
@@ -105,6 +106,5 @@ export default function AddTags({tagContent}) {
             ))}
             </div>
             </div>
-        </div>
     );
 }

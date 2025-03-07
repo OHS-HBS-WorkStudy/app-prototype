@@ -64,6 +64,8 @@
   --color-text-white: white; /* White for text on dark backgrounds */
   --color-text-black: #333; 
 
+  --alt-background-color: #f7f7f7;
+
 --clr-primary-a0: #cca633;
 --clr-primary-a10: #d3af4c;
 --clr-primary-a20: #dab963;
@@ -87,7 +89,8 @@
 --clr-surface-tonal-a50: #b7bcdd;
 
 
---color-input-background: #939ccc;
+--color-input-background: hsl(220, 15%, 90%); /* Soft light gray-blue */
+
 
 --newThread-button: #406abf;
 --newThread-button-hover: #5a79c6;
@@ -107,6 +110,9 @@
   --color-text-white: white; /* White for text on dark backgrounds */
   --color-text-black: #333; 
   --color-input-background: #3f3f3f;
+
+  --alt-background-color: #1e1e1e
+  ;
 
   /** Dark theme primary colors */
 --clr-primary-a0: #4d3960;
@@ -256,5 +262,28 @@ body {
     overflow-x: scroll;
   }  
 
+  .Home {
+    margin-left: 0 !important;
+
+  } 
+  .bento-box {
+    margin-left: 0px !important;
+  }
+
+  .grid-header {
+    margin-left: 10px !important;
+  }
+
+  .grid-container {
+    margin-left: 10px !important;
+  }
+
+  #thread-content {
+    margin-left: 0px !important;
+  }
+
+  .thread-top {
+    margin-left: 10px !important;
+  }
   
 }
