@@ -1,24 +1,8 @@
 import { useState } from "react";
 
 export default function ThreadVote() {
-    const [score, changeScore] = useState(Number(sessionStorage.getItem("thread_score")));
+    const [score, changeScore] = useState(Number(JSON.parse(sessionStorage.getItem("thread"))[5]));
 
-    function scoreVotes() {
-        fetch(sessionStorage.getItem("server_address")+"/scoreVotes", {
-            method: "POST",
-            body: JSON.stringify({
-                thread_id: JSON.parse(sessionStorage.getItem("thread"))[2]
-            }),
-            headers: {
-              "Content-type": "application/json; charset=UTF-8"
-            }
-        })
-        .then((response) => response.json())
-        .then((json) => changeScore(json))
-    }
-
-
-    scoreVotes();
     let val = Number(sessionStorage.getItem("thread_score"));
 
     const scoreMax = val+1;
@@ -34,10 +18,10 @@ export default function ThreadVote() {
     function increaseScore() {
         if(score < scoreMax) {
             changeScore(score+1);
-        console.log("hello?")
-        sessionStorage.setItem("thread_score", score);
-        didIncrease(true);
-        postVote("positive")
+            console.log("hello?")
+            sessionStorage.setItem("thread_score", score);
+            didIncrease(true);
+            postVote("positive")
         }
     }
 
