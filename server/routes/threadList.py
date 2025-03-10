@@ -233,6 +233,7 @@ def sortReplies(array):
         data = thread_reply_count(array[x][2])
 
         sorted_score[array[x][2]] = data
+        print(sorted_score)
 
     for x in range(len(array)):
         if x == 0:
@@ -249,8 +250,11 @@ def sortReplies(array):
                     break
                 else:
                     continue
+            print(sortedArray)
                 
             if placement_found == False:
                 sortedArray.append(array[x])
                 
+    print(sorted_score)
+    print("here you go, asshole:", sortedArray)
     return sortedArray

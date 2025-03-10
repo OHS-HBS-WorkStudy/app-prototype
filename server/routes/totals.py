@@ -17,7 +17,7 @@ def total_replies(user_id):
     try:
         conn = sqlite3.connect('app.db')
         cursor = conn.cursor()
-        cursor.execute(f"SELECT COUNT(*) FROM replies WHERE user_id='{user_id}'")
+        cursor.execute(f"SELECT * FROM replies WHERE user_id='{user_id}'")
         values = cursor.fetchall()
         conn.commit()
         conn.close()
@@ -29,7 +29,7 @@ def thread_reply_count(thread_id):
     try:
         conn = sqlite3.connect('app.db')
         cursor = conn.cursor()
-        cursor.execute(f"SELECT COUNT(*) FROM replies WHERE thread_id='{thread_id}'")
+        cursor.execute(f"SELECT * FROM replies WHERE thread_id='{thread_id}'")
         values = cursor.fetchall()
         conn.commit()
         conn.close()
