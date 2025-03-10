@@ -19,14 +19,17 @@ def sql_createVote(data):
     cursor = conn.cursor()
     
     try:
-        cursor.execute(f"SELECT * FROM reply_votes WHERE thread_id='{data["thread_id"]}' AND user_id='{data["user_id"]}'")
+        cursor.execute(f"SELECT * FROM reply_votes WHERE thread_id='{data["thread_id"]}' AND user_id='{data["user_id"]}' AND reply_id='{data["reply_id"]}'")
         vals = cursor.fetchall()
         print(vals)
         if len(vals) == 0:
             cursor.execute('''CREATE TABLE IF NOT EXISTS reply_votes (score, thread_id, reply_id, user_id)''')
             cursor.execute(f"INSERT INTO reply_votes VALUES('{data["score"]}', '{data["thread_id"]}', '{data["reply_id"]}', '{data["user_id"]}')")
         else:
-            print("already voted")
+            if vals[0][0] == "positive" and data["score"] == "negative" or vals[0][0] == "negative" and data["score"] == "positive":
+                cursor.execute(f"DELETE FROM reply_votes WHERE thread_id='{data["thread_id"]}' AND user_id='{data["user_id"]}' AND reply_id='{data["reply_id"]}'")
+            else:
+                cursor.execute(f"UPDATE reply_votes SET score='{data["score"]}' WHERE thread_id='{data["thread_id"]}' AND user_id='{data["user_id"]}' AND reply_id='{data["reply_id"]}'")
     except:
         cursor.execute('''CREATE TABLE IF NOT EXISTS reply_votes (score, thread_id, user_id)''')
         cursor.execute(f"INSERT INTO reply_votes VALUES('{data["score"]}', '{data["thread_id"]}', '{data["reply_id"]}', '{data["user_id"]}')")

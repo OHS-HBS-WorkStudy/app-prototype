@@ -25,7 +25,10 @@ def sql_createVote(data):
             cursor.execute('''CREATE TABLE IF NOT EXISTS votes (score, thread_id, user_id)''')
             cursor.execute(f"INSERT INTO votes VALUES('{data["score"]}', '{data["thread_id"]}', '{data["user_id"]}')")
         else:
-            print("already voted")
+            if vals[0][0] == "positive" and data["score"] == "negative" or vals[0][0] == "negative" and data["score"] == "positive":
+                cursor.execute(f"DELETE FROM votes WHERE thread_id='{data["thread_id"]}' AND user_id='{data["user_id"]}'")
+            else:
+                cursor.execute(f"UPDATE votes SET score='{data["score"]}' WHERE thread_id='{data["thread_id"]}' AND user_id='{data["user_id"]}'")
     except:
         cursor.execute('''CREATE TABLE IF NOT EXISTS votes (score, thread_id, user_id)''')
         cursor.execute(f"INSERT INTO votes VALUES('{data["score"]}', '{data["thread_id"]}', '{data["user_id"]}')")
