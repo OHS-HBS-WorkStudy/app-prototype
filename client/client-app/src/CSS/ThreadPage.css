@@ -179,6 +179,10 @@
   scroll-behavior: smooth;
 }
 
+.repliesNon {
+  margin-left: 40px;
+}
+
 /* Content area within the reply section */
 #reply-content {
   display: grid;

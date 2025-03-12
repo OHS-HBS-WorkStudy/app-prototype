@@ -255,7 +255,7 @@ body {
   gap: 5px;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 480px) {
   .body {
     width: 100vw;
     height: 100vh;
@@ -285,5 +285,33 @@ body {
   .thread-top {
     margin-left: 10px !important;
   }
+
+  .reply-section {
+    margin-left: 10px !important;
+  }
+
+  .content-container {
+    margin-left: 10px !important;
+  }
   
+  .ReplylistTop {
+    margin-left: 25px !important;
+  }
+
+  #thread-content {
+    padding-right: 0px !important;
+  }
+  .threadpage {
+    padding-right: 5px !important;
+  }
+  .reply-section {
+    padding: 0px !important;
+  }
+
+  .split.left {
+    margin-left: 0px !important;
+    
+  }
 }
+
+

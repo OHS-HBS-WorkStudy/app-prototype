@@ -47,13 +47,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(45deg, #7E4B8D, #6C3D8D, #D19FE6, #B89CC6);
+  background: linear-gradient(45deg, #9C6DD5, #7A4F9A, #B47BD9);
   width: 100%;
   height: 100vh;
   position: relative;
   overflow: hidden;
   transition: background-position 0.3s ease;
 }
+
+
+
 
 
 
@@ -180,14 +183,17 @@
 
   
   .input-container {
+    display: flex;             /* Use flexbox layout */
+    flex-direction: column;    /* Stack the content vertically */
     background-color: var(--color-secondary);
     padding: 20px;
     border-radius: 8px;
-    width: 100%;
-    max-width: 400px;
-    min-width: 300px;
+    width: 100%;               /* Allow the container to take full width of its parent */
+    max-width: 400px;          /* Maximum width */
+    min-width: 200px;          /* Minimum width */
     text-align: left;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-sizing: border-box;    /* Ensures padding is included in the width calculation */
   }
   
   .input-container:hover {
@@ -209,23 +215,27 @@
     animation-delay: 0.5s;
   }
   
+  /* Flex properties on input to allow it to shrink and grow */
   .input-container input[type="text"] {
-    width: 100%;
+    flex: 1 1 auto;             /* Allow input to grow and shrink */
+    width: 100%;                /* Make input take up full width of the container */
     padding: 12px;
     margin-bottom: 15px;
     border: none;
     border-radius: 4px;
     background-color: rgba(255, 255, 255, 0.2);
-    color: var(--color-tex);
+    color: var(--color-text);
     transition: all 0.3s ease;
     opacity: 0;
     animation: fadeIn 1s ease-out forwards 0.5s;
-    min-width: 200px; /* Add this line to set a minimum width */
+    box-sizing: border-box;     /* Prevent padding from affecting the width */
   }
   
   .input-container input[type="text"]::placeholder {
     color: var(--color-text-secondary);
   }
+  
+  
   
   .input-container input[type="text"]:focus {
     background-color: var(--color-accent);
@@ -315,34 +325,37 @@
       width: 100%;
       height: auto;
       overflow-x: hidden;
-      margin-left: 30px;
       gap: 0 !important;
     }
   
     .split {
       width: 100%;
       margin: 10px 0;
-
-  
     }
   
 
     .split.right {
       display: none;
     }
+
     .split.left{
       width: 100%;
+      transform: scale(0.95);
       animation: none !important; 
-      padding: 60px;
+      padding: 60px !important;
     }
   
     .center {
-      max-width: 90%;
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
     }
   
     .input-container {
       width: 90%;
       max-width: 100%;
+      display: flex;
+      flex: 1;
     }
   
     .btn-container {

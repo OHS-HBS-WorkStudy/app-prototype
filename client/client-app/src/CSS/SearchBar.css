@@ -12,7 +12,10 @@ Styles for the search bar component:
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50vw;
+    max-width: 800px;
+    width: 100%;
+    min-width: 200px;
+
   
     
     border: 1px solid black;
@@ -30,36 +33,33 @@ Styles for the search bar component:
   
   }
   
+  .search-box {
+    position: relative; 
+    display: inline-flex; 
+    width: 300px; 
+  }
+  
   .search-box input {
-    height: 100%;
+    height: 40px; 
     width: 100%;
-    padding-left: 26px;
+    padding-left: 40px; 
     padding-right: 20px;
     border-radius: 25px;
     outline: none;
-    border: none;
+    border: 1px solid #ccc; 
     font-size: 18px;
-    opacity: 1;
-    transition: opacity 0.5s ease;
+    box-sizing: border-box; 
   }
   
   .search-box .icon {
-    position: relative;
-    height: 100%;
-  
-    text-align: center;
-    border-radius: 25px 0px 0px 25px;
-    cursor: pointer;
+    position: absolute;
+    left: 10px; 
+    top: 50%;
+    transform: translateY(-50%); 
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.5s ease;
-  }
-  
-  .search-box .icon {
-    transform: translateX(105%);
-    transition: background 0.5s ease;
-    background: white;
+    pointer-events: none; 
   }
   
   .search-box.open svg {

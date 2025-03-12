@@ -103,6 +103,10 @@
   flex-wrap: nowrap;
 }
 
+.title {
+  display: flex;
+  text-wrap:  nowrap;
+}
 
 .nav-toggle {
   position: relative;

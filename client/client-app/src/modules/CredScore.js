@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const FullCircle = ({ score }) => {
+const FullCircle = ({ score, score1 }) => {
   const radius = 40; // Radius of the semi-circle
   const centerX = 50; // Center X-coordinate of the SVG
   const centerY = 50; // Center Y-coordinate of the SVG
@@ -116,6 +116,20 @@ const FullCircle = ({ score }) => {
         >
           <h3 className="rating-display">{rating}</h3>
         </div>
+
+        <div
+          style={{
+            position: 'absolute',
+            top: '30%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            fontSize: '20px',
+            fontWeight: 'bold',
+            color: 'white',
+          }}
+        >
+        <p className="rating-display-mini"> {score1}</p>
+        </div>
       </div>
     </div>
   );
@@ -149,7 +163,7 @@ const CredScore = () => {
       <button onClick={decreaseScore}>Decrease Score</button> */}
       {score !== null ? (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <FullCircle score={score} />
+          <FullCircle score={score} score1={score1} />
         </div>
       ) : (
         <p>No data yet</p>
