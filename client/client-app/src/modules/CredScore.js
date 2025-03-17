@@ -33,7 +33,7 @@ const FullCircle = ({ score, score1 }) => {
       case score <= 180:
         return 'Superior';
       default:
-        return 'No data';
+        return 'NAN';
     }
   }
 
@@ -155,6 +155,8 @@ const CredScore = () => {
     setScore(inflationScore);
   }, [inflationScore]);
 
+  const unknownScore = 360;
+
   // Removed unused increaseScore and decreaseScore functions
 
   return (
@@ -166,7 +168,9 @@ const CredScore = () => {
           <FullCircle score={score} score1={score1} />
         </div>
       ) : (
-        <p>No data yet</p>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <FullCircle score={unknownScore} score1={score1} />
+        </div>
       )}
     </div>
   );
