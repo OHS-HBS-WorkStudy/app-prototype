@@ -33,7 +33,7 @@
 .Login, 
 .Sign {
   overflow: hidden;
-
+}
 .split.left {
   display: flex;
   flex-direction: column;
