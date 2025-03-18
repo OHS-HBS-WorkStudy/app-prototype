@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import apostrophe from './Adipose.js';
 
 const FullCircle = ({ score, score1 }) => {
   const radius = 40; // Radius of the semi-circle

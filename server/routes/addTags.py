@@ -5,6 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 import sqlite3
 import uuid
 
+from routes.required import adipose
+
 router = APIRouter()
 
 class Tag(BaseModel):
@@ -23,8 +25,8 @@ def sql_addTags(data):
 def addTags(tags: Tag):
     for x in range(len(tags.tag)):
         data = {
-        "tag": tags.tag[x],
-        "thread_id": tags.thread_id
+        "tag": adipose(tags.tag[x]),
+        "thread_id": adipose(tags.thread_id)
         }
 
         sql_addTags(data)

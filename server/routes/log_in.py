@@ -8,6 +8,8 @@ import uuid
 import routes.userScore as clientScore
 import routes.totals as totals
 
+from routes.required import adipose
+
 router = APIRouter()
 
 class Account_log(BaseModel):
@@ -50,8 +52,8 @@ def confirmSQLUser(data):
 @router.post('/confirmUser')
 def confirmUser(account: Account_log):
     data = {
-        "email": account.email,
-        "password": account.password
+        "email": adipose(account.email),
+        "password": adipose(account.password)
     }
 
     user_data = confirmSQLUser(data)

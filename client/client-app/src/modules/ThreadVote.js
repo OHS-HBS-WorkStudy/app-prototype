@@ -1,4 +1,5 @@
 import { useState } from "react";
+import apostrophe from './Adipose.js';
 
 export default function ThreadVote() {
     const [score, changeScore] = useState(Number(JSON.parse(sessionStorage.getItem("thread_score"))));

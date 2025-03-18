@@ -5,6 +5,8 @@ import BentoBox from "./BentoBox.js";
 import ThreadFilter from "./ThreadFilter.js";
 import Loader from './loadCheck.js';
 
+import apostrophe from './Adipose.js';
+
 
 export default function ThreadList() {
     const [listActive, activateList] = useState(false);

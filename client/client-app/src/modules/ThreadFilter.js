@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
+import apostrophe from './Adipose.js';
+
 
 export default function ThreadFilter({data, searchButton, totalPages, index}) {
     const [isEditing, setIsEditing] = useState(false);
