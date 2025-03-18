@@ -10,6 +10,11 @@ export default function SignUp() {
   const loggedin = useContext(LoggedinState);
   const getLoggedIn = useContext(GetLoggedInState);
 
+      function SignUpPage() {
+        changeScreen(1);
+      }
+  
+
   function sendData() {
     let data = {
       password: document.getElementById("password").value,
@@ -73,6 +78,7 @@ export default function SignUp() {
           </div>
 
           <div className="split left">
+      
             <div className="page-title">
               <h2>Welcome Back!</h2>
             </div>
@@ -93,14 +99,14 @@ export default function SignUp() {
               </button>
             </div>
             <button onClick={sendData} className="buttonn">
-              Sign In
+              Login
             </button>
             <div className="border-line">
-              <span>Or Sign Up</span>
+              <span>Or</span>
             </div>
             <div className="login-container">
               <p className="login-text">Don't have an account? </p>
-              <p className="smalltext">Sign Up here</p>
+              <p className="smalltext" onClick={SignUpPage}>Sign Up here</p>
             </div>
           </div>
         </div>

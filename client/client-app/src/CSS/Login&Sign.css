@@ -20,42 +20,53 @@
 .split {
   flex: 1;  /* Allow it to take up the available space */
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding: 20px;
   text-align: center;
   transition: all 0.3s ease-in-out;
   position: relative;
   min-height: 100vh; /* Ensures full height */
-  overflow: hidden;
+
 }
 
 .Login, 
 .Sign {
   overflow: hidden;
 }
+
+.Sign .page-title {
+  margin-top: 25px;
+}
+.Login .split.left {
+  justify-content: center;
+}
 .split.left {
   display: flex;
   flex-direction: column;
-  justify-content: center; 
+  justify-content: flex-start;
   align-items: center; 
   flex-wrap: nowrap;
   background-color: var(--alt-background-color);
   width: 100%;
-  height: 100vh; 
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
+
 
 
 .split.right {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; 
   align-items: center;
   background: var(--login-and-sign-color);
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: relative;
-  overflow: hidden;
+  overflow-y: hidden; /* Enables scrolling if content overflows */
+  overflow-x: hidden;
   transition: background-position 0.3s ease;
 }
 

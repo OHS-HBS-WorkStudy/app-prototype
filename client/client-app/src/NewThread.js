@@ -22,18 +22,24 @@ export default function NewThread() {
             {data === null && (
                 <div className="overlay">
                 <div className="box-holder">
-                    <div className="overlay-box">
+                  <div className="overlay-box">
                     <div className="box-content">
-                        <div className="box-top">
+                      <div className="box-top">
                         <h2>Please log in to access your account</h2>
-                        </div>
-                    <div className="box-bottom">
-                        <p className="text">You need to log in to access this page. Please <div className="underline" onClick={Login}>log in</div> to continue.</p>
+                      </div>
+                      <div className="box-bottom">
+                        <p className="text">
+                          You need to log in to access this page. Please 
+                          <span className="underline" onClick={Login}>log in</span> 
+                          to continue.
+                        </p>
+                      </div>
                     </div>
-                    </div>
-                    </div>
+                  </div>
                 </div>
-                </div>
+              </div>
+              
+              
             )}
 
             {data !== null && (

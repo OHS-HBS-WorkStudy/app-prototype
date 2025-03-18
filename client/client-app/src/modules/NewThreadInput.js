@@ -207,11 +207,12 @@ export default function NewThreadInput({value}) {
           </div>
 
           <AddTags />
-
+          <div className="loadButton container">
           <div className={`loadButton ${isLoading ? "loading" : ""}`}>
             <button onClick={submitThread} disabled={isLoading} >
               {isLoading ? "Submitting..." : "Submit"}
             </button>
+          </div>
           </div>
         </div>
       </div>
