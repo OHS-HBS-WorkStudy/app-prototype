@@ -8,74 +8,116 @@ Styles for the search bar component:
 - .search-box svg: Default icon color.
 */
 
-.searchbar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50vw;
-  
-    
-    border: 1px solid black;
-  }
-  
-  .search-box {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    border-radius: 25px;
 
-    overflow: hidden;
-  
-  }
-  
-  .search-box input {
-    height: 100%;
-    width: 100%;
-    padding-left: 26px;
-    padding-right: 20px;
-    border-radius: 25px;
-    outline: none;
-    border: none;
-    font-size: 18px;
-    opacity: 1;
-    transition: opacity 0.5s ease;
-  }
-  
-  .search-box .icon {
-    position: relative;
-    height: 100%;
-  
-    text-align: center;
-    border-radius: 25px 0px 0px 25px;
-    cursor: pointer;
+
+.searchbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 800px;
+  width: 100%;
+  min-width: 200px;
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.search-box input {
+  height: 30px !important;
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 20px;
+  border-radius: 25px;
+  outline: none;
+  border: 1px solid #ccc;
+  font-size: 18px;
+  color: var(--color-accent);
+  box-sizing: border-box;
+}
+
+.search-box .icon {
+  position: absolute; 
+  width: fit-content;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+
+}
+
+.search-box.open svg {
+  fill: var(--color-accent);
+}
+
+.search-box svg {
+  fill: var(--color-text-black);
+  height: fit-content;
+  width: 100%; 
+  height: 100%;
+  z-index: 10;
+}
+
+@media only screen and (max-width: 635px) {
+  .searchbar {
     display: flex;
     align-items: center;
-    justify-content: center;
-    transition: background 0.5s ease;
+    justify-content: left;
+    padding-left: 10px;
   }
-  
-  .search-box .icon {
-    transform: translateX(105%);
-    transition: background 0.5s ease;
-    background: white;
-  }
-  
-  .search-box.open svg {
-    fill: var(--color-accent);
-  }
-  
-  .search-box svg {
-    fill: white;
-    height: 23px;
-  }
-  
+
   .search-box {
-    width: 100%;
-    height: 23px;
     display: flex;
-    flex: 1 2;
     justify-content: center;
-  } 
+    align-items: center;
+    height: 30px !important;
+    width: 30px !important;
+    border-radius: 50% !important;
+    background-color: var(--color-background);
+    border: none;
+    transform: none;
+  }
+
+  .search-box .icon {
+    position: static; 
+    transform: none; 
+    
+    background-color: transparent !important;
+    padding: 0px;
+    border-radius: 50% !important;
+  }
+
+  .search-box input {
+    display: none !important;
+  }
+ 
   
+  .mobile-search-input {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: calc(100% - 60px);
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: var(--color-background);
+    z-index: 0;
+  }
+  
+  .mobile-search-input input {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    box-sizing: border-box;
+  }
+}
