@@ -64,6 +64,10 @@
   --color-text-white: white; /* White for text on dark backgrounds */
   --color-text-black: #333; 
 
+  --alt-background-color: #f7f7f7;
+
+  --login-and-sign-color: linear-gradient(45deg, #e6e6fa, #add8e6);
+
 --clr-primary-a0: #cca633;
 --clr-primary-a10: #d3af4c;
 --clr-primary-a20: #dab963;
@@ -87,7 +91,8 @@
 --clr-surface-tonal-a50: #b7bcdd;
 
 
---color-input-background: #939ccc;
+--color-input-background: hsl(220, 15%, 90%); /* Soft light gray-blue */
+
 
 --newThread-button: #406abf;
 --newThread-button-hover: #5a79c6;
@@ -107,6 +112,9 @@
   --color-text-white: white; /* White for text on dark backgrounds */
   --color-text-black: #333; 
   --color-input-background: #3f3f3f;
+
+  --alt-background-color: #1e1e1e
+  ;
 
   /** Dark theme primary colors */
 --clr-primary-a0: #4d3960;
@@ -134,6 +142,8 @@
 
 --newThread-button: #6C58CE;
 --newThread-button-hover: #5438a5;
+
+--login-and-sign-color: linear-gradient(45deg, #9C6DD5, #7A4F9A, #B47BD9);
 }
 
 
@@ -249,12 +259,93 @@ body {
   gap: 5px;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 480px) {
   .body {
     width: 100vw;
     height: 100vh;
     overflow-x: scroll;
   }  
 
+  .Home {
+    margin-left: 0 !important;
+
+  } 
+  .bento-box {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+
+  .grid-header {
+    margin-left: 10px !important;
+    margin-right: 0px !important;
+  }
+
+  .dropdown-content  {
+    margin-left: 10px !important;
+    margin-right: 0px !important;
+  }
+
+  .grid-container {
+    margin-left: 10px !important;
+    margin-right: 0px !important;
+  }
+
+  #thread-content {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+
+  .thread-top {
+    margin-left: 10px !important;
+  }
+
+  .reply-section {
+    margin-left: 10px !important;
+  }
+
+  .content-container {
+    margin-left: 10px !important;
+  }
   
+  .ReplylistTop {
+    margin-left: 25px !important;
+  }
+
+  #thread-content {
+    padding-right: 0px !important;
+  }
+  .threadpage {
+    padding-right: 5px !important;
+  }
+  .reply-section {
+    padding: 0px !important;
+  }
+
+  .split.left {
+    margin-left: 0px !important;
+    
+  }
+
+  .account-page {
+    margin-left: 0px !important;
+  }
+
+  .overlay {
+    margin-left: 0px !important;
+  }
+
+  .loading-overlay {
+    margin-left: 0px !important;
+  }
+
+  .mobile-search-input {
+    width: 100%;
+  }
+
+
+  .app-name{
+    font-size: 23px;
+  }
 }
+
+
