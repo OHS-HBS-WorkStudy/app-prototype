@@ -21,8 +21,7 @@ export default function ReplyVote({id, r_score}) {
     function increaseScore() {
         if(score < scoreMax) {
             changeScore(score+1);
-            console.log("hello?")
-            sessionStorage.setItem("replies", score);
+            console.log("hello?");
             didIncrease(true);
             postVote("positive")
         }
@@ -31,7 +30,6 @@ export default function ReplyVote({id, r_score}) {
     function decreaseScore() {
         if(score > scoreMin){
             changeScore(score-1);
-            sessionStorage.setItem("replies", score);
             didDecrease(true);
             postVote("negative")
         }

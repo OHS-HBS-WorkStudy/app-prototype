@@ -7,6 +7,7 @@ import uuid
 import random
 
 import routes.countViews as CV
+import routes.scoreVotes as SV
 
 router = APIRouter()
 
@@ -33,6 +34,7 @@ def sql_retrieveThread(id):
     value2.append(f"Anonymouse {value3[4]} 1")
 
     value2.append(CV.sql_scoreViews(id))
+    value2.append(SV.sql_scoreVotes(id))
     
     conn.commit()
     conn.close()
