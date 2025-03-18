@@ -7,6 +7,8 @@ import uuid
 
 from datetime import datetime
 
+from routes.required import adipose
+
 router = APIRouter()
 
 class User(BaseModel):
@@ -39,12 +41,12 @@ async def test(item: User):
     now = datetime.now()
 
     data = {
-        "first_name": item.fname,
-        "last_name": item.lname,
-        "password": item.password,
-        "email": item.email,
-        "type": item.type,
-        "uuid": new_uuid,
+        "first_name": adipose(item.fname),
+        "last_name": adipose(item.lname),
+        "password": adipose(item.password),
+        "email": adipose(item.email),
+        "type": str(item.type),
+        "uuid": str(new_uuid),
         "timestamp": str(datetime.timestamp(now))
     }
 

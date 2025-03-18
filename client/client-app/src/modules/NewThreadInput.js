@@ -7,6 +7,7 @@ import DOMPurify from 'dompurify';
 
 import AddTags from "./AddTags.js";
 import TagList from "./TagList.js";
+import apostrophe from './Adipose.js';
 
 export default function NewThreadInput({value}) {
     const[ThreadTitle, setThreadTitle] = useState("");

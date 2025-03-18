@@ -7,6 +7,8 @@ import uuid
 
 from routes.scoreVotes import sql_scoreVotes
 
+from routes.required import adipose
+
 router = APIRouter()
 
 class Tag(BaseModel):
@@ -60,7 +62,7 @@ def sql_searchTag(data):
 
 @router.post("/searchTag")
 def searchTag(tag: Tag):
-    data = sql_searchTag(tag.tag)
+    data = sql_searchTag(adipose(tag.tag))
     return data
 
 def getTagList(id):

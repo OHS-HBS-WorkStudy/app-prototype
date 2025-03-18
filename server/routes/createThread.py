@@ -7,6 +7,8 @@ import uuid
 
 from datetime import datetime
 
+from routes.required import adipose
+
 router = APIRouter()
 
 class ThreadInfo(BaseModel):
@@ -31,8 +33,8 @@ def createThread(info: ThreadInfo):
     now = datetime.now()
 
     data = {
-        "thread_name": info.thread_name,
-        "thread_contents": info.thread_contents,
+        "thread_name": adipose(info.thread_name),
+        "thread_contents": adipose(info.thread_contents),
         "thread_id": str(thread_id),
         "creator_id": info.uuid,
         "timestamp": str(datetime.timestamp(now))

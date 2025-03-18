@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 
 import TagList from './TagList.js';
 
+import apostrophe from './Adipose.js';
+
 export default function AddTags({tagContent}) {
     const [tagCount, newTag] = useState(0);
     const [values, setValues] = useState([])

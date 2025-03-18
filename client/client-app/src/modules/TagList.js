@@ -1,3 +1,5 @@
+import apostrophe from './Adipose.js';
+
 export default function TagList({tag, val}) {
     function removeTag() {
         let rTag = document.getElementById(val);

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import apostrophe from './Adipose.js';
 
 export default function ReplyVote({id, r_score}) {
     const [score, changeScore] = useState(r_score);

@@ -7,6 +7,8 @@ import uuid
 
 from datetime import datetime
 
+from routes.required import adipose
+
 class Reply(BaseModel):
     contents: str
     thread_id: str
@@ -27,7 +29,7 @@ def createReplies(reply: Reply):
     reply_id = uuid.uuid4()
 
     data = {
-        "contents": reply.contents,
+        "contents": adipose(reply.contents),
         "reply_id": str(reply_id),
         "thread_id": reply.thread_id,
         "user_id": reply.uuid
