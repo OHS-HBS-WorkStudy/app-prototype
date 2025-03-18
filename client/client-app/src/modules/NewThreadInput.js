@@ -171,9 +171,11 @@ export default function NewThreadInput({value}) {
       
       <div className="NewThread">
         <div className="center">
-
-          <label htmlFor="questionTitle" className="threadDir"><h1>Question Title</h1></label>
+<div className="fill">
+        <label htmlFor="questionTitle" className="threadDir"><h1>Question Title</h1></label>
+        </div>
           <div className="input-container text-box ql-container">
+         
             <input
               id="questionTitle"
               className="input-container"
@@ -186,8 +188,11 @@ export default function NewThreadInput({value}) {
             <div className="charCounter">{getPlainText(ThreadTitle).length}/{maxTitleLength} characters</div>
           </div>
 
+          <div className="fill">
           <label htmlFor="questionDesc" className="threadDir"><h1>Question Description</h1></label>
+            </div>
           <div className="input-container text-box ql-container">
+          
             <ReactQuill
               id="questionDesc"
               ref={quillRef}

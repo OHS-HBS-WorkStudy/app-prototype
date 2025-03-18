@@ -23,7 +23,6 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  overflow: hidden !important;
   text-align: center;
   transition: all 0.3s ease-in-out;
   position: relative;
@@ -34,7 +33,7 @@
 .Login, 
 .Sign {
   overflow: hidden;
-}
+
 .split.left {
   display: flex;
   flex-direction: column;
@@ -53,7 +52,6 @@
   justify-content: center;
   align-items: center;
   background: var(--login-and-sign-color);
-  
   width: 100%;
   height: 100vh;
   position: relative;
@@ -325,21 +323,30 @@
   
   @media (max-width: 640px) {
     .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        height: auto;
-        overflow-x: hidden;
-        gap: 0 !important;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: auto;
+      overflow-x: hidden;
+      gap: 0 !important;
     }
-
+  
     .split {
-        width: 100%;
+      width: 100%;
+      margin: 10px 0;
     }
+  
 
     .split.right {
-        display: none;
+      display: none;
+    }
+
+    .split.left{
+      width: 100%;
+      transform: scale(0.95);
+      animation: none !important; 
+      padding: 60px !important;
     }
 
     .split.left {
@@ -353,16 +360,16 @@
     }
 
     .center {
-        display: flex;
-        flex: 1 1 auto;
-        flex-direction: column;
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
     }
 
     .input-container {
-        width: 90%;
-        max-width: 100%;
-        display: flex;
-        flex: 1;
+      width: 90%;
+      max-width: 100%;
+      display: flex;
+      flex: 1;
     }
 
     .btn-container {
@@ -394,6 +401,14 @@
     border: 1px solid yellow;
   } 
    */
+   .page-title h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--color-text-white) !important;
+  }
+  
+
    .page-title h2 {
     font-size: 30px;
     font-weight: bold;
@@ -579,4 +594,3 @@
   button.toggle-password:hover {
     color: var(--color-secondary-accent);
   }
-  

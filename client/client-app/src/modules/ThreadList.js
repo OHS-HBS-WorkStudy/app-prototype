@@ -3,7 +3,7 @@ import { ScreenStateContext } from "../App.js";
 import DOMPurify from 'dompurify';
 import BentoBox from "./BentoBox.js";
 import ThreadFilter from "./ThreadFilter.js";
-
+import Loader from './loadCheck.js';
 
 
 export default function ThreadList() {
@@ -157,6 +157,7 @@ export default function ThreadList() {
         if(listActive === true) {
             return(
                 <>
+                 <Loader />
                     <div className="layout-wrapper">
                         <div className="nav-space"></div>
                         <div className="sidebar-space"></div>
@@ -189,6 +190,7 @@ export default function ThreadList() {
             return(
                 <div>
                      <div className="nav-space"></div>
+                     <Loader />
                     <h2>No current Threads</h2>
                 </div>
             )
@@ -198,6 +200,7 @@ export default function ThreadList() {
         return(
             <div>
                  <div className="nav-space"></div>
+                 <Loader />
                 <h2>No current Threads</h2>
             </div>
         )

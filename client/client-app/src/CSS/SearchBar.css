@@ -90,7 +90,6 @@ Styles for the search bar component:
   .search-box .icon {
     position: static; 
     transform: none; 
-    
     background-color: transparent !important;
     padding: 0px;
     border-radius: 50% !important;
@@ -100,7 +99,6 @@ Styles for the search bar component:
     display: none !important;
   }
  
-  
   .mobile-search-input {
     position: absolute;
     top: 60px;

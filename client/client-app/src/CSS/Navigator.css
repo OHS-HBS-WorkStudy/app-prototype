@@ -135,7 +135,6 @@
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
   opacity: 0; 
   pointer-events: none; 
-
 }
 
 
@@ -157,14 +156,11 @@
   opacity: 1;
   pointer-events: all; 
   transform: scale(1); 
-}
 
 .nav-toggle .nav-toggle-open svg,
 .nav-toggle .nav-toggle-close svg {
   fill: var(--clr-primary-a50); 
 }
-
-
 
 .nav-toggle:hover {
   background-color: rgba(0, 0, 255, 0.1);

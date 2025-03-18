@@ -288,6 +288,7 @@ body {
   .grid-container {
     margin-left: 10px !important;
     margin-right: 0px !important;
+
   }
 
   #thread-content {
@@ -346,6 +347,7 @@ body {
   .app-name{
     font-size: 23px;
   }
+
 }
 
 

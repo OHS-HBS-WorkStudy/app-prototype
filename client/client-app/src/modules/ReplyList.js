@@ -56,9 +56,7 @@ export default function ReplyList({getCount}) {
 
                               
         
-<div className="thread">
-                <div className="threadpage">
-                <div id="thread-content">
+
 
                 <div className="thread-top reply">
                         <div className="thread-top-stats">
@@ -84,9 +82,6 @@ export default function ReplyList({getCount}) {
                     
 
                 </div>
-            </div>
-            </div>
-            </div>
                             
                             
                             
@@ -101,14 +96,14 @@ export default function ReplyList({getCount}) {
             ) 
         }else {
             return(
-                <div>
+                <div className="repliesNon">
                     <h2>No current Replies</h2>
                 </div>
             )
         }
     }catch(err) {
         return(
-            <div>
+            <div className="repliesNon">
                 <h2>No current Replies</h2>
             </div>
         )
