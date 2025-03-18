@@ -66,6 +66,8 @@
 
   --alt-background-color: #f7f7f7;
 
+  --login-and-sign-color: linear-gradient(45deg, #e6e6fa, #add8e6);
+
 --clr-primary-a0: #cca633;
 --clr-primary-a10: #d3af4c;
 --clr-primary-a20: #dab963;
@@ -140,6 +142,8 @@
 
 --newThread-button: #6C58CE;
 --newThread-button-hover: #5438a5;
+
+--login-and-sign-color: linear-gradient(45deg, #9C6DD5, #7A4F9A, #B47BD9);
 }
 
 
@@ -268,18 +272,28 @@ body {
   } 
   .bento-box {
     margin-left: 0px !important;
+    margin-right: 0px !important;
   }
 
   .grid-header {
     margin-left: 10px !important;
+    margin-right: 0px !important;
+  }
+
+  .dropdown-content  {
+    margin-left: 10px !important;
+    margin-right: 0px !important;
   }
 
   .grid-container {
     margin-left: 10px !important;
+    margin-right: 0px !important;
+
   }
 
   #thread-content {
     margin-left: 0px !important;
+    margin-right: 0px !important;
   }
 
   .thread-top {
@@ -312,6 +326,28 @@ body {
     margin-left: 0px !important;
     
   }
+
+  .account-page {
+    margin-left: 0px !important;
+  }
+
+  .overlay {
+    margin-left: 0px !important;
+  }
+
+  .loading-overlay {
+    margin-left: 0px !important;
+  }
+
+  .mobile-search-input {
+    width: 100%;
+  }
+
+
+  .app-name{
+    font-size: 23px;
+  }
+
 }
 
 

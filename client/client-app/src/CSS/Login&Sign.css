@@ -30,6 +30,10 @@
   overflow: hidden;
 }
 
+.Login, 
+.Sign {
+  overflow: hidden;
+
 .split.left {
   display: flex;
   flex-direction: column;
@@ -47,7 +51,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(45deg, #9C6DD5, #7A4F9A, #B47BD9);
+  background: var(--login-and-sign-color);
   width: 100%;
   height: 100vh;
   position: relative;
@@ -344,26 +348,46 @@
       animation: none !important; 
       padding: 60px !important;
     }
-  
+
+    .split.left {
+        width: 100vw;
+        height: 100% !important;
+        margin-left: 60px; 
+        animation: none !important;
+        padding: 20px !important; 
+        overflow: scroll;
+        box-sizing: border-box; 
+    }
+
     .center {
       display: flex;
       flex: 1 1 auto;
       flex-direction: column;
     }
-  
+
     .input-container {
       width: 90%;
       max-width: 100%;
       display: flex;
       flex: 1;
     }
-  
+
     .btn-container {
-      width: 90%;
-      min-width: unset;
-      padding: 10px;
+        width: 90%;
+        min-width: unset;
+        padding: 10px;
     }
+}
+
+@media only screen and (max-width: 480px) {
+  .center {
+        transform: scale(0.8);
+    }
+    
+    .split.left {
+      margin-left: 0px; 
   }
+}
   
 
   /* .screen {
@@ -377,6 +401,14 @@
     border: 1px solid yellow;
   } 
    */
+   .page-title h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--color-text-white) !important;
+  }
+  
+
    .page-title h2 {
     font-size: 30px;
     font-weight: bold;
@@ -410,6 +442,10 @@
     font-style: italic;
   }
   
+  .split h2 {
+    color: var(--color-text-primary) !important;
+  }
+
   .inputbox input:focus {
     outline: none;
     border-color: var(--color-primary);
@@ -543,10 +579,10 @@
   
   button.toggle-password {
     position: absolute;
-    margin-left: -65px;
-    margin-top: 2.25px;
+    margin-left: 100px;
+    margin-top: -59px;
     background-color: transparent;
-    border: none;
+   border: none;
     color: var(--color-secondary);
     font-size: 14px;
     cursor: pointer;
@@ -558,4 +594,3 @@
   button.toggle-password:hover {
     color: var(--color-secondary-accent);
   }
-  

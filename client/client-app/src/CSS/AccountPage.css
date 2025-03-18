@@ -34,11 +34,12 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 90vw; /* Allow the box to take up most of the screen width */
-  max-height: 90vh; /* Prevent the box from becoming too tall */
-  width: auto; /* Allow the box width to be dynamic */
-  height: auto; /* Allow the box height to be dynamic */
-  min-width: 200px; /* Minimum box width */
+  max-width: 90vw; 
+  max-height: 90vh; 
+  width: fit-content; 
+  height: fit-content; 
+  text-wrap: wrap;
+  min-width: 300px; 
   min-height: 100px; /* Minimum box height */
   box-sizing: border-box; /* Ensure padding doesn't overflow the box */
 }

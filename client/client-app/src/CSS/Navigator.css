@@ -80,7 +80,8 @@
   top: 0;
   left: 0;
   width: 60px;
-  height: 100%;
+  margin-top: 60px;
+  height: calc(100% );
   background-color: var(--color-secondary);
   box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.15);
   z-index: 100;
@@ -99,7 +100,7 @@
   align-items: center;
   justify-content: left;
   width: 100%;
-  gap: 30px;
+  gap: 10px;
   flex-wrap: nowrap;
 }
 
@@ -110,8 +111,8 @@
 
 .nav-toggle {
   position: relative;
-  width: 40px;
-  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -155,14 +156,11 @@
   opacity: 1;
   pointer-events: all; 
   transform: scale(1); 
-}
 
 .nav-toggle .nav-toggle-open svg,
 .nav-toggle .nav-toggle-close svg {
   fill: var(--clr-primary-a50); 
 }
-
-
 
 .nav-toggle:hover {
   background-color: rgba(0, 0, 255, 0.1);
@@ -187,10 +185,12 @@
 
 .navigator.menu-open .sidebar {
   width: 250px;
+  z-index: 1000;
 }
 
 .navigator.menu-open .sidebar:hover {
   width: 250px;
+  z-index: 1000;
 }
 
 .menu-items {
@@ -198,7 +198,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 75px;
+
 }
 
 .navigator.menu-open .menu-items {
