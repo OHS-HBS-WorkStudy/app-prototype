@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../CSS/Loader.css";
-import apostrophe from './Adipose.js';
 
 export default function Loader() {
   const [isLoading, setIsLoading] = useState(true);

@@ -3,8 +3,6 @@ import { ScreenStateContext } from '../App.js';
 import SearchBar from './SearchBar.js';
 import '../App.css';
 
-import apostrophe from './Adipose.js';
-
 export default function Navigator() {
   const changeScreen = useContext(ScreenStateContext);
   const timeoutRef = useRef(null); 

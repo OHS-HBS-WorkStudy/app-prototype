@@ -1,8 +1,6 @@
 import ReactQuill from "react-quill";
 import { useState } from "react";
 
-import apostrophe from './Adipose.js';
-
 export default function ThreadReply() {
     const [questionDesc, setQuestionDesc] = useState('');
 

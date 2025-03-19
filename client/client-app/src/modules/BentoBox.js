@@ -1,5 +1,4 @@
 import CredScore from "./CredScore.js";
-import apostrophe from './Adipose.js';
 
 export default function BentoBox() {
 

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import { GetLoggedInState, ScreenStateContext } from '../App.js';
-import apostrophe from './Adipose.js';
+
 
 export default function LogOut() {
     const getLoggedIn = useContext(GetLoggedInState);
@@ -9,7 +9,7 @@ export default function LogOut() {
 
     const handleLogOut = () => {
         sessionStorage.removeItem('user');
-        screenState(0)
+        screenState(2)
         getLoggedIn(false);
         // You can also redirect the user to the login page or home page after logout
         // window.location.href = '/login';

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import ReplyVote from './ReplyVote.js';
-import apostrophe from './Adipose.js';
 
 export default function ReplyList({getCount}) {
     const [listActive, activateList] = useState(false);
