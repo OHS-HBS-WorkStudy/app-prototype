@@ -26,17 +26,27 @@ export default function SignUp() {
       setActiveButton(buttonType);
     };
 
+    let send = false;
+
+      function checkData(data) {
+        if(data === null || data === "") {
+          alert("Please fill in all the fields");
+          send = false;
+        }
+      }
     
       function sendData() {
+        send = true;
         let data = {
-          fname: document.getElementById("fname").value,
-          lname: document.getElementById("lname").value,
-          password: document.getElementById("password").value,
-          email: document.getElementById("email").value,
+          fname: checkData(document.getElementById("fname").value),
+          lname: checkData(document.getElementById("lname").value),
+          password: checkData(document.getElementById("password").value),
+          email: checkData(document.getElementById("email").value),
           type: accountType
         }
-    
-        post(data);
+        if(send === true){
+          post(data);
+        }
       }
     
       function post(val) {
