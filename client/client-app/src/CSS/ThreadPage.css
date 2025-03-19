@@ -374,6 +374,9 @@
   padding-bottom: 20px;
 }
 
+.reply.submitted-content-desc {
+  width: 97%;
+}
 /* Media query for small screens, adjusts padding and font size */
 @media (max-width: 768px) {
   .reply-section {
