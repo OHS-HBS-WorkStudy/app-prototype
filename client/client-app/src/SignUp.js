@@ -75,6 +75,7 @@ export default function SignUp() {
                 </div>
 
               <div className="split left">
+                
                     <div className="center">
                     
                         <div className="page-title">

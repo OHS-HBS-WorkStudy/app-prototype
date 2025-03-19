@@ -83,7 +83,7 @@ export default function SignUp() {
           </div>
 
           <div className="split left">
-      
+              <div className='center'>
             <div className="page-title">
               <h2>Welcome Back!</h2>
             </div>
@@ -115,6 +115,7 @@ export default function SignUp() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </body>
   );

@@ -90,6 +90,8 @@
 --clr-surface-tonal-a40: #a5acd5;
 --clr-surface-tonal-a50: #b7bcdd;
 
+--link-color: #cca633;
+
 
 --color-input-background: hsl(220, 15%, 90%); /* Soft light gray-blue */
 
@@ -143,6 +145,7 @@
 --newThread-button: #6C58CE;
 --newThread-button-hover: #5438a5;
 
+--link-color: white;
 --login-and-sign-color: linear-gradient(45deg, #9C6DD5, #7A4F9A, #B47BD9);
 }
 

@@ -13,6 +13,10 @@ export default function NewThread() {
         changeScreen(2);
     }
 
+    function SignUp() {
+      changeScreen(1);
+  }
+
     let data = JSON.parse(sessionStorage.getItem("user"));
 
     return(
@@ -25,14 +29,20 @@ export default function NewThread() {
                   <div className="overlay-box">
                     <div className="box-content">
                       <div className="box-top">
-                        <h2>Please log in to access your account</h2>
+                        <h2>Please sign up or log in to create a new thread!</h2>
                       </div>
                       <div className="box-bottom">
                         <p className="text">
-                          You need to log in to access this page. Please 
-                          <span className="underline" onClick={Login}>log in</span> 
+                          You need to log in to access this page.
+                        </p>
+                        <p className="text">
+                        Please 
+                          <span className="underline" onClick={SignUp}>Sign up</span> 
+                          or 
+                          <span className="underline" onClick={Login}>Log in</span> 
                           to continue.
                         </p>
+                        
                       </div>
                     </div>
                   </div>
