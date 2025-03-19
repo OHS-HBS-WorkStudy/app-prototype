@@ -33,7 +33,7 @@ export default function NewThread() {
                       </div>
                       <div className="box-bottom">
                         <p className="text">
-                          You need to log in to access this page.
+                          You need to be logged in to access this page.
                         </p>
                         <p className="text">
                         Please 

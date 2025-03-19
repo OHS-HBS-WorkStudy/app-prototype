@@ -281,7 +281,7 @@ radioButtons.forEach(button => {
     return(
       <div>
         <div className={`grid-header ${filterOpen ? "open" : ""}`}>
-        <div className="title">Thread Controller</div>
+        <div className="title">Manager</div>
             <div className="dropdown">
               <label htmlFor="tagFilter" style={{ display: "none" }}>
                 Category:

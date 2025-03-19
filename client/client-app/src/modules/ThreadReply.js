@@ -1,8 +1,13 @@
+import { useState, useRef } from "react";
 import ReactQuill from "react-quill";
-import { useState } from "react";
+
+
+import "react-quill/dist/quill.snow.css";
 
 export default function ThreadReply() {
     const [questionDesc, setQuestionDesc] = useState('');
+
+    const quillRef = useRef(null);
 
 
     function ReplyButton() {
@@ -29,24 +34,31 @@ export default function ThreadReply() {
             .then((json) => window.location.reload());
     }
 
+
+
+    const maxReplyLength = 10000;
+
     const getPlainText = (htmlContent) => {
         const tempDiv = document.createElement("div");
         tempDiv.innerHTML = htmlContent;
         return tempDiv.innerText || tempDiv.textContent;
-    };
-
-    const handleQuillChange = (value) => {
-        const maxLength = 500; 
+      };
+      
+      const handleQuillChange = (value, setValue, maxLength, quillRef) => {
         const plainText = getPlainText(value);
-    
+      
         if (plainText.length <= maxLength) {
-            setQuestionDesc(value); 
-        } else {
-            const cutValue = value.slice(0, maxLength);
-            setQuestionDesc(cutValue);
+        setValue(value);
+        } else {  
+        const quillText = quillRef.current.getEditor().getContents();
+        const cutQuillText = quillText.slice(0, maxLength);
+        setValue(cutQuillText);
+      
+        const editor = quillRef.current.getEditor();
+        editor.setContents(cutQuillText); 
+        editor.setSelection(maxLength); 
         }
-    };
-
+      };
 
     const modules = {
         toolbar: [
@@ -68,11 +80,16 @@ export default function ThreadReply() {
                 <div className="reply-container">
                 <ReactQuill
                     id="questionDesc"
+                    ref={quillRef}
                     value={questionDesc}
-                    onChange={handleQuillChange}
                     style={{ borderRadius: '8px', minHeight: '100px' }}
                     modules={modules}
+                    onChange={(value) =>
+                        handleQuillChange(value, setQuestionDesc, maxReplyLength, quillRef)
+                      }
                 />
+
+<div className="charCounter">{getPlainText(questionDesc).length}/{maxReplyLength} characters</div>
                     <button className="btn-send" onClick={ReplyButton}>
                         Send
                     </button>
