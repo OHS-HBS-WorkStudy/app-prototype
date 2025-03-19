@@ -31,7 +31,7 @@ def sql_retrieveThread(id):
     cursor.execute(f"SELECT * FROM users WHERE uuid='{value[3]}'")
     value3 = cursor.fetchone()
 
-    value2.append(f"Anonymouse {value3[4]} 1")
+    value2.append(f"Anonymous {value3[4]} 1")
 
     value2.append(CV.sql_scoreViews(id))
     value2.append(SV.sql_scoreVotes(id))
