@@ -37,6 +37,8 @@ export default function SignUp() {
         if(data === null || data === "") {
           alert("Please fill in all the fields");
           send = false;
+        }else {
+          return data;
         }
       }
     
