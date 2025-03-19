@@ -31,8 +31,8 @@ export default function SignUp() {
   }
 
   function toHome(json) {
-    if(json.length > 0) {
-      console.log(json);
+    console.log(json);
+    if(json.uuid !== undefined) {
       sessionStorage.setItem("user", JSON.stringify(json));
       getLoggedIn(true);
       console.log(json, loggedin);

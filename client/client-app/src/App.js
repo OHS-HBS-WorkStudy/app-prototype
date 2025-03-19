@@ -18,8 +18,8 @@ export const GetLoggedInState = createContext(0);
 
 function App() {
   const [accountType, changeType] = useState("none");
-  const [screenState, changeScreen] = useState(check());
   const [loggedin, getLoggedIn] = useState(checkLoginStatus());
+  const [screenState, changeScreen] = useState(check());
 
   function checkLoginStatus() {
     let user = sessionStorage.getItem("user");
@@ -44,7 +44,12 @@ function App() {
   function check() {
     let val = Number(sessionStorage.getItem("current_screen"));
     console.log(val);
-    return val;
+
+    if(loggedin === false) {
+      return 1;
+    }else {
+      return val;
+    }
   }
 
   return(
