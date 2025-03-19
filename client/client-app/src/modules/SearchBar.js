@@ -2,8 +2,6 @@ import { useContext, useState, useEffect } from 'react';
 import { ScreenContext } from '../App.js';
 import '../App.css';
 
-import apostrophe from './Adipose.js';
-
 export default function SearchBar() {
   const screen = useContext(ScreenContext);
   const [searchbarValue, setSearchbarValue] = useState("");

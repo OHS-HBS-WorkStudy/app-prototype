@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import { GetLoggedInState, ScreenStateContext } from '../App.js';
-import apostrophe from './Adipose.js';
+
 
 export default function LogOut() {
     const getLoggedIn = useContext(GetLoggedInState);
