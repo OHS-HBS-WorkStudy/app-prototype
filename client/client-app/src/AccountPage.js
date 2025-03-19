@@ -30,7 +30,7 @@ export default function AccountPage() {
         setDarkMode((prevMode) => !prevMode);
       };
 
-      const [activeSection, setActiveSection] = useState('activity'); 
+      const [activeSection, setActiveSection] = useState('stats'); 
 
       const handleSectionClick = (section) => {
         setActiveSection(section);
@@ -167,35 +167,39 @@ export default function AccountPage() {
         <h1 className="userName">{nameFetch()}</h1>
         <div className="account-pages">
           <h3 
-          className={activeSection === 'activity' ? 'active' : ''} 
-          onClick={() => handleSectionClick('activity')}
-          >
-          Activity
-          </h3>
-          <h3 
           className={activeSection === 'stats' ? 'active' : ''}
           onClick={() => handleSectionClick('stats')}
           >
           Stats
+          </h3>
+          <h3 
+          className={activeSection === 'activity' ? 'active' : ''} 
+          onClick={() => handleSectionClick('activity')}
+          >
+          Activity
           </h3>
         </div>
         </div>
 
         {data === null && (
         <div className="overlay">
-          <div className="box-holder">
-            <div className="overlay-box">
-              <div className="box-content">
-                <div className="box-top">
-                  <h2>Please log in to access your account</h2>
-                </div>
-              <div className="box-bottom">
-                  <p className="text">You need to log in to access this page. Please <div className="underline" onClick={Login}>log in </div> to continue.</p>
+        <div className="box-holder">
+          <div className="overlay-box">
+            <div className="box-content">
+              <div className="box-top">
+                <h2>Please log in to access your account</h2>
               </div>
-             </div>
+              <div className="box-bottom">
+                <p className="text">
+                  You need to log in to access this page. Please 
+                  <span className="underline" onClick={Login}>log in</span> 
+                  to continue.
+                </p>
+              </div>
             </div>
           </div>
         </div>
+      </div>
         )}
 
         {data !== null && activeSection === 'activity' && ( 

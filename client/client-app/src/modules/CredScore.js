@@ -34,7 +34,7 @@ const FullCircle = ({ score, score1 }) => {
       case score <= 180:
         return 'Superior';
       default:
-        return 'NAN';
+        return '0';
     }
   }
 

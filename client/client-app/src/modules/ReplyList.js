@@ -55,21 +55,12 @@ export default function ReplyList({getCount}) {
                     
                         <div>
 
-                              
-        
-
-
                 <div className="thread-top reply">
                         <div className="thread-top-stats">
-                            <p>Reply From {value.user}</p>
+                            <h3>{value.user}</h3>
                             
                     </div>
                     </div>
-                
-               
-                    
-    
-                    
                     <div className="content-container ">
 
                     <div className="vote-box">
@@ -78,15 +69,9 @@ export default function ReplyList({getCount}) {
                         </div>
                         <div className="reply submitted-content-desc" dangerouslySetInnerHTML={{__html: value.contents}} />
                     </div>
-                    
-                
-                    
 
                 </div>
-                            
-                            
-                            
-                          
+   
                     )} 
                     </div>
                     </div>

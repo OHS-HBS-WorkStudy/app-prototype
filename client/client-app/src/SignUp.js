@@ -20,6 +20,11 @@ export default function SignUp() {
     setPasswordVisible(!passwordVisible);
   };
 
+  function LoginPage() {
+    changeScreen(2);
+  }
+
+
 
 
     const handleButtonClick = (buttonType) => {
@@ -65,21 +70,7 @@ export default function SignUp() {
                         <div className="center">
                           <div className='content'>
                           <img src={signpic} alt="signpic" className="signpic"/>
-                          </div>
-                            
-                                {/* <h3>Create Account</h3>
-                            <div className="input-container">
-                            <label for="fname">First Name:</label>
-                            <input id="fname" type="text" placeholder="Enter your first name" />
-                            <label for="lname">Last Name:</label>
-                            <input id="lname" type="text" placeholder="Enter your last name"/>
-                            <label for="password">Password:</label>
-                            <input id="password" type="text" placeholder="Enter your password"/>  
-                            <label for="email">Email:</label>
-                            <input id="email"  type="text" placeholder="Enter your email"/>
-                            <button className="btn-send" onClick={sendData}>Submit</button>
-                        </div> */}
-                      
+                          </div>  
                     </div>
                 </div>
 
@@ -87,7 +78,7 @@ export default function SignUp() {
                     <div className="center">
                     
                         <div className="page-title">
-                            <h2>Join the Community</h2>
+                            <h2>Join the Community!</h2>
                         </div>
 
 
@@ -141,15 +132,15 @@ export default function SignUp() {
                         </div>
                       </div>
 
-                        <button className="buttonn" onClick={sendData} >Sign In</button>
+                        <button className="buttonn" onClick={sendData} >Sign Up</button>
                         <div className="border-line">
-                        <span>Or login</span>
+                        <span>Or</span>
                     </div>
 
                         
                     <div className="login-container">
                       <p className="login-text">Have an account? </p>
-                      <p className="smalltext">Login here</p>
+                      <p className="smalltext" onClick={LoginPage}>Login here</p>
                     </div>
 
                 </div>

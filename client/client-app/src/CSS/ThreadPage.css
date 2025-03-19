@@ -67,6 +67,7 @@
 }
 
 /* Styling for h2 elements within the thread page */
+.threadpage h3,
 .threadpage h2 {
   color: var(--color-text-white) !important;
 }
@@ -78,13 +79,15 @@
   justify-content: left;
   align-items: left;
   margin-left: 40px;
+  padding-bottom: 20px;
 }
 
 /* Description of the submitted content, applies text styling */
 .submitted-content-desc {
-  margin-left: 30px;
+  margin-left: 10px;
+  padding-top: 1.5px;
   color: var(--color-text-white);
-  font-size: 1rem;
+  font-size: 1.01rem;
   line-height: 1.6;
   margin-top: 12px;
   word-break: break-word;
@@ -161,22 +164,25 @@
 /* Adjusts border for reply section */
 .thread-top.reply {
   border-bottom: 0 !important;
-  border-top: 1px solid gray;
+  border-top: 1px solid var(--color-border);
+  width: 94%;
+  padding-top: 10px;
 }
 
 /* Container for reply list, applies layout and background */
 .reply-list {
   display: flex;
   flex-direction: column;
-  background-color: var(--color-background);
+  background-color: var(--clr-surface-a10);
   width: 100%;
   height: fit-content;
-  align-items: center;
+  align-items: left;
   justify-content: flex-start;
   color: #fff;
   box-sizing: border-box;
-  position: relative;
+  position: absolute;
   scroll-behavior: smooth;
+  padding: 10px;
 }
 
 .repliesNon {
@@ -186,10 +192,10 @@
 /* Content area within the reply section */
 #reply-content {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr;
   gap: 20px;
   align-items: start;
-  padding: 20px;
+  padding: 60px;
   background-color: var(--color-accent);
   color: #333;
   border-radius: 12px;
@@ -206,7 +212,7 @@
 /* Header for reply section, applies layout and styling */
 .reply-header {
   border-bottom: 1px solid var(--color-border);
-  padding-bottom: 10px;
+  padding: 10px;
   margin-bottom: 20px;
   margin-top: 40px;
   width: 100%;
@@ -224,6 +230,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding: 10px;
   gap: 12px;
   padding: 100px;
 }
@@ -346,7 +353,7 @@
   resize: vertical;
   border: 1.1px dashed #e0e0e062 !important;
   border-radius: 8px !important;
-  background-color: var(--color-input-background) !important;
+  background-color: var(--clr-surface-a50) !important;
 }
 
 /* Container for reply list */
@@ -363,7 +370,7 @@
 /* Layout for top section of reply list */
 .ReplylistTop {
   display: flex;
-  margin-left: 65px;
+  margin-left: 50px;
   padding-bottom: 20px;
 }
 
