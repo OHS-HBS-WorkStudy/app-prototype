@@ -31,10 +31,15 @@ export default function SignUp() {
   }
 
   function toHome(json) {
-    sessionStorage.setItem("user", JSON.stringify(json));
-    getLoggedIn(true);
-    console.log(json, loggedin);
-    changeScreen(0);
+    if(json.length > 0) {
+      console.log(json);
+      sessionStorage.setItem("user", JSON.stringify(json));
+      getLoggedIn(true);
+      console.log(json, loggedin);
+      changeScreen(0);
+    }else {
+      alert("Wrong email or password");
+    }
   }
 
   const [passwordVisible, setPasswordVisible] = useState(false);
