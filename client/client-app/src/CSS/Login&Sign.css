@@ -65,7 +65,7 @@
 .split.right {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; 
+  justify-content: center; 
   align-items: center;
   background: var(--login-and-sign-color);
   width: 100%;
