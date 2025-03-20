@@ -34,6 +34,7 @@ export default function Navigator() {
   }
 
   function AccountPage() {
+    sessionStorage.setItem("findRun", "false");
     changeScreen(5);
   }
 

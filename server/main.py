@@ -21,7 +21,8 @@ from routes import (
     createReplyVote,
     scoreReplyVotes,
     topThreads,
-    topReplies
+    topReplies,
+    user_data
 )
 
 import sqlite3
@@ -56,3 +57,4 @@ app.include_router(createReplyVote.router)
 app.include_router(scoreReplyVotes.router)
 app.include_router(topThreads.router)
 app.include_router(topReplies.router)
+app.include_router(user_data.router)
