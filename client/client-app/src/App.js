@@ -17,7 +17,7 @@ export const LoggedinState = createContext(0);
 export const GetLoggedInState = createContext(0);
 
 function App() {
-  const [accountType, changeType] = useState("none");
+  const [accountType, changeType] = useState("student");
   const [loggedin, getLoggedIn] = useState(checkLoginStatus());
   const [screenState, changeScreen] = useState(check());
 
